@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     [SerializeField] GameObject PlayerTorso;
     [SerializeField] GameObject PlayerLegs;
-    Rigidbody2D rigidbody2D;
+    Rigidbody2D m_rigidbody2D;
 
     [SerializeField] float speed = 5f;
     [SerializeField] bool faceTarget = true;
@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         instance = this;
-        rigidbody2D = this.GetComponent<Rigidbody2D>();
+        m_rigidbody2D = this.GetComponent<Rigidbody2D>();
     }
 
     // Start is called before the first frame update
@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerTorso.transform.up = (Vector2) (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-        rigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
-        if (rigidbody2D.velocity != Vector2.zero)
+        m_rigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
+        if (m_rigidbody2D.velocity != Vector2.zero)
         {
-            PlayerLegs.transform.up = rigidbody2D.velocity;
+            PlayerLegs.transform.up = m_rigidbody2D.velocity;
             if (faceTarget && Quaternion.Angle(PlayerTorso.transform.rotation, PlayerLegs.transform.rotation) > 90) PlayerLegs.transform.up = -1 * PlayerLegs.transform.up; // Keeps body facing mouse
         }
 
