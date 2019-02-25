@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 309367447}
   - component: {fileID: 309367446}
   m_Layer: 0
-  m_Name: baseballbat_01
+  m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,13 +106,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309367445}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.361, y: 0.436, z: 0}
-  m_LocalScale: {x: 0.47022, y: 0.47022, z: 1.568}
+  m_LocalRotation: {x: -0, y: -0, z: -0.5644435, w: 0.8254717}
+  m_LocalPosition: {x: -0.22960818, y: 0.0044843955, z: 0}
+  m_LocalScale: {x: 0.47022012, y: 0.47022012, z: 1.568}
   m_Children: []
   m_Father: {fileID: 2106005151312157711}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -68.727005}
 --- !u!212 &309367446
 SpriteRenderer:
   m_ObjectHideFlags: 0
