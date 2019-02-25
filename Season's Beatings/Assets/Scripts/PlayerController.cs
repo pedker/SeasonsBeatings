@@ -39,4 +39,13 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, PlayerTorso.transform.up, Color.red, .01f);
         Debug.DrawRay(transform.position, PlayerLegs.transform.up, Color.green, .01f); 
     }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        I_item itemComponent = collision.collider.GetComponent<I_item>();
+        if (itemComponent != null)
+        {
+            itemComponent.pickUp();
+        }
+    }
 }
