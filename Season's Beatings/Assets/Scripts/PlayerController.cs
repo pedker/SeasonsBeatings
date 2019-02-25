@@ -41,9 +41,9 @@ public class PlayerController : MonoBehaviour
             if (faceTarget && Quaternion.Angle(playerTorso.transform.rotation, playerLegs.transform.rotation) > 90) playerLegs.transform.up = -1 * playerLegs.transform.up; // Keeps body facing mouse
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Click");
+            //Debug.Log("Click");
             weapon.Attack();
         }
 

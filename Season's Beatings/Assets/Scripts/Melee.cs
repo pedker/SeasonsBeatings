@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Melee : Weapon
 {
-    [SerializeField] float range = 1;
-    [SerializeField] float speed = 5;
+    [SerializeField] float attackRate = .5f;
+    [SerializeField] float knockback = 5;
+    [SerializeField] float damage = 5;
 
     [SerializeField] float startArc = -75;
     [SerializeField] float endArc = 75;
+    float attackSpeed;
 
     Collider2D collider2D;
     Rigidbody2D rigidbody2D;
@@ -23,6 +25,8 @@ public class Melee : Weapon
     void Start()
     {
         transform.localRotation = Quaternion.Euler(0, 0, startArc);
+        if (attackRate != 0) attackSpeed = (endArc - startArc) / attackRate;
+        else attackSpeed = 0;
         collider2D.enabled = false;
     }
 
@@ -31,10 +35,13 @@ public class Melee : Weapon
         if (collider2D.enabled)
         {
             time += Time.deltaTime;
-            if (time >= speed)
+            if (time < attackRate)
+            {
+                transform.Rotate(0, 0, attackSpeed * Time.deltaTime);
+            }
+            else
             {
                 collider2D.enabled = false;
-                rigidbody2D.angularVelocity = 0;
                 transform.localRotation = Quaternion.Euler(0, 0, startArc);
                 time = 0;
             }
@@ -47,7 +54,11 @@ public class Melee : Weapon
         {
             Debug.Log("Attacking");
             collider2D.enabled = true;
-            rigidbody2D.angularVelocity = (endArc - startArc) / speed;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Collided with " + other.name);
     }
 }
