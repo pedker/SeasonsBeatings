@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviour
     }
     void OnSceneLoaded(Scene loadedScene, LoadSceneMode sceneMode)
     {
-        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
     }
+
     void Update()
     {
         scoreText.text = "Score: " + score.ToString();

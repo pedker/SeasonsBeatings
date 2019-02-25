@@ -8,21 +8,38 @@ public class UIManager : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject gameCanvas;
+    public GameObject mainMenuCanvas;
+    private GameManager gameManager;
     bool isPaused = false;
+    bool inGame = false;
+    bool atMainMenu = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.instance;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            pauseControl();
+        {
+            PauseControl();
+            GameUIControl();
+        }
     }
 
-    public void pauseControl()
+    public void MainMenuUIControl()
+    {
+        atMainMenu = !atMainMenu;
+        if (atMainMenu)
+            mainMenuCanvas.SetActive(true);
+        else
+            mainMenuCanvas.SetActive(false);
+    }
+
+    public void PauseControl()
     {
         isPaused = !isPaused;
         if( isPaused )
@@ -37,24 +54,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void gameUIControl()
+    public void GameUIControl()
     {
-        if (!isPaused)
+        inGame = !inGame;
+        if (inGame)
             gameCanvas.SetActive(true);
         else
             gameCanvas.SetActive(false);
     }
-    public void loadScene( string sceneName )
+    public void LoadScene( string sceneName )
     {
         if( sceneName == "Main Menu" )
         {
-            gameUIControl();
-            pauseControl();
+            MainMenuUIControl();
+            GameUIControl();
+            PauseControl();
         }
         SceneManager.LoadScene(sceneName);
     }
 
-    public void quitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }
