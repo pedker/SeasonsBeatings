@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
 
         SceneManager.sceneLoaded += OnSceneLoaded; //Use this in vain of Start()
 
-
     }
     void OnSceneLoaded(Scene loadedScene, LoadSceneMode sceneMode)
     {
@@ -51,5 +50,24 @@ public class GameManager : MonoBehaviour
     public void setBGMVolume(float value)
     {
         m_BGMPlayer.volume = value;
+    }
+
+    // fades the volume to end value
+    // takes time amount of time to complete
+    public void fadeVolume(float finalVolume, float time)
+    {
+        StartCoroutine(fadeVolumeCoroutine(finalVolume, time));
+    }
+
+
+    private IEnumerator fadeVolumeCoroutine(float finalVolume, float time)
+    {
+        float startVolume = m_BGMPlayer.volume;
+        while (m_BGMPlayer.volume > 0)
+        {
+            m_BGMPlayer.volume -= startVolume * Time.deltaTime / time;
+
+            yield return null;
+        }
     }
 }
