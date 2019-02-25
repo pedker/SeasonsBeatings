@@ -42,6 +42,9 @@ TagManager:
   - name: Background
     uniqueID: 3137585781
     locked: 0
+  - name: Item
+    uniqueID: 3332315887
+    locked: 0
   - name: Legs
     uniqueID: 4078875125
     locked: 0
