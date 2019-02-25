@@ -27,7 +27,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerTorso.transform.up = (Vector2) (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+        if (Time.timeScale == 1)
+        {
+            PlayerTorso.transform.up = (Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+        }
         m_rigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
         if (m_rigidbody2D.velocity != Vector2.zero)
         {
