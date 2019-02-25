@@ -28,8 +28,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Distance is " + Vector3.Distance(PlayerController.instance.transform.position, transform.position));
-        Debug.Log("Angle is " + Vector3.Angle(PlayerController.instance.transform.position - transform.position, EnemyTorso.transform.up));
+        
         // Sight Cone
         if (Vector3.Distance(PlayerController.instance.transform.position, transform.position) < range &&
             Vector3.Angle(PlayerController.instance.transform.position - transform.position, EnemyTorso.transform.up) < viewAngle)
@@ -49,6 +48,8 @@ public class EnemyController : MonoBehaviour
         }
 
         //DEBUG
+        //Debug.Log("Distance is " + Vector3.Distance(PlayerController.instance.transform.position, transform.position));
+        //Debug.Log("Angle is " + Vector3.Angle(PlayerController.instance.transform.position - transform.position, EnemyTorso.transform.up));
         Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, viewAngle) * EnemyTorso.transform.up).normalized * range, Color.yellow, .01f);
         Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, -viewAngle) * EnemyTorso.transform.up).normalized * range, Color.yellow, .01f);
         Debug.DrawRay(transform.position, EnemyTorso.transform.up, Color.red, .01f);

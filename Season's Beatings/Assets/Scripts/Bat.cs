@@ -2,15 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bat : MonoBehaviour, I_weapon
+public class Bat : Melee
 {
-    public void attack()
-    {
-        Swing();
-    }
 
-    private void Swing()
-    {
-        
-    }
 }

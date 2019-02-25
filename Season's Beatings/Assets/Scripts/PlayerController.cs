@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
-    [SerializeField] GameObject PlayerTorso;
-    [SerializeField] GameObject PlayerLegs;
-    Rigidbody2D m_rigidbody2D;
+    [SerializeField] GameObject playerTorso;
+    [SerializeField] GameObject playerLegs;
+    [SerializeField] Weapon weapon;
+    Rigidbody2D rigidbody2D;
+    Collider2D collider2D;
 
     [SerializeField] float speed = 5f;
     [SerializeField] bool faceTarget = true;
@@ -15,13 +17,14 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         instance = this;
-        m_rigidbody2D = this.GetComponent<Rigidbody2D>();
+        rigidbody2D = this.GetComponent<Rigidbody2D>();
+        collider2D = this.GetComponent<Collider2D>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
     }
 
     // Update is called once per frame
@@ -29,21 +32,27 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.timeScale == 1)
         {
-            PlayerTorso.transform.up = (Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+            playerTorso.transform.up = (Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
         }
-        m_rigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
-        if (m_rigidbody2D.velocity != Vector2.zero)
+        rigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
+        if (rigidbody2D.velocity != Vector2.zero)
         {
-            PlayerLegs.transform.up = m_rigidbody2D.velocity;
-            if (faceTarget && Quaternion.Angle(PlayerTorso.transform.rotation, PlayerLegs.transform.rotation) > 90) PlayerLegs.transform.up = -1 * PlayerLegs.transform.up; // Keeps body facing mouse
+            playerLegs.transform.up = rigidbody2D.velocity;
+            if (faceTarget && Quaternion.Angle(playerTorso.transform.rotation, playerLegs.transform.rotation) > 90) playerLegs.transform.up = -1 * playerLegs.transform.up; // Keeps body facing mouse
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Click");
+            weapon.Attack();
         }
 
         //DEBUG
-        Debug.DrawRay(transform.position, PlayerTorso.transform.up, Color.red, .01f);
-        Debug.DrawRay(transform.position, PlayerLegs.transform.up, Color.green, .01f); 
+        Debug.DrawRay(transform.position, playerTorso.transform.up, Color.red, .01f);
+        Debug.DrawRay(transform.position, playerLegs.transform.up, Color.green, .01f); 
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         I_item itemComponent = collision.collider.GetComponent<I_item>();
         if (itemComponent != null)
