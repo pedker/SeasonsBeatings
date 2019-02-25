@@ -2,52 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class UIManager : MonoBehaviour
 {
-    GameObject[] pausedObjects;
+    public GameObject pauseMenu;
+    public GameObject gameCanvas;
+    bool isPaused = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        pausedObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
-        hidePaused();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             pauseControl();
-        }
     }
 
     public void pauseControl()
     {
-        if( Time.timeScale == 1 )
+        isPaused = !isPaused;
+        if( isPaused )
         {
             Time.timeScale = 0;
-            showPaused();
+            pauseMenu.SetActive(true);
         }
-        else if ( Time.timeScale == 0 )
+        else
         {
             Time.timeScale = 1;
-            hidePaused();
+            pauseMenu.SetActive(false);
         }
     }
-    public void showPaused()
+
+    public void gameUIControl()
     {
-        foreach(GameObject g in pausedObjects)
-            g.SetActive(true);
-    }
-    public void hidePaused()
-    {
-        foreach(GameObject g in pausedObjects)
-            g.SetActive(false);
+        if (!isPaused)
+            gameCanvas.SetActive(true);
+        else
+            gameCanvas.SetActive(false);
     }
     public void loadScene( string sceneName )
     {
+        if( sceneName == "Main Menu" )
+        {
+            gameUIControl();
+            pauseControl();
+        }
         SceneManager.LoadScene(sceneName);
     }
+
     public void quitGame()
     {
         Application.Quit();
