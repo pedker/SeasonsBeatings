@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     // fades the volume to end value
     // takes time amount of time to complete
-    public void fadeVolume(float finalVolume, float time)
+    public void fadeBGMVolume(float finalVolume, float time)
     {
         StartCoroutine(fadeVolumeCoroutine(finalVolume, time));
     }
