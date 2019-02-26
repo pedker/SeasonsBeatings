@@ -94,9 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4fce5118e3e4940aa6e46f82217c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRate: 5
-  knockback: 5
+  attackRate: 0.5
+  knockback: 100
   damage: 5
+  stun: 0.5
   startArc: -75
   endArc: 75
 --- !u!50 &6177238785633955744
@@ -130,7 +131,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.000000016865405, y: 0.5659091}

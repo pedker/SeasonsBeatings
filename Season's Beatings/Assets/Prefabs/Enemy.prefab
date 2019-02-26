@@ -127,10 +127,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyTorso: {fileID: 5698313409366779746}
+  weapon: {fileID: 878625799662684455}
   EnemyLegs: {fileID: 5698313408979540791}
-  range: 5
+  range: 10
+  health: 100
+  stun: 0
   viewAngle: 45
-  speed: 0
+  speed: 2.5
   faceTarget: 1
 --- !u!58 &5698313409356910142
 CircleCollider2D:
@@ -256,11 +259,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5698313409366779748}
     m_Modifications:
-    - target: {fileID: 6177238785141212048, guid: a2e5322c58e1d3844a062be9dccb77f1,
-        type: 3}
-      propertyPath: m_Name
-      value: Bat
-      objectReference: {fileID: 0}
     - target: {fileID: 6177238785141212050, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -316,6 +314,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -75
       objectReference: {fileID: 0}
+    - target: {fileID: 6177238785141212048, guid: a2e5322c58e1d3844a062be9dccb77f1,
+        type: 3}
+      propertyPath: m_Name
+      value: Bat
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2e5322c58e1d3844a062be9dccb77f1, type: 3}
 --- !u!4 &1922346723088629101 stripped
@@ -324,3 +327,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5698313407985286911}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &878625799662684455 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4838546435591747544, guid: a2e5322c58e1d3844a062be9dccb77f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5698313407985286911}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4fce5118e3e4940aa6e46f82217c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

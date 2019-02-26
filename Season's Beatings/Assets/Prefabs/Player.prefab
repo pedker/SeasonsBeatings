@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2106005151233612740}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,6 +134,8 @@ MonoBehaviour:
   playerLegs: {fileID: 2106005151308409903}
   weapon: {fileID: 1629192192113682141}
   speed: 5
+  health: 100
+  stun: 0
   faceTarget: 1
 --- !u!58 &2106005151233612747
 CircleCollider2D:
@@ -338,20 +340,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2106005151312157711}
     m_Modifications:
-    - target: {fileID: 6177238785141212048, guid: a2e5322c58e1d3844a062be9dccb77f1,
-        type: 3}
-      propertyPath: m_Name
-      value: Bat
-      objectReference: {fileID: 0}
     - target: {fileID: 6177238785141212050, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6177238785141212050, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6177238785141212050, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
@@ -398,10 +395,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -75
       objectReference: {fileID: 0}
-    - target: {fileID: 4838546435591747544, guid: a2e5322c58e1d3844a062be9dccb77f1,
+    - target: {fileID: 6177238785141212048, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
-      propertyPath: attackRate
-      value: 0.5
+      propertyPath: m_Name
+      value: Bat
       objectReference: {fileID: 0}
     - target: {fileID: 1764617654104190127, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}

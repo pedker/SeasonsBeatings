@@ -5,8 +5,10 @@ using UnityEngine;
 public class Melee : Weapon
 {
     [SerializeField] float attackRate = .5f;
-    [SerializeField] float knockback = 5;
+    [SerializeField] float knockback = 100;
     [SerializeField] float damage = 5;
+    [SerializeField] float stun = .5f;
+
 
     [SerializeField] float startArc = -75;
     [SerializeField] float endArc = 75;
@@ -60,5 +62,12 @@ public class Melee : Weapon
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Collided with " + other.name);
+
+        IDamageable damageableComponent = other.GetComponent<IDamageable>();
+
+        if (damageableComponent != null)
+        {
+            damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
+        }
     }
 }
