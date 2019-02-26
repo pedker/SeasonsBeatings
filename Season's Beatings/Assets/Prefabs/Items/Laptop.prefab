@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3469465471565463003}
   - component: {fileID: 3469465471565463000}
   m_Layer: 0
-  m_Name: Item
+  m_Name: Laptop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e540e74c531c61049885035b5aa838f9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c4c7ed1ec7fd8b040bd64295c33de167, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a35ac9a93c4b94aa5600a9a0e4803e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_score: 15
+  m_score: 300
 --- !u!61 &3469465471565463000
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.74, y: 0.99}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
