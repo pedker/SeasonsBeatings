@@ -179,9 +179,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 847244862, guid: df95c31e385454845a426ca5f074ab57, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980962400, guid: df95c31e385454845a426ca5f074ab57, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884710650347344163, guid: df95c31e385454845a426ca5f074ab57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 492162825, guid: df95c31e385454845a426ca5f074ab57, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Prototype Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 492162825, guid: df95c31e385454845a426ca5f074ab57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df95c31e385454845a426ca5f074ab57, type: 3}
