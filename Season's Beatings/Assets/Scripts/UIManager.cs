@@ -24,11 +24,11 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseControl();
-            GameUIControl();    // Only needed if disabling the UI is really necessary
+            GameUIControl();    
         }
     }
 
-    public void MainMenuUIControl() // Useless function. Just disable the ui in the main menu scene.
+    public void MainMenuUIControl() 
     {
         atMainMenu = !atMainMenu;
         if (atMainMenu)
@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
             mainMenuCanvas.SetActive(false);
     }
 
-    public void PauseControl() // Now this should be disabled in the main menu scene
+    public void PauseControl()
     {
         isPaused = !isPaused;
         if( isPaused )
@@ -61,13 +61,13 @@ public class UIManager : MonoBehaviour
             gameCanvas.SetActive(false);
     }
 
-    public void LoadScene( string sceneName ) // Useless function. Just disable the ui in the main menu scene.
+    public void LoadScene( string sceneName ) 
     {
-        //if( sceneName == "Main Menu" )    
+        if( sceneName == "Main Menu" )    
         {
-           // MainMenuUIControl();
-            //GameUIControl();
-           // PauseControl();
+            MainMenuUIControl();
+            GameUIControl();
+            PauseControl();
         }
         SceneManager.LoadScene(sceneName);
     }

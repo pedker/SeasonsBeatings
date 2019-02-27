@@ -20,10 +20,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
-        DontDestroyOnLoad(this.gameObject);
-
+        //DontDestroyOnLoad(this.gameObject);
+        instance = this;
 
         SceneManager.sceneLoaded += OnSceneLoaded; //Use this in vain of Start()
 
