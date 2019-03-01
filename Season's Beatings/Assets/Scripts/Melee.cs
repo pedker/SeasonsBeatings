@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class Melee : Weapon
 {
+    [Header("Battle Values")]
     [SerializeField] float attackRate = .5f;
     [SerializeField] float knockback = 100;
     [SerializeField] float damage = 5;
     [SerializeField] float stun = .5f;
 
-
+    [Header("Animation")]
     [SerializeField] float startArc = -75;
     [SerializeField] float endArc = 75;
-    float attackSpeed;
 
+    [Header("Sound")]
+    [SerializeField] AudioSource m_audioPlayer;
+    [SerializeField] AudioClip whooshSound;
+    [SerializeField] AudioClip whooshSound2;
+    [SerializeField] AudioClip collisionSound;
+    [SerializeField] float whooshVolume = 0.65f;
+    [SerializeField] float whooshPitchMinimum = 0.90f;
+    [SerializeField] float whooshPitchMaximum = 1.10f;
+    [SerializeField] float collideSoundVolume = 0.65f;
+    [SerializeField] float collidePitchMinimum = 0.95f;
+    [SerializeField] float collidePitchMaximum = 1.05f;
+
+
+    float attackSpeed;
     Collider2D collider2D;
     Rigidbody2D rigidbody2D;
     float time = 0;
@@ -22,6 +36,10 @@ public class Melee : Weapon
     {
         collider2D = GetComponent<Collider2D>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        m_audioPlayer = GetComponent<AudioSource>();
+        whooshSound = Resources.Load("Audio/SFX/Bat/BatSwing1") as AudioClip;
+        whooshSound2 = Resources.Load("Audio/SFX/Bat/BatSwing2") as AudioClip;
+        collisionSound = Resources.Load("Audio/SFX/Bat/BatHit") as AudioClip;
     }
 
     void Start()
@@ -56,6 +74,8 @@ public class Melee : Weapon
         {
             Debug.Log("Attacking");
             collider2D.enabled = true;
+
+            StartCoroutine(playSoundCoroutine(whooshSound, whooshVolume, whooshPitchMinimum, whooshPitchMaximum));
         }
     }
 
@@ -69,5 +89,22 @@ public class Melee : Weapon
         {
             damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
         }
+
+        StartCoroutine(playSoundCoroutine(collisionSound, collideSoundVolume, collidePitchMinimum, collidePitchMaximum));
+    }
+
+    private IEnumerator playSoundCoroutine(AudioClip sound, float soundVolume, float minimumPitch, float maximumPitch)
+    {
+        float timePassed = 0.0f;
+        m_audioPlayer.pitch = Random.Range(minimumPitch, maximumPitch);
+        m_audioPlayer.PlayOneShot(sound, soundVolume);
+
+        while (timePassed < sound.length)
+        {
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+
+        m_audioPlayer.pitch = 1.0f;
     }
 }

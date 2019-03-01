@@ -136,6 +136,12 @@ MonoBehaviour:
   viewAngle: 45
   speed: 2.5
   faceTarget: 1
+  m_audioPlayer: {fileID: 0}
+  damagedSound: {fileID: 0}
+  stepSound: {fileID: 0}
+  damagedSoundVolume: 0.65
+  damagedPitchMinimum: 0.85
+  damagedPitchMaximum: 1.15
 --- !u!58 &5698313409356910142
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -184,7 +190,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -356,6 +362,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5698313409366779748}
     m_Modifications:
+    - target: {fileID: 6177238785141212048, guid: a2e5322c58e1d3844a062be9dccb77f1,
+        type: 3}
+      propertyPath: m_Name
+      value: Bat
+      objectReference: {fileID: 0}
     - target: {fileID: 6177238785141212050, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -410,11 +421,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6177238785141212048, guid: a2e5322c58e1d3844a062be9dccb77f1,
-        type: 3}
-      propertyPath: m_Name
-      value: Bat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2e5322c58e1d3844a062be9dccb77f1, type: 3}

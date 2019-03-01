@@ -92,7 +92,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             Destroy(gameObject);
         }
 
-        StartCoroutine(playSoundCoroutine(damagedPitchMinimum, damagedPitchMaximum));
+        StartCoroutine(playSoundCoroutine(damagedSound, damagedSoundVolume, damagedPitchMinimum, damagedPitchMaximum));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -103,13 +103,13 @@ public class EnemyController : MonoBehaviour, IDamageable
         }
     }
 
-    private IEnumerator playSoundCoroutine(float minimumPitch, float maximumPitch)
+    private IEnumerator playSoundCoroutine(AudioClip sound, float soundVolume, float minimumPitch, float maximumPitch)
     {
         float timePassed = 0.0f;
-        m_audioPlayer.pitch = Random.Range(damagedPitchMinimum, damagedPitchMaximum);
-        m_audioPlayer.PlayOneShot(damagedSound, damagedSoundVolume);
+        m_audioPlayer.pitch = Random.Range(minimumPitch, maximumPitch);
+        m_audioPlayer.PlayOneShot(sound, soundVolume);
 
-        while (timePassed < damagedSound.length)
+        while (timePassed < sound.length)
         {
             timePassed += Time.deltaTime;
             yield return null;
