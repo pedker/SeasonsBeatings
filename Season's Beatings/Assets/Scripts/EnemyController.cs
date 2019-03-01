@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [Header("Sound")]
     [SerializeField] AudioSource m_audioPlayer;
     [SerializeField] AudioClip damagedSound;
+    [SerializeField] AudioClip stepSound;
     [SerializeField] float damagedSoundVolume = 0.65f;
     [SerializeField] float damagedPitchMinimum = 0.85f;
     [SerializeField] float damagedPitchMaximum = 1.15f;
@@ -31,6 +32,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         rigidbody2D = this.GetComponent<Rigidbody2D>();
         collider2D = this.GetComponent<Collider2D>();
         damagedSound = Resources.Load("Audio/SFX/Enemy/EnemyHitGrunt") as AudioClip;
+        stepSound = Resources.Load("Audio/SFX/Player/FootstepTest") as AudioClip;
         m_audioPlayer = this.GetComponent<AudioSource>();
     }
 
@@ -57,6 +59,7 @@ public class EnemyController : MonoBehaviour, IDamageable
                     rigidbody2D.velocity = EnemyTorso.transform.up.normalized * speed;
                     if (rigidbody2D.velocity != Vector2.zero)
                     {
+
                         EnemyLegs.transform.up = rigidbody2D.velocity;
                         if (faceTarget && Quaternion.Angle(EnemyTorso.transform.rotation, EnemyLegs.transform.rotation) > 90) EnemyLegs.transform.up = -1 * EnemyLegs.transform.up; // Keeps body facing mouse
                     }
