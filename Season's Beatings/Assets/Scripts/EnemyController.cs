@@ -4,24 +4,34 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour, IDamageable
 {
+    [Header("Components")]
     [SerializeField] GameObject EnemyTorso;
     [SerializeField] Weapon weapon;
     [SerializeField] GameObject EnemyLegs;
     Rigidbody2D rigidbody2D;
     Collider2D collider2D;
 
+    [Header("Attributes")]
     [SerializeField] float range = 10f;
     [SerializeField] float health = 100f;
     [SerializeField] float stun = 0;
     [SerializeField] float viewAngle = 45f;
-  
     [SerializeField] float speed = 5f;
     [SerializeField] bool faceTarget = true;
+
+    [Header("Sound")]
+    [SerializeField] AudioSource m_audioPlayer;
+    [SerializeField] AudioClip damagedSound;
+    [SerializeField] float damagedSoundVolume = 0.65f;
+    [SerializeField] float damagedPitchMinimum = 0.85f;
+    [SerializeField] float damagedPitchMaximum = 1.15f;
 
     void Awake()
     {
         rigidbody2D = this.GetComponent<Rigidbody2D>();
         collider2D = this.GetComponent<Collider2D>();
+        damagedSound = Resources.Load("Audio/SFX/Enemy/EnemyHitGrunt") as AudioClip;
+        m_audioPlayer = this.GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -64,7 +74,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, viewAngle) * EnemyTorso.transform.up).normalized * range, Color.yellow, .01f);
         Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, -viewAngle) * EnemyTorso.transform.up).normalized * range, Color.yellow, .01f);
         Debug.DrawRay(transform.position, EnemyTorso.transform.up, Color.red, .01f);
-        Debug.DrawRay(transform.position, EnemyLegs.transform.up, Color.green, .01f); 
+        Debug.DrawRay(transform.position, EnemyLegs.transform.up, Color.green, .01f);
     }
 
     public void Damage(float damage, float stun, Vector2 knockback)
@@ -78,6 +88,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         {
             Destroy(gameObject);
         }
+
+        StartCoroutine(playSoundCoroutine(damagedPitchMinimum, damagedPitchMaximum));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -87,4 +99,20 @@ public class EnemyController : MonoBehaviour, IDamageable
             weapon.Attack();
         }
     }
+
+    private IEnumerator playSoundCoroutine(float minimumPitch, float maximumPitch)
+    {
+        float timePassed = 0.0f;
+        m_audioPlayer.pitch = Random.Range(damagedPitchMinimum, damagedPitchMaximum);
+        m_audioPlayer.PlayOneShot(damagedSound, damagedSoundVolume);
+
+        while (timePassed < damagedSound.length)
+        {
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+
+        m_audioPlayer.pitch = 1.0f;
+    }
+
 }
