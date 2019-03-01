@@ -45,6 +45,16 @@ public class UIManager : MonoBehaviour
             gameCanvas.SetActive(false);
     }
 
+    public void LoadScene(string sceneName)
+    {
+        if (sceneName == "Main Menu")
+        {
+            GameUIControl();
+            PauseControl();
+        }
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void QuitGame()
     {
         Application.Quit();
