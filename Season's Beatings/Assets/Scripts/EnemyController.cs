@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] bool faceTarget = true;
     [SerializeField] float health = 100f;
 
+    public Animator animator = null;
+
     [Header("HealthUI")]
     public Slider slider;
     public Image fillImage;
@@ -54,21 +56,26 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         if (Time.timeScale == 1)
         {
+            if (animator)
+            {
+                animator.SetFloat("Speed", Mathf.Abs(this.rigidbody2D.velocity.x) + Mathf.Abs(this.rigidbody2D.velocity.y));
+            }
+
             if (stun > 0) stun -= Time.deltaTime;
 
             else
             {
                 // Sight Cone
                 if (Vector3.Distance(PlayerController.instance.transform.position, transform.position) < range &&
-                    Vector3.Angle(PlayerController.instance.transform.position - transform.position, EnemyTorso.transform.up) < viewAngle)
+                    Vector3.Angle(PlayerController.instance.transform.position - transform.position, EnemyTorso.transform.right) < viewAngle)
                 {
-                    EnemyTorso.transform.up = (Vector2)(PlayerController.instance.transform.position - transform.position);
-                    rigidbody2D.velocity = EnemyTorso.transform.up.normalized * speed;
+                    EnemyTorso.transform.right = (Vector2)(PlayerController.instance.transform.position - transform.position);
+                    rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
                     if (rigidbody2D.velocity != Vector2.zero)
                     {
 
-                        EnemyLegs.transform.up = rigidbody2D.velocity;
-                        if (faceTarget && Quaternion.Angle(EnemyTorso.transform.rotation, EnemyLegs.transform.rotation) > 90) EnemyLegs.transform.up = -1 * EnemyLegs.transform.up; // Keeps body facing mouse
+                        EnemyLegs.transform.right = rigidbody2D.velocity;
+                        if (faceTarget && Quaternion.Angle(EnemyTorso.transform.rotation, EnemyLegs.transform.rotation) > 90) EnemyLegs.transform.right = -1 * EnemyLegs.transform.right; // Keeps body facing mouse
                     }
                 }
 
@@ -81,10 +88,10 @@ public class EnemyController : MonoBehaviour, IDamageable
         //DEBUG
         //Debug.Log("Distance is " + Vector3.Distance(PlayerController.instance.transform.position, transform.position));
         //Debug.Log("Angle is " + Vector3.Angle(PlayerController.instance.transform.position - transform.position, EnemyTorso.transform.up));
-        Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, viewAngle) * EnemyTorso.transform.up).normalized * range, Color.yellow, .01f);
-        Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, -viewAngle) * EnemyTorso.transform.up).normalized * range, Color.yellow, .01f);
-        Debug.DrawRay(transform.position, EnemyTorso.transform.up, Color.red, .01f);
-        Debug.DrawRay(transform.position, EnemyLegs.transform.up, Color.green, .01f);
+        Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
+        Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, -viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
+        Debug.DrawRay(transform.position, EnemyTorso.transform.right, Color.red, .01f);
+        Debug.DrawRay(transform.position, EnemyLegs.transform.right, Color.green, .01f);
     }
 
     public void Damage(float damage, float stun, Vector2 knockback)

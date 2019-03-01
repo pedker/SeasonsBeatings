@@ -31,6 +31,7 @@ public class Melee : Weapon
     Collider2D collider2D;
     Rigidbody2D rigidbody2D;
     float time = 0;
+    public bool attackReset = true;
 
     private void Awake()
     {
@@ -64,6 +65,7 @@ public class Melee : Weapon
                 collider2D.enabled = false;
                 transform.localRotation = Quaternion.Euler(0, 0, startArc);
                 time = 0;
+                attackReset = true;
             }
         }
     }
@@ -74,6 +76,7 @@ public class Melee : Weapon
         {
             Debug.Log("Attacking");
             collider2D.enabled = true;
+            
 
             StartCoroutine(playSoundCoroutine(whooshSound, whooshVolume, whooshPitchMinimum, whooshPitchMaximum));
         }
@@ -81,16 +84,31 @@ public class Melee : Weapon
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collided with " + other.name);
-
-        IDamageable damageableComponent = other.GetComponent<IDamageable>();
-
-        if (damageableComponent != null)
+        if (other.CompareTag("Weapon"))
         {
-            damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
+            Physics2D.IgnoreCollision(other.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
-        StartCoroutine(playSoundCoroutine(collisionSound, collideSoundVolume, collidePitchMinimum, collidePitchMaximum));
+        else
+        {
+            if (attackReset)
+            {
+                Debug.Log("Collided with " + other.tag);
+                IDamageable damageableComponent = other.GetComponent<IDamageable>();
+
+                if (damageableComponent != null)
+                {
+                    damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
+                }
+
+                if (!other.CompareTag("Wall"))
+                {
+                    attackReset = false;
+                    StartCoroutine(playSoundCoroutine(collisionSound, collideSoundVolume, collidePitchMinimum, collidePitchMaximum));
+                }
+            }
+        }
+
     }
 
     private IEnumerator playSoundCoroutine(AudioClip sound, float soundVolume, float minimumPitch, float maximumPitch)

@@ -7,6 +7,8 @@ TagManager:
   - ShowOnPause
   - HideOnMainMenu
   - ShowOnMainMenu
+  - Weapon
+  - Wall
   layers:
   - Default
   - TransparentFX

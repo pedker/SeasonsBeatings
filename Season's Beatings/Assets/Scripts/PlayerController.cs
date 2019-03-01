@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour, IDamageable
                 rigidbody2D.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, Input.GetAxisRaw("Vertical") * speed);
                 if (rigidbody2D.velocity != Vector2.zero)
                 {
-                    playerLegs.transform.up = rigidbody2D.velocity;
+                    playerLegs.transform.right = rigidbody2D.velocity;
                     if (faceTarget && Quaternion.Angle(playerTorso.transform.rotation, playerLegs.transform.rotation) > 90) playerLegs.transform.right = -1 * playerLegs.transform.right; // Keeps body facing mouse
                 }
 
