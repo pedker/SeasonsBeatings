@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] float stun = 0;
     [SerializeField] bool faceTarget = true;
 
+    public Animator animator = null;
+
     void Awake()
     {
         instance = this;
@@ -35,18 +37,25 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (Time.timeScale == 1)
         {
+            if (animator)
+            {
+                Debug.Log(Mathf.Abs(this.rigidbody2D.velocity.x) + Mathf.Abs(this.rigidbody2D.velocity.y));
+                animator.SetFloat("Speed", Mathf.Abs(this.rigidbody2D.velocity.x) + Mathf.Abs(this.rigidbody2D.velocity.y));
+            }
+            
+
             if (stun > 0) stun -= Time.deltaTime;
 
             else
             {
 
-                playerTorso.transform.up = (Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+                playerTorso.transform.right = (Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
 
                 rigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
                 if (rigidbody2D.velocity != Vector2.zero)
                 {
                     playerLegs.transform.up = rigidbody2D.velocity;
-                    if (faceTarget && Quaternion.Angle(playerTorso.transform.rotation, playerLegs.transform.rotation) > 90) playerLegs.transform.up = -1 * playerLegs.transform.up; // Keeps body facing mouse
+                    if (faceTarget && Quaternion.Angle(playerTorso.transform.rotation, playerLegs.transform.rotation) > 90) playerLegs.transform.right = -1 * playerLegs.transform.right; // Keeps body facing mouse
                 }
 
                 if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
