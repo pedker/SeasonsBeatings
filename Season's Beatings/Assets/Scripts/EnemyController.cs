@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class EnemyController : MonoBehaviour, IDamageable
 {
     [Header("Components")]
@@ -13,11 +13,17 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     [Header("Attributes")]
     [SerializeField] float range = 10f;
-    [SerializeField] float health = 100f;
     [SerializeField] float stun = 0;
     [SerializeField] float viewAngle = 45f;
     [SerializeField] float speed = 5f;
     [SerializeField] bool faceTarget = true;
+    [SerializeField] float health = 100f;
+
+    [Header("HealthUI")]
+    public Slider slider;
+    public Image fillImage;
+    public Color FullHealthColor;
+    public Color ZeroHealthColor;
 
     [Header("Sound")]
     [SerializeField] AudioSource m_audioPlayer;
@@ -40,6 +46,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     void Start()
     {
         Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
+        SetHealthUI();
     }
 
     // Update is called once per frame
@@ -85,6 +92,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         rigidbody2D.velocity = Vector2.zero;
         rigidbody2D.AddForce(knockback);
         health -= damage;
+        SetHealthUI();
         this.stun = stun;
 
         if (health <= 0)
@@ -93,6 +101,13 @@ public class EnemyController : MonoBehaviour, IDamageable
         }
 
         StartCoroutine(playSoundCoroutine(damagedSound, damagedSoundVolume, damagedPitchMinimum, damagedPitchMaximum));
+    }
+
+    private void SetHealthUI()
+    {
+        slider.value = health;
+
+        fillImage.color = Color.Lerp(ZeroHealthColor, FullHealthColor, health / 100); // 100 is the hardcoded starting health, might need to change later
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

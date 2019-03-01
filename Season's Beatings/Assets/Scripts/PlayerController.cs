@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -13,11 +14,18 @@ public class PlayerController : MonoBehaviour, IDamageable
     Collider2D collider2D; 
 
     [SerializeField] float speed = 5f;
-    [SerializeField] float health = 100f;
     [SerializeField] float stun = 0;
     [SerializeField] bool faceTarget = true;
 
     public Animator animator = null;
+
+    [Header("HealthUI")]
+    [SerializeField] float health = 100f;
+    public Slider slider;
+    public Image fillImage;
+    public Color FullHealthColor;
+    public Color ZeroHealthColor;
+
 
     void Awake()
     {
@@ -30,6 +38,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     void Start()
     {
         Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
+        SetHealthUI();
     }
 
     // Update is called once per frame
@@ -39,7 +48,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             if (animator)
             {
-                Debug.Log(Mathf.Abs(this.rigidbody2D.velocity.x) + Mathf.Abs(this.rigidbody2D.velocity.y));
                 animator.SetFloat("Speed", Mathf.Abs(this.rigidbody2D.velocity.x) + Mathf.Abs(this.rigidbody2D.velocity.y));
             }
             
@@ -51,7 +59,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
                 playerTorso.transform.right = (Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
 
-                rigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
+                rigidbody2D.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, Input.GetAxisRaw("Vertical") * speed);
                 if (rigidbody2D.velocity != Vector2.zero)
                 {
                     playerLegs.transform.up = rigidbody2D.velocity;
@@ -84,11 +92,19 @@ public class PlayerController : MonoBehaviour, IDamageable
         rigidbody2D.velocity = Vector2.zero;
         rigidbody2D.AddForce(knockback);
         health -= damage;
+        SetHealthUI();
         this.stun = stun;
 
         if (health <= 0)
         {
             SceneManager.LoadScene(0); //Restart Game
         }
+    }
+
+    private void SetHealthUI()
+    {
+        slider.value = health;
+
+        fillImage.color = Color.Lerp(ZeroHealthColor, FullHealthColor, health / 100); // 100 is the hardcoded starting health, might need to change later
     }
 }
