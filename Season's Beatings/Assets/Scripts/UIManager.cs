@@ -8,16 +8,9 @@ public class UIManager : MonoBehaviour
 {
     public GameObject pauseMenu; 
     public GameObject gameCanvas;
-    public GameObject mainMenuCanvas; // Useless
-    private GameManager gameManager; //Not used. Useless
     bool isPaused = false;
     bool inGame = false;
-    bool atMainMenu = true; // Useless
     
-    void Start()
-    {
-        gameManager = GameManager.instance;  //Not used. Useless
-    }
     
     void Update()
     {
@@ -26,15 +19,6 @@ public class UIManager : MonoBehaviour
             PauseControl();
             GameUIControl();    
         }
-    }
-
-    public void MainMenuUIControl() 
-    {
-        atMainMenu = !atMainMenu;
-        if (atMainMenu)
-            mainMenuCanvas.SetActive(true);
-        else
-            mainMenuCanvas.SetActive(false);
     }
 
     public void PauseControl()
@@ -61,11 +45,10 @@ public class UIManager : MonoBehaviour
             gameCanvas.SetActive(false);
     }
 
-    public void LoadScene( string sceneName ) 
+    public void LoadScene(string sceneName)
     {
-        if( sceneName == "Main Menu" )    
+        if (sceneName == "Main Menu")
         {
-            MainMenuUIControl();
             GameUIControl();
             PauseControl();
         }
