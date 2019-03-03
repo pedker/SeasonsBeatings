@@ -28,20 +28,20 @@ public class EnemyController : MonoBehaviour, IDamageable
     public Color ZeroHealthColor;
 
     [Header("Sound")]
-    [SerializeField] AudioSource m_audioPlayer;
-    [SerializeField] AudioClip damagedSound;
-    [SerializeField] AudioClip stepSound;
     [SerializeField] float damagedSoundVolume = 0.65f;
     [SerializeField] float damagedPitchMinimum = 0.85f;
     [SerializeField] float damagedPitchMaximum = 1.15f;
+
+
+    AudioPlayer m_audioPlayer;
 
     void Awake()
     {
         rigidbody2D = this.GetComponent<Rigidbody2D>();
         collider2D = this.GetComponent<Collider2D>();
-        damagedSound = Resources.Load("Audio/SFX/Enemy/EnemyHitGrunt") as AudioClip;
-        stepSound = Resources.Load("Audio/SFX/Player/FootstepTest") as AudioClip;
-        m_audioPlayer = this.GetComponent<AudioSource>();
+        m_audioPlayer = GetComponentInChildren<AudioPlayer>();
+        m_audioPlayer.addSFX("EnemyHitGrunt");
+        m_audioPlayer.addSFX("FootstepTest");
     }
 
     // Start is called before the first frame update
@@ -107,7 +107,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             Destroy(gameObject);
         }
 
-        StartCoroutine(playSoundCoroutine(damagedSound, damagedSoundVolume, damagedPitchMinimum, damagedPitchMaximum));
+        m_audioPlayer.playSFX("EnemyHitGrunt", damagedSoundVolume, damagedPitchMinimum, damagedPitchMaximum);
     }
 
     private void SetHealthUI()
@@ -125,19 +125,5 @@ public class EnemyController : MonoBehaviour, IDamageable
         }
     }
 
-    private IEnumerator playSoundCoroutine(AudioClip sound, float soundVolume, float minimumPitch, float maximumPitch)
-    {
-        float timePassed = 0.0f;
-        m_audioPlayer.pitch = Random.Range(minimumPitch, maximumPitch);
-        m_audioPlayer.PlayOneShot(sound, soundVolume);
-
-        while (timePassed < sound.length)
-        {
-            timePassed += Time.deltaTime;
-            yield return null;
-        }
-
-        m_audioPlayer.pitch = 1.0f;
-    }
 
 }

@@ -15,10 +15,6 @@ public class Melee : Weapon
     [SerializeField] float endArc = 75;
 
     [Header("Sound")]
-    [SerializeField] AudioSource m_audioPlayer;
-    [SerializeField] AudioClip whooshSound;
-    [SerializeField] AudioClip whooshSound2;
-    [SerializeField] AudioClip collisionSound;
     [SerializeField] float whooshVolume = 0.65f;
     [SerializeField] float whooshPitchMinimum = 0.90f;
     [SerializeField] float whooshPitchMaximum = 1.10f;
@@ -26,7 +22,7 @@ public class Melee : Weapon
     [SerializeField] float collidePitchMinimum = 0.95f;
     [SerializeField] float collidePitchMaximum = 1.05f;
 
-
+    AudioPlayer m_audioPlayer;
     float attackSpeed;
     Collider2D collider2D;
     Rigidbody2D rigidbody2D;
@@ -37,10 +33,10 @@ public class Melee : Weapon
     {
         collider2D = GetComponent<Collider2D>();
         rigidbody2D = GetComponent<Rigidbody2D>();
-        m_audioPlayer = GetComponent<AudioSource>();
-        whooshSound = Resources.Load("Audio/SFX/Bat/BatSwing1") as AudioClip;
-        whooshSound2 = Resources.Load("Audio/SFX/Bat/BatSwing2") as AudioClip;
-        collisionSound = Resources.Load("Audio/SFX/Bat/BatHit") as AudioClip;
+        m_audioPlayer = GetComponentInChildren<AudioPlayer>();
+        m_audioPlayer.addSFX("BatSwing1");
+        m_audioPlayer.addSFX("BatSwing2");
+        m_audioPlayer.addSFX("BatHit2");
     }
 
     void Start()
@@ -76,9 +72,9 @@ public class Melee : Weapon
         {
             Debug.Log("Attacking");
             collider2D.enabled = true;
-            
 
-            StartCoroutine(playSoundCoroutine(whooshSound, whooshVolume, whooshPitchMinimum, whooshPitchMaximum));
+
+            m_audioPlayer.playSFX("BatSwing1", whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
         }
     }
 
@@ -98,23 +94,9 @@ public class Melee : Weapon
             if (other.CompareTag("Player") || other.CompareTag("Enemy")) //So it registers a hit and plays sounds only when hitting enemies or players
             {
                 attackReset = false;
-                StartCoroutine(playSoundCoroutine(collisionSound, collideSoundVolume, collidePitchMinimum, collidePitchMaximum));
+                m_audioPlayer.playSFX("BatHit2", collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
             }
         }
     }
 
-    private IEnumerator playSoundCoroutine(AudioClip sound, float soundVolume, float minimumPitch, float maximumPitch)
-    {
-        float timePassed = 0.0f;
-        m_audioPlayer.pitch = Random.Range(minimumPitch, maximumPitch);
-        m_audioPlayer.PlayOneShot(sound, soundVolume);
-
-        while (timePassed < sound.length)
-        {
-            timePassed += Time.deltaTime;
-            yield return null;
-        }
-
-        m_audioPlayer.pitch = 1.0f;
-    }
 }
