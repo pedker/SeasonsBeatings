@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public static PlayerController instance;
     [SerializeField] GameObject playerTorso;
     [SerializeField] GameObject playerLegs;
-    [SerializeField] Weapon weapon;
+    public Weapon weapon;
     Rigidbody2D rigidbody2D;
     Collider2D collider2D; 
 
