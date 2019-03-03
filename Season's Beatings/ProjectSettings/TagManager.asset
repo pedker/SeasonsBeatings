@@ -9,6 +9,7 @@ TagManager:
   - ShowOnMainMenu
   - Weapon
   - Wall
+  - Enemy
   layers:
   - Default
   - TransparentFX

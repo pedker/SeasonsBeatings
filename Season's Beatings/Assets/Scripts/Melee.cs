@@ -84,31 +84,23 @@ public class Melee : Weapon
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Weapon"))
-        {
-            Physics2D.IgnoreCollision(other.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        }
 
-        else
+        if (attackReset)
         {
-            if (attackReset)
+            Debug.Log("Collided with " + other.tag);
+            IDamageable damageableComponent = other.GetComponent<IDamageable>();
+
+            if (damageableComponent != null)
             {
-                Debug.Log("Collided with " + other.tag);
-                IDamageable damageableComponent = other.GetComponent<IDamageable>();
+                damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
+            }
 
-                if (damageableComponent != null)
-                {
-                    damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
-                }
-
-                if (!other.CompareTag("Wall"))
-                {
-                    attackReset = false;
-                    StartCoroutine(playSoundCoroutine(collisionSound, collideSoundVolume, collidePitchMinimum, collidePitchMaximum));
-                }
+            if (other.CompareTag("Player") || other.CompareTag("Enemy")) //So it registers a hit and plays sounds only when hitting enemies or players
+            {
+                attackReset = false;
+                StartCoroutine(playSoundCoroutine(collisionSound, collideSoundVolume, collidePitchMinimum, collidePitchMaximum));
             }
         }
-
     }
 
     private IEnumerator playSoundCoroutine(AudioClip sound, float soundVolume, float minimumPitch, float maximumPitch)
