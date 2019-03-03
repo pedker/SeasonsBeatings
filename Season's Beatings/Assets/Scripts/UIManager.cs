@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenu; 
     public GameObject gameCanvas;
     bool isPaused = false;
-    bool inGame = false;
+    bool inGame = true;
     
     
     void Update()
