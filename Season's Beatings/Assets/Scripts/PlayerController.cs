@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        I_item itemComponent = collider.GetComponent<I_item>();
+        IPickupable itemComponent = collider.GetComponent<IPickupable>();
         if (itemComponent != null)
         {
             itemComponent.pickUp();

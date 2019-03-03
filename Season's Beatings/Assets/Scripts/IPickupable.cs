@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface I_item
+public interface IPickupable
 {
     void pickUp();
 }
