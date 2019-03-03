@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Loot : MonoBehaviour, I_item
+public class Loot : MonoBehaviour, IPickupable
 {
     GameManager gameManager;
     [SerializeField] int m_score = 0;
