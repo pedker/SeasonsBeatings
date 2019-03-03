@@ -78,14 +78,14 @@ public class PlayerController : MonoBehaviour, IDamageable
         Debug.DrawRay(transform.position, playerLegs.transform.up, Color.green, .01f); 
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        I_item itemComponent = collision.collider.GetComponent<I_item>();
+        I_item itemComponent = collider.GetComponent<I_item>();
         if (itemComponent != null)
         {
             itemComponent.pickUp();
         }
-    }
+    }    
 
     public void Damage(float damage, float stun, Vector2 knockback)
     {
