@@ -9,6 +9,8 @@ public class Melee : Weapon
     [SerializeField] float knockback = 100;
     [SerializeField] float damage = 5;
     [SerializeField] float stun = .5f;
+    bool attackReset = true;
+    bool attackHitWall = false;
 
     [Header("Animation")]
     [SerializeField] float startArc = -75;
@@ -31,7 +33,7 @@ public class Melee : Weapon
     Collider2D collider2D;
     Rigidbody2D rigidbody2D;
     float time = 0;
-    public bool attackReset = true;
+    
 
     private void Awake()
     {
@@ -56,7 +58,7 @@ public class Melee : Weapon
         if (collider2D.enabled)
         {
             time += Time.deltaTime;
-            if (time < attackRate)
+            if (time < attackRate && !attackHitWall)
             {
                 transform.Rotate(0, 0, attackSpeed * Time.deltaTime);
             }
@@ -66,6 +68,7 @@ public class Melee : Weapon
                 transform.localRotation = Quaternion.Euler(0, 0, startArc);
                 time = 0;
                 attackReset = true;
+                attackHitWall = false;
             }
         }
     }
@@ -87,6 +90,7 @@ public class Melee : Weapon
                 m_audioPlayer.playSFX(whooshFileName_2, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
             }
             
+            m_audioPlayer.playSFX("BatSwing1", whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
         }
     }
 
@@ -103,8 +107,13 @@ public class Melee : Weapon
                 damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
             }
 
-            if (other.CompareTag("Player") || other.CompareTag("Enemy")) //So it registers a hit and plays sounds only when hitting enemies or players
+            if (other.CompareTag("Player") || other.CompareTag("Enemy") || other.CompareTag("Wall")) //So it registers a hit and plays sounds only when hitting enemies, players or walls
             {
+                if (other.CompareTag("Wall"))
+                {
+                    attackHitWall = true;
+                }
+
                 attackReset = false;
                 m_audioPlayer.playSFX(collideFileName, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
             }
