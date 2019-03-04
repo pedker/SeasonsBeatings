@@ -30,16 +30,15 @@ public class EnemyController : MonoBehaviour, IDamageable
     [Header("Sound")]
 
     [SerializeField] string footStepFileName;
-    [SerializeField] float damagedSoundVolume = 0.65f;
-    [SerializeField] float damagedPitchMinimum = 0.85f;
-    [SerializeField] float damagedPitchMaximum = 1.15f;
-
-    [SerializeField] string enemyDamagedFileName;
     [SerializeField] float footStepVolume = 0.30f;
     [SerializeField] float footStepPitchMin = 0.9f;
     [SerializeField] float footStepPitchMax = 1.1f;
 
-
+    [SerializeField] string enemyDamagedFileName;
+    [SerializeField] float damagedSoundVolume = 0.65f;
+    [SerializeField] float damagedPitchMinimum = 0.85f;
+    [SerializeField] float damagedPitchMaximum = 1.15f;
+    
     AudioPlayer m_audioPlayer;
 
     void Awake()

@@ -633,13 +633,13 @@ MonoBehaviour:
   FullHealthColor: {r: 0.05769229, g: 1, b: 0, a: 0.46666667}
   ZeroHealthColor: {r: 1, g: 0.053741198, b: 0, a: 0.32156864}
   footStepFileName: FootstepTest
-  damagedSoundVolume: 0.65
-  damagedPitchMinimum: 0.85
-  damagedPitchMaximum: 1.15
-  enemyDamagedFileName: EnemyHitGrunt
   footStepVolume: 0.05
   footStepPitchMin: 0.85
   footStepPitchMax: 1.15
+  enemyDamagedFileName: EnemyHitGrunt
+  damagedSoundVolume: 0.65
+  damagedPitchMinimum: 1.15
+  damagedPitchMaximum: 1.3
 --- !u!95 &3690338262152805044
 Animator:
   serializedVersion: 3
@@ -1126,6 +1126,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3690338261104266437}
     m_Modifications:
+    - target: {fileID: 6177238785141212048, guid: a2e5322c58e1d3844a062be9dccb77f1,
+        type: 3}
+      propertyPath: m_Name
+      value: Bat
+      objectReference: {fileID: 0}
     - target: {fileID: 6177238785141212050, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1181,11 +1186,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -145
       objectReference: {fileID: 0}
-    - target: {fileID: 6177238785141212048, guid: a2e5322c58e1d3844a062be9dccb77f1,
-        type: 3}
-      propertyPath: m_Name
-      value: Bat
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2e5322c58e1d3844a062be9dccb77f1, type: 3}
 --- !u!4 &7390199089340381952 stripped
@@ -1213,6 +1213,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3690338262152805043}
     m_Modifications:
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1267,11 +1272,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3b6a0e478b11740aaec1cf256dadb2, type: 3}
