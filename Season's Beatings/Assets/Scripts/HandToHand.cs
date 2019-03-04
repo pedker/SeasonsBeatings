@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandToHand : MonoBehaviour
+public class HandToHand : Weapon
 {
     [Header("Combat Data")]
     [SerializeField] float knockback = 50;
@@ -33,11 +33,11 @@ public class HandToHand : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Punch();
+            Attack();
         }
     }
 
-    private void Punch()
+    override public void Attack()
     {
         int randNum = Random.Range(0, 2);
         if (randNum == 1)
