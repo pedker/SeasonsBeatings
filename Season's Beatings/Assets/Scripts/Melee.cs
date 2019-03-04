@@ -102,22 +102,19 @@ public class Melee : Weapon
             Debug.Log("Collided with " + other.tag);
             IDamageable damageableComponent = other.GetComponent<IDamageable>();
 
-            if (damageableComponent != null)
+            if (damageableComponent != null) // registers a hit and plays sounds only when hitting enemies
             {
                 damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
+                attackReset = false;
+                m_audioPlayer.playSFX(collideFileName, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
             }
 
-            if (other.CompareTag("Player") || other.CompareTag("Enemy") || other.CompareTag("Wall")) //So it registers a hit and plays sounds only when hitting enemies, players or walls
+            else if (other.CompareTag("Wall")) // or walls
             {
-                if (other.CompareTag("Wall"))
-                {
-                    attackHitWall = true;
-                }
-
+                attackHitWall = true;
                 attackReset = false;
                 m_audioPlayer.playSFX(collideFileName, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
             }
         }
     }
-
 }
