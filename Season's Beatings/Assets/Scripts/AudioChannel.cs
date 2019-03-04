@@ -25,8 +25,9 @@ public class AudioChannel : MonoBehaviour
         inUse = true;
 
         float timePassed = 0.0f;
+        m_audioPlayer.volume = soundVolume;
         m_audioPlayer.pitch = Random.Range(minimumPitch, maximumPitch);
-        m_audioPlayer.PlayOneShot(sound, soundVolume);
+        m_audioPlayer.PlayOneShot(sound);
 
         while (timePassed < sound.length)
         {
@@ -35,6 +36,7 @@ public class AudioChannel : MonoBehaviour
         }
 
         m_audioPlayer.pitch = 1.0f;
+        m_audioPlayer.volume = 1.0f;
 
         inUse = false;
     }
