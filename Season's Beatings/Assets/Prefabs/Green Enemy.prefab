@@ -624,7 +624,7 @@ MonoBehaviour:
   range: 10
   stun: 0
   viewAngle: 60
-  speed: 2.5
+  speed: 10
   faceTarget: 1
   health: 50
   animator: {fileID: 3690338262152805044}
@@ -1185,6 +1185,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -145
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838546435591747544, guid: a2e5322c58e1d3844a062be9dccb77f1,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838546435591747544, guid: a2e5322c58e1d3844a062be9dccb77f1,
+        type: 3}
+      propertyPath: stun
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838546435591747544, guid: a2e5322c58e1d3844a062be9dccb77f1,
+        type: 3}
+      propertyPath: attackRate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838546435591747544, guid: a2e5322c58e1d3844a062be9dccb77f1,
+        type: 3}
+      propertyPath: knockback
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2e5322c58e1d3844a062be9dccb77f1, type: 3}

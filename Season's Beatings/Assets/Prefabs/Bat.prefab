@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRate: 0.25
   knockback: 100
-  damage: 5
+  damage: 25
   stun: 0.5
   startArc: -145
   endArc: -60
