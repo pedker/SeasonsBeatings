@@ -7,7 +7,7 @@ public class Melee : Weapon
     [Header("Battle Values")]
     [SerializeField] float attackRate = .5f;
     [SerializeField] float knockback = 100;
-    [SerializeField] float damage = 5;
+    [SerializeField] float damage = 25;
     [SerializeField] float stun = .5f;
 
     [Header("Animation")]
