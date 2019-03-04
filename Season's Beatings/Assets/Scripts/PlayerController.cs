@@ -82,9 +82,8 @@ public class PlayerController : MonoBehaviour, IDamageable
                     if (faceTarget && Quaternion.Angle(playerTorso.transform.rotation, playerLegs.transform.rotation) > 90) playerLegs.transform.right = -1 * playerLegs.transform.right; // Keeps body facing mouse
                 }
 
-                if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
                 {
-                    //Debug.Log("Click");
                     weapon.Attack();
                 }
             }
