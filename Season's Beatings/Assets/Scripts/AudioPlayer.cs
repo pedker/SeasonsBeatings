@@ -22,6 +22,7 @@ public class AudioPlayer : MonoBehaviour
         {
             GameObject temporaryChannelObject = Instantiate(audioChannelPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
             temporaryChannelObject.transform.parent = this.transform;
+            temporaryChannelObject.transform.localPosition = new Vector3(0, 0, 0);
             AudioChannel temporaryAudioChannel = temporaryChannelObject.GetComponent<AudioChannel>();
             temporaryAudioChannel.inUse = false;
             audioChannels.Add(temporaryAudioChannel);
@@ -32,17 +33,13 @@ public class AudioPlayer : MonoBehaviour
     // loads that audio file into the AudioPlayer's storage
     public void addSFX(string name)
     {
-        try
-        {
-            AudioClip newSound = Resources.Load($"Audio/SFX/{name}") as AudioClip;
-            clipStorage.Add(name, newSound);
-        }
-        catch
+        AudioClip newSound = Resources.Load($"Audio/SFX/{name}") as AudioClip;
+        if (newSound == null)
         {
             Debug.Log($"Audio File not successfully loaded. The file named {name} likely does not exist in Resources/Audio/SFX");
             return;
         }
-
+        clipStorage.Add(name, newSound);
         
     }
 

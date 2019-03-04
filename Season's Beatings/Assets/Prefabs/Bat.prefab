@@ -101,13 +101,13 @@ MonoBehaviour:
   stun: 0.5
   startArc: -165
   endArc: -15
-  whooshSound: {fileID: 0}
-  whooshSound2: {fileID: 0}
-  collisionSound: {fileID: 0}
+  whooshFileName: BatSwing1
+  whooshFileName_2: BatSwing2
   whooshVolume: 0.35
   whooshPitchMinimum: 0.9
   whooshPitchMaximum: 1.1
-  collideSoundVolume: 0.65
+  collideFileName: BatHit2
+  collideSoundVolume: 0.25
   collidePitchMinimum: 0.95
   collidePitchMaximum: 1.05
   attackReset: 1
@@ -155,11 +155,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6177238785141212050}
     m_Modifications:
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -214,6 +209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3b6a0e478b11740aaec1cf256dadb2, type: 3}

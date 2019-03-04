@@ -28,9 +28,16 @@ public class EnemyController : MonoBehaviour, IDamageable
     public Color ZeroHealthColor;
 
     [Header("Sound")]
+
+    [SerializeField] string footStepFileName;
     [SerializeField] float damagedSoundVolume = 0.65f;
     [SerializeField] float damagedPitchMinimum = 0.85f;
     [SerializeField] float damagedPitchMaximum = 1.15f;
+
+    [SerializeField] string enemyDamagedFileName;
+    [SerializeField] float footStepVolume = 0.30f;
+    [SerializeField] float footStepPitchMin = 0.9f;
+    [SerializeField] float footStepPitchMax = 1.1f;
 
 
     AudioPlayer m_audioPlayer;
@@ -40,8 +47,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         rigidbody2D = this.GetComponent<Rigidbody2D>();
         collider2D = this.GetComponent<Collider2D>();
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
-        m_audioPlayer.addSFX("EnemyHitGrunt");
-        m_audioPlayer.addSFX("FootstepTest");
+        m_audioPlayer.addSFX(enemyDamagedFileName);
+        m_audioPlayer.addSFX(footStepFileName);
     }
 
     // Start is called before the first frame update
@@ -107,7 +114,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             Destroy(gameObject);
         }
 
-        m_audioPlayer.playSFX("EnemyHitGrunt", damagedSoundVolume, damagedPitchMinimum, damagedPitchMaximum);
+        m_audioPlayer.playSFX(enemyDamagedFileName, damagedSoundVolume, damagedPitchMinimum, damagedPitchMaximum);
     }
 
     private void SetHealthUI()
@@ -125,5 +132,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         }
     }
 
-
+    private void playFootStepSFX()
+    {
+        m_audioPlayer.playSFX(footStepFileName, footStepVolume, footStepPitchMin, footStepPitchMax);
+    }
 }

@@ -15,9 +15,13 @@ public class Melee : Weapon
     [SerializeField] float endArc = 75;
 
     [Header("Sound")]
+    [SerializeField] string whooshFileName;
+    [SerializeField] string whooshFileName_2;
     [SerializeField] float whooshVolume = 0.65f;
     [SerializeField] float whooshPitchMinimum = 0.90f;
     [SerializeField] float whooshPitchMaximum = 1.10f;
+
+    [SerializeField] string collideFileName;
     [SerializeField] float collideSoundVolume = 0.65f;
     [SerializeField] float collidePitchMinimum = 0.95f;
     [SerializeField] float collidePitchMaximum = 1.05f;
@@ -34,9 +38,9 @@ public class Melee : Weapon
         collider2D = GetComponent<Collider2D>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
-        m_audioPlayer.addSFX("BatSwing1");
-        m_audioPlayer.addSFX("BatSwing2");
-        m_audioPlayer.addSFX("BatHit2");
+        m_audioPlayer.addSFX(whooshFileName);
+        m_audioPlayer.addSFX(whooshFileName_2);
+        m_audioPlayer.addSFX(collideFileName);
     }
 
     void Start()
@@ -73,8 +77,16 @@ public class Melee : Weapon
             Debug.Log("Attacking");
             collider2D.enabled = true;
 
-
-            m_audioPlayer.playSFX("BatSwing1", whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
+            int random = Random.Range(0, 2);
+            if (random == 0)
+            {
+                m_audioPlayer.playSFX(whooshFileName, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
+            }
+            else
+            {
+                m_audioPlayer.playSFX(whooshFileName_2, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
+            }
+            
         }
     }
 
@@ -94,7 +106,7 @@ public class Melee : Weapon
             if (other.CompareTag("Player") || other.CompareTag("Enemy")) //So it registers a hit and plays sounds only when hitting enemies or players
             {
                 attackReset = false;
-                m_audioPlayer.playSFX("BatHit2", collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
+                m_audioPlayer.playSFX(collideFileName, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
             }
         }
     }

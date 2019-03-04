@@ -26,12 +26,28 @@ public class PlayerController : MonoBehaviour, IDamageable
     public Color FullHealthColor;
     public Color ZeroHealthColor;
 
+    [Header("Sound")]
+    [SerializeField] string footStepFileName;
+    [SerializeField] float footStepVolume = 0.30f;
+    [SerializeField] float footStepPitchMin = 0.9f;
+    [SerializeField] float footStepPitchMax = 1.1f;
+
+    [SerializeField] string damagedFileName;
+    [SerializeField] float damagedVolume = 0.30f;
+    [SerializeField] float damagedPitchMin = 0.9f;
+    [SerializeField] float damagedPitchMax = 1.1f;
+
+    AudioPlayer m_audioPlayer;
+
 
     void Awake()
     {
         instance = this;
         rigidbody2D = this.GetComponent<Rigidbody2D>();
         collider2D = this.GetComponent<Collider2D>();
+        m_audioPlayer = this.GetComponentInChildren<AudioPlayer>();
+        m_audioPlayer.addSFX(footStepFileName);
+        m_audioPlayer.addSFX(damagedFileName);
     }
 
     // Start is called before the first frame update
@@ -96,6 +112,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         SetHealthUI();
         this.stun = stun;
 
+        m_audioPlayer.playSFX(damagedFileName, damagedVolume, damagedPitchMin, damagedPitchMax);
+
         if (health <= 0)
         {
             SceneManager.LoadScene(0); //Restart Game
@@ -107,5 +125,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         slider.value = health;
 
         fillImage.color = Color.Lerp(ZeroHealthColor, FullHealthColor, health / 100); // 100 is the hardcoded starting health, might need to change later
+    }
+
+
+    private void playFootStepSFX()
+    {
+        m_audioPlayer.playSFX(footStepFileName, footStepVolume, footStepPitchMin, footStepPitchMax);
     }
 }
