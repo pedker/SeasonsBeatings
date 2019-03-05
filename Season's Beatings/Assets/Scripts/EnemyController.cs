@@ -104,6 +104,11 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         rigidbody2D.velocity = Vector2.zero;
         rigidbody2D.AddForce(knockback);
+
+        // Face Attacker
+        EnemyLegs.transform.right = -knockback;
+        EnemyTorso.transform.right = -knockback;
+
         health -= damage;
         SetHealthUI();
         this.stun = stun;
