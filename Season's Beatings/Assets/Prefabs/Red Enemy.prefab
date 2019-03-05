@@ -586,7 +586,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6456792375914849747}
   - component: {fileID: 815261538173973036}
-  - component: {fileID: 3016440233897153997}
   - component: {fileID: 6456792375914849748}
   - component: {fileID: 6456792375914849750}
   - component: {fileID: 6456792375914849746}
@@ -655,25 +654,6 @@ MonoBehaviour:
   damagedSoundVolume: 0.65
   damagedPitchMinimum: 0.7
   damagedPitchMaximum: 0.85
---- !u!114 &3016440233897153997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6456792375914849745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75aaf3af4350ab848869d3ab756f6470, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponRange: 1
-  attackDuration: 0.4
-  whooshVolume: 0.35
-  whooshPitchMinimum: 0.7
-  whooshPitchMaximum: 0.9
-  punchWhooshSoundEffect: BatSwing1
-  m_animator: {fileID: 6456792375914849748}
 --- !u!95 &6456792375914849748
 Animator:
   serializedVersion: 3
