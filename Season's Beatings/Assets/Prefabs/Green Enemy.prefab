@@ -624,7 +624,7 @@ MonoBehaviour:
   range: 10
   stun: 0
   viewAngle: 60
-  speed: 10
+  speed: 9
   faceTarget: 1
   health: 50
   animator: {fileID: 3690338262152805044}
