@@ -27,6 +27,8 @@ public class Arm : Weapon
     {
         m_audioPlayer = GetComponent<AudioPlayer>();
         weaponRange = .75f;
+        m_audioPlayer.addSFX(punchWhooshSoundEffect);
+        m_audioPlayer.addSFX(punchSoundEffect);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

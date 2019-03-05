@@ -23,6 +23,8 @@ public class HandToHand : Weapon
     void Awake()
     {
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
+        m_audioPlayer.addSFX(punchWhooshSoundEffect);
+        m_audioPlayer.addSFX(punchSoundEffect);
         m_animator = this.GetComponent<Animator>();
         weaponRange = .75f;
     }
