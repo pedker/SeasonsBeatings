@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class HandToHand : Weapon
 {
-    [Header("Combat Data")]
-    [SerializeField] float knockback = 50;
-    [SerializeField] float damage = 5;
-    [SerializeField] float stun = 0.125f;
-
+    float attackDuration = .4f;
+    float attackTime = 0;
 
     [Header("Sound")]
     [SerializeField] float whooshVolume = 0.65f;
@@ -27,46 +24,33 @@ public class HandToHand : Weapon
     {
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
         m_animator = this.GetComponent<Animator>();
+        weaponRange = .75f;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Attack();
-        }
+        attackTime += Time.deltaTime;
     }
 
     override public void Attack()
     {
-        Debug.Log("Attacking");
-        int randNum = Random.Range(0, 2);
-        if (randNum == 1)
+        if (attackTime >= attackDuration)
         {
-            m_animator.Play("PunchingLeftArm", 1, 0.0f);
-            m_audioPlayer.playSFX(punchWhooshSoundEffect, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
-        }
+            attackTime = 0;
+            int randNum = Random.Range(0, 2);
+            if (randNum == 1)
+            {
+                m_animator.Play("PunchingLeftArm", 0, 0.0f);
+                //m_audioPlayer.playSFX(punchWhooshSoundEffect, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
+            }
 
-        else
-        {
-            m_animator.Play("PunchingRightArm", 1, 0.0f);
-            m_audioPlayer.playSFX(punchWhooshSoundEffect, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
+            else
+            {
+                m_animator.Play("PunchingRightArm", 0, 0.0f);
+                //m_audioPlayer.playSFX(punchWhooshSoundEffect, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
+            }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    { 
-            Debug.Log("Collided with " + other.tag);
-            IDamageable damageableComponent = other.GetComponent<IDamageable>();
-
-            if (damageableComponent != null)
-            {
-                damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
-            }
-
-            if (other.CompareTag("Player") || other.CompareTag("Enemy")) //So it registers a hit and plays sounds only when hitting enemies or players
-            {
-                m_audioPlayer.playSFX(punchSoundEffect, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
-            }
-    }
+    
 }

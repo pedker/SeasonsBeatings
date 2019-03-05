@@ -9,9 +9,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     public static PlayerController instance;
     [SerializeField] GameObject playerTorso;
     [SerializeField] GameObject playerLegs;
+    [SerializeField] GameObject playerArmLeft;
+    [SerializeField] GameObject playerArmRight;
     public Weapon weapon;
     Rigidbody2D rigidbody2D;
     Collider2D collider2D; 
+
 
     [SerializeField] float speed = 5f;
     [SerializeField] float stun = 0;
@@ -53,7 +56,11 @@ public class PlayerController : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
+        
+        if (weapon.name != "Arms")
+            Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(collider2D, playerArmLeft.GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(collider2D, playerArmRight.GetComponent<Collider2D>());
         SetHealthUI();
     }
 
@@ -89,8 +96,8 @@ public class PlayerController : MonoBehaviour, IDamageable
             }
         }
         //DEBUG
-        Debug.DrawRay(transform.position, playerTorso.transform.up, Color.red, .01f);
-        Debug.DrawRay(transform.position, playerLegs.transform.up, Color.green, .01f); 
+        //Debug.DrawRay(transform.position, playerTorso.transform.right.normalized, Color.red, .01f);
+        //Debug.DrawRay(transform.position, playerLegs.transform.up, Color.green, .01f); 
     }
 
     void OnTriggerEnter2D(Collider2D collider)

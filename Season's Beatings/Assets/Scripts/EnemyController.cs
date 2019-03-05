@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] GameObject EnemyTorso;
     [SerializeField] Weapon weapon;
     [SerializeField] GameObject EnemyLegs;
+    [SerializeField] GameObject EnemyArmLeft;
+    [SerializeField] GameObject EnemyArmRight;
     Rigidbody2D rigidbody2D;
     Collider2D collider2D;
 
@@ -60,7 +62,10 @@ public class EnemyController : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
+        if (weapon.name != "Arms")
+            Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(collider2D, EnemyArmLeft.GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(collider2D, EnemyArmRight.GetComponent<Collider2D>());
         SetHealthUI();
     }
 
@@ -76,23 +81,23 @@ public class EnemyController : MonoBehaviour, IDamageable
 
             Vector2 vectorToPlayer = PlayerController.instance.transform.position - transform.position;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, vectorToPlayer);
-            //Debug.Log(hit.collider.name);
+            
 
              // Sight Cone
             if (Vector3.Distance(PlayerController.instance.transform.position, transform.position) < range &&
                 Vector3.Angle(vectorToPlayer, EnemyTorso.transform.right) < viewAngle &&
-                hit.collider != null && hit.collider.CompareTag("Player"))
+                hit && hit.collider.CompareTag("Player"))
             {
                     
-                if (hit.collider != null && hit.collider.CompareTag("Player"))
+                if (hit.collider.CompareTag("Player"))
                 {
                     acting = false;
                     followingPlayer = true;
                     EnemyTorso.transform.right = (Vector2)(vectorToPlayer);
 
                     // Attack Range
-                    hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.GetComponent<SpriteRenderer>().bounds.size.y);                        
-                    if (hit.collider != null && hit.collider.CompareTag("Player"))
+                    hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.weaponRange * this.transform.localScale.x); //weapon.GetComponent<SpriteRenderer>().bounds.size.y);
+                    if (hit && hit.collider.CompareTag("Player"))
                     {
                         weapon.Attack();
                         rigidbody2D.velocity = Vector2.zero;
@@ -146,9 +151,9 @@ public class EnemyController : MonoBehaviour, IDamageable
         //DEBUG
         //Debug.Log("Distance is " + Vector3.Distance(PlayerController.instance.transform.position, transform.position));
         //Debug.Log("Angle is " + Vector3.Angle(PlayerController.instance.transform.position - transform.position, EnemyTorso.transform.up));
-        Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
-        Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, -viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
-        Debug.DrawRay(transform.position, EnemyTorso.transform.right.normalized * weapon.GetComponent<SpriteRenderer>().bounds.size.y, Color.red, .01f);
+        //Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
+        //Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, -viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
+        //Debug.DrawRay(transform.position, EnemyTorso.transform.right.normalized * weapon.weaponRange * this.transform.localScale.x, Color.red, .01f);
         //Debug.DrawRay(transform.position, EnemyLegs.transform.right, Color.green, .01f);
     }
 

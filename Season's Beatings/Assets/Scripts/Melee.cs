@@ -43,6 +43,7 @@ public class Melee : Weapon
         m_audioPlayer.addSFX(whooshFileName);
         m_audioPlayer.addSFX(whooshFileName_2);
         m_audioPlayer.addSFX(collideFileName);
+        weaponRange = .75f;
     }
 
     void Start()
@@ -77,7 +78,6 @@ public class Melee : Weapon
     {
         if (collider2D && collider2D.enabled == false)
         {
-            Debug.Log("Attacking");
             collider2D.enabled = true;
 
             int random = Random.Range(0, 2);
@@ -99,7 +99,6 @@ public class Melee : Weapon
 
         if (attackReset)
         {
-            Debug.Log("Collided with " + other.tag);
             IDamageable damageableComponent = other.GetComponent<IDamageable>();
 
             if (damageableComponent != null) // registers a hit and plays sounds only when hitting enemies
