@@ -106,7 +106,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (itemComponent != null)
         {
             itemComponent.pickUp();
-            Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
+            if (weapon.name != "Arms")
+                Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
         }
     }    
 
