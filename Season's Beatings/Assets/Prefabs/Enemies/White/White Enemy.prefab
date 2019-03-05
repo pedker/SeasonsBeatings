@@ -1047,10 +1047,20 @@ PrefabInstance:
       propertyPath: damage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3639430872876700387, guid: cedb70539a3b4664fab376873e4c916f,
+        type: 3}
+      propertyPath: knockback
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 3816761343134248768, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
       propertyPath: damage
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816761343134248768, guid: cedb70539a3b4664fab376873e4c916f,
+        type: 3}
+      propertyPath: knockback
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cedb70539a3b4664fab376873e4c916f, type: 3}

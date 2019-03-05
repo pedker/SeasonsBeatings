@@ -151,9 +151,9 @@ public class EnemyController : MonoBehaviour, IDamageable
         //DEBUG
         //Debug.Log("Distance is " + Vector3.Distance(PlayerController.instance.transform.position, transform.position));
         //Debug.Log("Angle is " + Vector3.Angle(PlayerController.instance.transform.position - transform.position, EnemyTorso.transform.up));
-        //Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
-        //Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, -viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
-        //Debug.DrawRay(transform.position, EnemyTorso.transform.right.normalized * weapon.weaponRange * this.transform.localScale.x, Color.red, .01f);
+        Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
+        Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, -viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
+        Debug.DrawRay(transform.position, EnemyTorso.transform.right.normalized * weapon.weaponRange * this.transform.localScale.x, Color.red, .01f);
         //Debug.DrawRay(transform.position, EnemyLegs.transform.right, Color.green, .01f);
     }
 

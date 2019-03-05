@@ -96,8 +96,8 @@ public class PlayerController : MonoBehaviour, IDamageable
             }
         }
         //DEBUG
-        //Debug.DrawRay(transform.position, playerTorso.transform.right.normalized, Color.red, .01f);
-        //Debug.DrawRay(transform.position, playerLegs.transform.up, Color.green, .01f); 
+        Debug.DrawRay(transform.position, playerTorso.transform.right.normalized, Color.red, .01f);
+        Debug.DrawRay(transform.position, playerLegs.transform.up, Color.green, .01f); 
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -106,7 +106,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (itemComponent != null)
         {
             itemComponent.pickUp();
-            Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
+            if (weapon.name != "Arms")
+                Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
         }
     }    
 
