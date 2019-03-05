@@ -621,7 +621,7 @@ MonoBehaviour:
   EnemyTorso: {fileID: 3690338261104266436}
   weapon: {fileID: 8075885693508407114}
   EnemyLegs: {fileID: 3690338260857181469}
-  range: 10
+  range: 15
   stun: 0
   viewAngle: 60
   speed: 9
@@ -632,6 +632,8 @@ MonoBehaviour:
   fillImage: {fileID: 7725544481669650889}
   FullHealthColor: {r: 0.05769229, g: 1, b: 0, a: 0.46666667}
   ZeroHealthColor: {r: 1, g: 0.053741198, b: 0, a: 0.32156864}
+  movementChance: 0.5
+  actionTime: 3
   footStepFileName: FootstepTest
   footStepVolume: 0.05
   footStepPitchMin: 0.85
@@ -1126,11 +1128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3690338261104266437}
     m_Modifications:
-    - target: {fileID: 6177238785141212048, guid: a2e5322c58e1d3844a062be9dccb77f1,
-        type: 3}
-      propertyPath: m_Name
-      value: Bat
-      objectReference: {fileID: 0}
     - target: {fileID: 6177238785141212050, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1194,17 +1191,22 @@ PrefabInstance:
     - target: {fileID: 4838546435591747544, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
       propertyPath: stun
-      value: 0.4
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4838546435591747544, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
       propertyPath: attackRate
-      value: 0.2
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 4838546435591747544, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
       propertyPath: knockback
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177238785141212048, guid: a2e5322c58e1d3844a062be9dccb77f1,
+        type: 3}
+      propertyPath: m_Name
+      value: Bat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2e5322c58e1d3844a062be9dccb77f1, type: 3}
@@ -1233,11 +1235,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3690338262152805043}
     m_Modifications:
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1292,6 +1289,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3b6a0e478b11740aaec1cf256dadb2, type: 3}
