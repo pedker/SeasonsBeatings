@@ -328,14 +328,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponRange: 1
-  whooshVolume: 0.65
-  whooshPitchMinimum: 0.9
-  whooshPitchMaximum: 1.1
-  collideSoundVolume: 0.65
-  collidePitchMinimum: 0.95
-  collidePitchMaximum: 1.05
-  punchWhooshSoundEffect: 
-  punchSoundEffect: 
+  attackDuration: 0.4
+  whooshVolume: 0.35
+  whooshPitchMinimum: 0.7
+  whooshPitchMaximum: 0.9
+  punchWhooshSoundEffect: BatSwing1
   m_animator: {fileID: 7910803359622718388}
 --- !u!95 &7910803359622718388
 Animator:
@@ -1146,11 +1143,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3816761343134248768, guid: cedb70539a3b4664fab376873e4c916f,
+    - target: {fileID: 2394868028354158302, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
-      propertyPath: damage
-      value: 10
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4ab0190b277e49243b6a18ab50843348,
+        type: 3}
     - target: {fileID: 2394868029904026237, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
       propertyPath: m_Sprite
@@ -1162,12 +1160,11 @@ PrefabInstance:
       propertyPath: damage
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 2394868028354158302, guid: cedb70539a3b4664fab376873e4c916f,
+    - target: {fileID: 3816761343134248768, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 4ab0190b277e49243b6a18ab50843348,
-        type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cedb70539a3b4664fab376873e4c916f, type: 3}
 --- !u!1 &6075402894295107387 stripped
@@ -1203,12 +1200,12 @@ PrefabInstance:
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.12790251
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.68767715
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}

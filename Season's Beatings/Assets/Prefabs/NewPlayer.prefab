@@ -935,12 +935,12 @@ PrefabInstance:
       propertyPath: m_animator
       value: 
       objectReference: {fileID: 8037681100100187803}
-    - target: {fileID: 3816761343134248768, guid: cedb70539a3b4664fab376873e4c916f,
+    - target: {fileID: 3639430872876700387, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
       propertyPath: damage
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 3639430872876700387, guid: cedb70539a3b4664fab376873e4c916f,
+    - target: {fileID: 3816761343134248768, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
       propertyPath: damage
       value: 10
@@ -1072,12 +1072,12 @@ PrefabInstance:
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.12790251
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.68767715
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}

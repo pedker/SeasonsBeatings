@@ -12,22 +12,17 @@ public class Arm : Weapon
 
 
     [Header("Sound")]
-    [SerializeField] float whooshVolume = 0.65f;
-    [SerializeField] float whooshPitchMinimum = 0.90f;
-    [SerializeField] float whooshPitchMaximum = 1.10f;
     [SerializeField] float collideSoundVolume = 0.65f;
     [SerializeField] float collidePitchMinimum = 0.95f;
     [SerializeField] float collidePitchMaximum = 1.05f;
-    [SerializeField] string punchWhooshSoundEffect = "";
-    [SerializeField] string punchSoundEffect = "";
+    [SerializeField] string punchSoundEffect;
 
     AudioPlayer m_audioPlayer;
 
     void Awake()
     {
-        m_audioPlayer = GetComponent<AudioPlayer>();
+        m_audioPlayer = GetComponentInChildren<AudioPlayer>();
         weaponRange = .75f;
-        m_audioPlayer.addSFX(punchWhooshSoundEffect);
         m_audioPlayer.addSFX(punchSoundEffect);
     }
 
@@ -41,7 +36,7 @@ public class Arm : Weapon
 
         if (other.CompareTag("Player") || other.CompareTag("Enemy")) //So it registers a hit and plays sounds only when hitting enemies or players
         {
-            //m_audioPlayer.playSFX(punchSoundEffect, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
+            m_audioPlayer.playSFX(punchSoundEffect, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
         }
     }
 }
