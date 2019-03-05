@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
             Vector2 vectorToPlayer = PlayerController.instance.transform.position - transform.position;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, vectorToPlayer);
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
 
              // Sight Cone
             if (Vector3.Distance(PlayerController.instance.transform.position, transform.position) < range &&

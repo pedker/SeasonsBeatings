@@ -33,7 +33,6 @@ public class HandToHand : Weapon
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log("LeftClick");
             Attack();
         }
     }

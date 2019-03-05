@@ -30,7 +30,7 @@ public class Melee : Weapon
 
     AudioPlayer m_audioPlayer;
     float attackSpeed;
-    Collider2D collider2D;
+    Collider2D collider2D = null;
     Rigidbody2D rigidbody2D;
     float time = 0;
     
@@ -55,7 +55,7 @@ public class Melee : Weapon
 
     private void Update()
     {
-        if (collider2D.enabled)
+        if (collider2D && collider2D.enabled)
         {
             time += Time.deltaTime;
             if (time < attackRate && !attackHitWall)
@@ -75,7 +75,7 @@ public class Melee : Weapon
 
     override public void Attack()
     {
-        if (collider2D.enabled == false)
+        if (collider2D && collider2D.enabled == false)
         {
             Debug.Log("Attacking");
             collider2D.enabled = true;

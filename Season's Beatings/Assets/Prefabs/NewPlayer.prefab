@@ -179,9 +179,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 200
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 200
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -369,7 +369,7 @@ MonoBehaviour:
   stun: 0
   faceTarget: 1
   animator: {fileID: 8037681100100187803}
-  health: 100
+  health: 200
   slider: {fileID: 9087338420006568092}
   fillImage: {fileID: 4002440848134886886}
   FullHealthColor: {r: 0.1986917, g: 0.8962264, b: 0.2085624, a: 0.5803922}
@@ -394,9 +394,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75aaf3af4350ab848869d3ab756f6470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockback: 50
-  damage: 5
-  stun: 0.125
+  knockback: 60
+  damage: 10
+  stun: 0.2
   whooshVolume: 0.65
   whooshPitchMinimum: 0.9
   whooshPitchMaximum: 1.1
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 5084586300014524322}
   m_Layer: 0
   m_Name: characterBlueArmRight (12)
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -870,7 +870,7 @@ GameObject:
   - component: {fileID: 4789538936205056845}
   m_Layer: 0
   m_Name: characterBlueArmLeft (11)
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
