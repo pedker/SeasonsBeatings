@@ -33,22 +33,24 @@ public class HandToHand : Weapon
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            Debug.Log("LeftClick");
             Attack();
         }
     }
 
     override public void Attack()
     {
+        Debug.Log("Attacking");
         int randNum = Random.Range(0, 2);
         if (randNum == 1)
         {
-            m_animator.Play("PunchingLeftArm", 0, 0.0f);
+            m_animator.Play("PunchingLeftArm", 1, 0.0f);
             m_audioPlayer.playSFX(punchWhooshSoundEffect, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
         }
 
         else
         {
-            m_animator.Play("PunchingRightArm", 0, 0.0f);
+            m_animator.Play("PunchingRightArm", 1, 0.0f);
             m_audioPlayer.playSFX(punchWhooshSoundEffect, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
         }
     }
