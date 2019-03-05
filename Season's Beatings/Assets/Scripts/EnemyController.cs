@@ -78,73 +78,68 @@ public class EnemyController : MonoBehaviour, IDamageable
             RaycastHit2D hit = Physics2D.Raycast(transform.position, vectorToPlayer);
             Debug.Log(hit.collider.name);
 
-            if (stun > 0) stun -= Time.deltaTime;
-            else
+             // Sight Cone
+            if (Vector3.Distance(PlayerController.instance.transform.position, transform.position) < range &&
+                Vector3.Angle(vectorToPlayer, EnemyTorso.transform.right) < viewAngle &&
+                hit.collider != null && hit.collider.CompareTag("Player"))
             {
-                
-                // Sight Cone
-                if (Vector3.Distance(PlayerController.instance.transform.position, transform.position) < range &&
-                    Vector3.Angle(vectorToPlayer, EnemyTorso.transform.right) < viewAngle &&
-                    hit.collider != null && hit.collider.CompareTag("Player"))
-                {
                     
+                if (hit.collider != null && hit.collider.CompareTag("Player"))
+                {
+                    acting = false;
+                    followingPlayer = true;
+                    EnemyTorso.transform.right = (Vector2)(vectorToPlayer);
+
+                    // Attack Range
+                    hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.GetComponent<SpriteRenderer>().bounds.size.y);                        
                     if (hit.collider != null && hit.collider.CompareTag("Player"))
                     {
-                        acting = false;
-                        followingPlayer = true;
-                        EnemyTorso.transform.right = (Vector2)(vectorToPlayer);
-
-                        // Attack Range
-                        hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.GetComponent<SpriteRenderer>().bounds.size.y);                        
-                        if (hit.collider != null && hit.collider.CompareTag("Player"))
-                        {
-                            weapon.Attack();
-                            rigidbody2D.velocity = Vector2.zero;
-                        }
+                        weapon.Attack();
+                        rigidbody2D.velocity = Vector2.zero;
+                    }
+                    else
+                    {
+                        if (stun > 0) stun -= Time.deltaTime;
                         else
                         {
                             rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
-                        }
-
-                        if (rigidbody2D.velocity != Vector2.zero)
-                        {
                             EnemyLegs.transform.right = rigidbody2D.velocity;
                             if (faceTarget && Quaternion.Angle(EnemyTorso.transform.rotation, EnemyLegs.transform.rotation) > 90) EnemyLegs.transform.right = -1 * EnemyLegs.transform.right; // Keeps body facing mouse
                         }
                     }
                 }
-                else
+            }
+            else
+            {
+                if (followingPlayer)
                 {
-                    if (followingPlayer)
+                    acting = true;
+                    followingPlayer = false;
+                    timeElapsed = 0;
+                    rigidbody2D.velocity = Vector2.zero;
+                }
+                else if (acting == false)
+                {
+                    float action = Random.value;
+                    acting = true;
+                    timeElapsed = 0;
+                    if (action < movementChance)
                     {
-                        acting = true;
-                        followingPlayer = false;
-                        timeElapsed = 0;
-                        rigidbody2D.velocity = Vector2.zero;
-                    }
-                    else if (acting == false)
-                    {
-                        float action = Random.value;
-                        acting = true;
-                        timeElapsed = 0;
-                        if (action < movementChance)
-                        {
-                            EnemyLegs.transform.right = EnemyTorso.transform.right = Random.insideUnitCircle;
-                            rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
-                        }
-                        else
-                        {
-                            rigidbody2D.velocity = Vector2.zero;
-                        }
-                    }
-                    else if (timeElapsed < actionTime)
-                    {
-                        timeElapsed += Time.deltaTime;
+                        EnemyLegs.transform.right = EnemyTorso.transform.right = Random.insideUnitCircle;
+                        rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
                     }
                     else
                     {
-                        acting = false;
+                        rigidbody2D.velocity = Vector2.zero;
                     }
+                }
+                else if (timeElapsed < actionTime)
+                {
+                    timeElapsed += Time.deltaTime;
+                }
+                else
+                {
+                    acting = false;
                 }
             }
         }
