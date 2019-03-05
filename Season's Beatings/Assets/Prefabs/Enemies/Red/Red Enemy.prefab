@@ -80,9 +80,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 200
+  m_MaxValue: 300
   m_WholeNumbers: 0
-  m_Value: 200
+  m_Value: 300
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -637,7 +637,7 @@ MonoBehaviour:
   viewAngle: 60
   speed: 5
   faceTarget: 1
-  health: 200
+  health: 300
   animator: {fileID: 6456792375914849748}
   slider: {fileID: 5191524684021961683}
   fillImage: {fileID: 115739722333718185}
