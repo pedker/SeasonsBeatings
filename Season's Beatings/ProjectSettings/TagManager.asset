@@ -10,6 +10,7 @@ TagManager:
   - Weapon
   - Wall
   - Enemy
+  - PlayerTorso
   layers:
   - Default
   - TransparentFX
