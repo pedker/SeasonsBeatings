@@ -32,6 +32,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     public float actionTime = 3;
     float timeElapsed;
     bool acting = false;
+    bool followingPlayer = false;
 
     [Header("Sound")]
 
@@ -90,6 +91,7 @@ public class EnemyController : MonoBehaviour, IDamageable
                     if (hit.collider != null && hit.collider.CompareTag("Player"))
                     {
                         acting = false;
+                        followingPlayer = true;
                         EnemyTorso.transform.right = (Vector2)(vectorToPlayer);
 
                         // Attack Range
@@ -111,10 +113,16 @@ public class EnemyController : MonoBehaviour, IDamageable
                         }
                     }
                 }
-
                 else
                 {
-                    if (acting == false)
+                    if (followingPlayer)
+                    {
+                        acting = true;
+                        followingPlayer = false;
+                        timeElapsed = 0;
+                        rigidbody2D.velocity = Vector2.zero;
+                    }
+                    else if (acting == false)
                     {
                         float action = Random.value;
                         acting = true;
