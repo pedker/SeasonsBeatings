@@ -30,7 +30,7 @@ public class Melee : Weapon
 
     AudioPlayer m_audioPlayer;
     float attackSpeed;
-    Collider2D collider2D;
+    Collider2D collider2D = null;
     Rigidbody2D rigidbody2D;
     float time = 0;
     
@@ -43,6 +43,7 @@ public class Melee : Weapon
         m_audioPlayer.addSFX(whooshFileName);
         m_audioPlayer.addSFX(whooshFileName_2);
         m_audioPlayer.addSFX(collideFileName);
+        weaponRange = .75f;
     }
 
     void Start()
@@ -55,7 +56,7 @@ public class Melee : Weapon
 
     private void Update()
     {
-        if (collider2D.enabled)
+        if (collider2D && collider2D.enabled)
         {
             time += Time.deltaTime;
             if (time < attackRate && !attackHitWall)
@@ -75,9 +76,8 @@ public class Melee : Weapon
 
     override public void Attack()
     {
-        if (collider2D.enabled == false)
+        if (collider2D && collider2D.enabled == false)
         {
-            Debug.Log("Attacking");
             collider2D.enabled = true;
 
             int random = Random.Range(0, 2);
@@ -99,7 +99,6 @@ public class Melee : Weapon
 
         if (attackReset)
         {
-            Debug.Log("Collided with " + other.tag);
             IDamageable damageableComponent = other.GetComponent<IDamageable>();
 
             if (damageableComponent != null) // registers a hit and plays sounds only when hitting enemies

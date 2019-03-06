@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] GameObject EnemyTorso;
     [SerializeField] Weapon weapon;
     [SerializeField] GameObject EnemyLegs;
+    [SerializeField] GameObject EnemyArmLeft;
+    [SerializeField] GameObject EnemyArmRight;
     Rigidbody2D rigidbody2D;
     Collider2D collider2D;
 
@@ -26,6 +28,13 @@ public class EnemyController : MonoBehaviour, IDamageable
     public Image fillImage;
     public Color FullHealthColor;
     public Color ZeroHealthColor;
+
+    [Header("AITweaks")]
+    public float movementChance = .5f;
+    public float actionTime = 3;
+    float timeElapsed;
+    bool acting = false;
+    bool followingPlayer = false;
 
     [Header("Sound")]
 
@@ -53,7 +62,10 @@ public class EnemyController : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
+        if (weapon.name != "Arms")
+            Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(collider2D, EnemyArmLeft.GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(collider2D, EnemyArmRight.GetComponent<Collider2D>());
         SetHealthUI();
     }
 
@@ -67,27 +79,72 @@ public class EnemyController : MonoBehaviour, IDamageable
                 animator.SetFloat("Speed", Mathf.Abs(this.rigidbody2D.velocity.x) + Mathf.Abs(this.rigidbody2D.velocity.y));
             }
 
-            if (stun > 0) stun -= Time.deltaTime;
+            Vector2 vectorToPlayer = PlayerController.instance.transform.position - transform.position;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, vectorToPlayer);
+            
 
-            else
+             // Sight Cone
+            if (Vector3.Distance(PlayerController.instance.transform.position, transform.position) < range &&
+                Vector3.Angle(vectorToPlayer, EnemyTorso.transform.right) < viewAngle &&
+                hit && hit.collider.CompareTag("Player"))
             {
-                // Sight Cone
-                if (Vector3.Distance(PlayerController.instance.transform.position, transform.position) < range &&
-                    Vector3.Angle(PlayerController.instance.transform.position - transform.position, EnemyTorso.transform.right) < viewAngle)
+                    
+                if (hit.collider.CompareTag("Player"))
                 {
-                    EnemyTorso.transform.right = (Vector2)(PlayerController.instance.transform.position - transform.position);
-                    rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
-                    if (rigidbody2D.velocity != Vector2.zero)
-                    {
+                    acting = false;
+                    followingPlayer = true;
+                    EnemyTorso.transform.right = (Vector2)(vectorToPlayer);
 
-                        EnemyLegs.transform.right = rigidbody2D.velocity;
-                        if (faceTarget && Quaternion.Angle(EnemyTorso.transform.rotation, EnemyLegs.transform.rotation) > 90) EnemyLegs.transform.right = -1 * EnemyLegs.transform.right; // Keeps body facing mouse
+                    // Attack Range
+                    hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.weaponRange * this.transform.localScale.x); //weapon.GetComponent<SpriteRenderer>().bounds.size.y);
+                    if (hit && hit.collider.CompareTag("Player"))
+                    {
+                        weapon.Attack();
+                        rigidbody2D.velocity = Vector2.zero;
+                    }
+                    else
+                    {
+                        if (stun > 0) stun -= Time.deltaTime;
+                        else
+                        {
+                            rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
+                            EnemyLegs.transform.right = rigidbody2D.velocity;
+                            if (faceTarget && Quaternion.Angle(EnemyTorso.transform.rotation, EnemyLegs.transform.rotation) > 90) EnemyLegs.transform.right = -1 * EnemyLegs.transform.right; // Keeps body facing mouse
+                        }
                     }
                 }
-
+            }
+            else
+            {
+                if (followingPlayer)
+                {
+                    acting = true;
+                    followingPlayer = false;
+                    timeElapsed = 0;
+                    rigidbody2D.velocity = Vector2.zero;
+                }
+                else if (acting == false)
+                {
+                    float action = Random.value;
+                    acting = true;
+                    timeElapsed = 0;
+                    if (action < movementChance)
+                    {
+                        EnemyLegs.transform.right = EnemyTorso.transform.right = Random.insideUnitCircle;
+                        rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
+                    }
+                    else
+                    {
+                        rigidbody2D.velocity = Vector2.zero;
+                    }
+                }
+                else if (timeElapsed < actionTime)
+                {
+                    timeElapsed += Time.deltaTime;
+                }
                 else
                 {
-                    rigidbody2D.velocity = Vector2.zero;
+                    acting = false;
                 }
             }
         }
@@ -96,8 +153,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         //Debug.Log("Angle is " + Vector3.Angle(PlayerController.instance.transform.position - transform.position, EnemyTorso.transform.up));
         Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
         Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, -viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
-        Debug.DrawRay(transform.position, EnemyTorso.transform.right, Color.red, .01f);
-        Debug.DrawRay(transform.position, EnemyLegs.transform.right, Color.green, .01f);
+        Debug.DrawRay(transform.position, EnemyTorso.transform.right.normalized * weapon.weaponRange * this.transform.localScale.x, Color.red, .01f);
+        //Debug.DrawRay(transform.position, EnemyLegs.transform.right, Color.green, .01f);
     }
 
     public void Damage(float damage, float stun, Vector2 knockback)
@@ -130,9 +187,18 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
+        if (collision.collider.CompareTag("Wall"))
+        {
+            rigidbody2D.velocity = Vector2.zero;
+        }
+
         if (collision.collider.CompareTag("Player"))
         {
-            weapon.Attack();
+            Vector2 vectorToPlayer = PlayerController.instance.transform.position - transform.position;
+
+            EnemyLegs.transform.right = vectorToPlayer;
+            EnemyTorso.transform.right = vectorToPlayer;
         }
     }
 

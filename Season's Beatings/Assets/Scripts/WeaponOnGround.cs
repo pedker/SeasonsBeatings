@@ -5,12 +5,12 @@ using UnityEngine;
 public class WeaponOnGround : MonoBehaviour, IPickupable
 {
     [SerializeField] Weapon m_weapon;
-    [SerializeField] Transform parent;
+    [SerializeField] Transform parent = null;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        parent = GameObject.FindWithTag("PlayerTorso").transform;
     }
 
     // Update is called once per frame
