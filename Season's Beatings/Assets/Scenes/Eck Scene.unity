@@ -1100,6 +1100,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 370246516}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1003435026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6370606475965345499, guid: 04c44062423ed284c945e27a6e102201,
+    type: 3}
+  m_PrefabInstance: {fileID: 1293588610}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1035731066 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3341879670997795699, guid: aef9450d6e983bd4b88cea4951ad89d9,
@@ -32312,6 +32318,16 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 835186470}
+    - target: {fileID: 8037681100100187800, guid: cb6070b0e38b4324eaaf70155d919dae,
+        type: 3}
+      propertyPath: LoseMenu
+      value: 
+      objectReference: {fileID: 1003435026}
+    - target: {fileID: 8037681100100187800, guid: cb6070b0e38b4324eaaf70155d919dae,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1064060838}
     - target: {fileID: 2665582720957783998, guid: cb6070b0e38b4324eaaf70155d919dae,
         type: 3}
       propertyPath: m_IsTrigger
