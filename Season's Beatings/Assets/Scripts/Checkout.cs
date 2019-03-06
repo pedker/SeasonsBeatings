@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Checkout : MonoBehaviour
 {
-    public Text scoreText;
-    public Text priceText;
-    public GameObject winMenu;
+    public Text scoreText = null;
+    public Text priceText = null;
+    public GameObject winMenu = null;
 
     private int score;
 

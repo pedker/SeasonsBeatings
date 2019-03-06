@@ -1083,6 +1083,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arms
       objectReference: {fileID: 0}
+    - target: {fileID: 8665722732949832600, guid: cedb70539a3b4664fab376873e4c916f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2749320272704868716, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
       propertyPath: m_LocalPosition.x
