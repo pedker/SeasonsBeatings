@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
             GameUIControl();
             PauseControl();
         }
+        Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
     }
 
