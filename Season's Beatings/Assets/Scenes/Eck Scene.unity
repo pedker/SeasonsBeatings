@@ -32068,5 +32068,15 @@ PrefabInstance:
       propertyPath: weaponRange
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 4355327588384936838, guid: cb6070b0e38b4324eaaf70155d919dae,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355327588384936838, guid: cb6070b0e38b4324eaaf70155d919dae,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb6070b0e38b4324eaaf70155d919dae, type: 3}
