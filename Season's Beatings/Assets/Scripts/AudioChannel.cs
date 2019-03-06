@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class AudioChannel : MonoBehaviour
 {
+    [SerializeField] float soundRange = 10.0f;
     private AudioSource m_audioPlayer;
     public bool inUse = false;
 
     void Awake()
     {
         m_audioPlayer = this.GetComponent<AudioSource>();
+        m_audioPlayer.maxDistance = soundRange;
         inUse = false;
     }
 
