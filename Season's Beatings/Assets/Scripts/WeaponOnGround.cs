@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponOnGround : MonoBehaviour, IPickupable
 {
-    [SerializeField] Weapon m_weapon;
+    [SerializeField] Weapon m_weapon = null;
     [SerializeField] Transform parent = null;
     
     // Start is called before the first frame update
@@ -23,7 +23,9 @@ public class WeaponOnGround : MonoBehaviour, IPickupable
     {
         Destroy(this.gameObject);
 
-        var newWeapon = Instantiate(m_weapon, parent);
+        Weapon newWeapon = Instantiate(m_weapon, parent);
+
+        Physics2D.IgnoreCollision(PlayerController.instance.GetComponent<Collider2D>(), newWeapon.GetComponent<Collider2D>());
 
         Destroy(PlayerController.instance.weapon.gameObject);
 

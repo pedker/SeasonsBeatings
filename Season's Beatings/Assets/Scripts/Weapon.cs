@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class Weapon : MonoBehaviour
 {
-    public float weaponRange = 1;
-
+    public float weaponRange { get; protected set; } = 1;
+    
     virtual public void Attack()
     {
         Debug.Log("Wrong Function");

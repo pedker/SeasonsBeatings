@@ -5,13 +5,13 @@ using UnityEngine.UI;
 public class EnemyController : MonoBehaviour, IDamageable
 {
     [Header("Components")]
-    [SerializeField] GameObject EnemyTorso;
-    [SerializeField] Weapon weapon;
-    [SerializeField] GameObject EnemyLegs;
-    [SerializeField] GameObject EnemyArmLeft;
-    [SerializeField] GameObject EnemyArmRight;
-    Rigidbody2D rigidbody2D;
-    Collider2D collider2D;
+    [SerializeField] GameObject EnemyTorso = null;
+    [SerializeField] Weapon weapon = null;
+    [SerializeField] GameObject EnemyLegs = null;
+    [SerializeField] GameObject EnemyArmLeft = null;
+    [SerializeField] GameObject EnemyArmRight = null;
+    new Rigidbody2D rigidbody2D;
+    new Collider2D collider2D;
 
     [Header("Attributes")]
     [SerializeField] float range = 10f;
@@ -38,12 +38,12 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     [Header("Sound")]
 
-    [SerializeField] string footStepFileName;
+    [SerializeField] string footStepFileName = null;
     [SerializeField] float footStepVolume = 0.30f;
     [SerializeField] float footStepPitchMin = 0.9f;
     [SerializeField] float footStepPitchMax = 1.1f;
 
-    [SerializeField] string enemyDamagedFileName;
+    [SerializeField] string enemyDamagedFileName = null;
     [SerializeField] float damagedSoundVolume = 0.65f;
     [SerializeField] float damagedPitchMinimum = 0.85f;
     [SerializeField] float damagedPitchMaximum = 1.15f;

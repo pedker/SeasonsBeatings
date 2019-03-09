@@ -17,21 +17,21 @@ public class Melee : Weapon
     [SerializeField] float endArc = 75;
 
     [Header("Sound")]
-    [SerializeField] string whooshFileName;
-    [SerializeField] string whooshFileName_2;
+    [SerializeField] string whooshFileName = null;
+    [SerializeField] string whooshFileName_2 = null;
     [SerializeField] float whooshVolume = 0.65f;
     [SerializeField] float whooshPitchMinimum = 0.90f;
     [SerializeField] float whooshPitchMaximum = 1.10f;
 
-    [SerializeField] string collideFileName;
+    [SerializeField] string collideFileName = null;
     [SerializeField] float collideSoundVolume = 0.65f;
     [SerializeField] float collidePitchMinimum = 0.95f;
     [SerializeField] float collidePitchMaximum = 1.05f;
 
     AudioPlayer m_audioPlayer;
     float attackSpeed;
-    Collider2D collider2D = null;
-    Rigidbody2D rigidbody2D;
+    new Collider2D collider2D = null;
+    new Rigidbody2D rigidbody2D;
     float time = 0;
     
 
@@ -43,15 +43,15 @@ public class Melee : Weapon
         m_audioPlayer.addSFX(whooshFileName);
         m_audioPlayer.addSFX(whooshFileName_2);
         m_audioPlayer.addSFX(collideFileName);
-        weaponRange = .75f;
     }
 
-    void Start()
+    protected void Start()
     {
         transform.localRotation = Quaternion.Euler(0, 0, startArc);
         if (attackRate != 0) attackSpeed = (endArc - startArc) / attackRate;
         else attackSpeed = 0;
         collider2D.enabled = false;
+        weaponRange = GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
     private void Update()

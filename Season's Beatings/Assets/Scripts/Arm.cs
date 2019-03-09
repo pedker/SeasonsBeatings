@@ -15,17 +15,20 @@ public class Arm : Weapon
     [SerializeField] float collideSoundVolume = 0.65f;
     [SerializeField] float collidePitchMinimum = 0.95f;
     [SerializeField] float collidePitchMaximum = 1.05f;
-    [SerializeField] string punchSoundEffect;
+    [SerializeField] string punchSoundEffect = null;
 
     AudioPlayer m_audioPlayer;
 
     void Awake()
     {
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
-        weaponRange = .75f;
         m_audioPlayer.addSFX(punchSoundEffect);
     }
 
+    private void Start()
+    {
+        weaponRange = .75f;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         IDamageable damageableComponent = other.GetComponent<IDamageable>();

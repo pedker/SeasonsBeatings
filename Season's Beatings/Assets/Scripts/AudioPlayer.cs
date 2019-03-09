@@ -7,7 +7,7 @@ public class AudioPlayer : MonoBehaviour
 
 
     [SerializeField] int numberOfAudioChannels = 5;
-    [SerializeField] GameObject audioChannelPrefab;
+    [SerializeField] GameObject audioChannelPrefab = null;
 
 
     private Dictionary<string, AudioClip> clipStorage = new Dictionary<string,AudioClip>();

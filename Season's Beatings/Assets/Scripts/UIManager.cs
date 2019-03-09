@@ -3,27 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject pauseMenu; 
-    public GameObject gameCanvas;
+    public static UIManager instance { get; private set; }
+
+    [SerializeField] GameObject UI = null;
+    [SerializeField] TextMeshProUGUI scoreText = null;
+
+    [SerializeField] GameObject pauseMenu = null;
+
+    [SerializeField] GameObject endScreen = null;
+    [SerializeField] TextMeshProUGUI message = null;
+    [SerializeField] TextMeshProUGUI endScore = null;
+    [SerializeField] TextMeshProUGUI endPrice = null;
+
     bool isPaused = false;
-    bool inGame = true;
-    
-    
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Update()
     {
+        scoreText.text = "Score: " + GameManager.instance.score;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseControl();
-            GameUIControl();    
         }
     }
 
     public void PauseControl()
     {
         isPaused = !isPaused;
+
         if( isPaused )
         {
             Time.timeScale = 0;
@@ -34,30 +49,33 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1;
             pauseMenu.SetActive(false);
         }
-    }
 
-    public void GameUIControl()
-    {
-        inGame = !inGame;
-        if (inGame)
-            gameCanvas.SetActive(true);
+        if (isPaused)
+            UI.SetActive(false);
         else
-            gameCanvas.SetActive(false);
+            UI.SetActive(true);
     }
-
-    public void LoadScene(string sceneName)
+  
+    public void EndGame(bool win)
     {
-        if (sceneName == "Main Menu")
+        Time.timeScale = 0;
+        int score = GameManager.instance.score;
+        endScreen.SetActive(true);
+        
+        if (win)
         {
-            GameUIControl();
-            PauseControl();
+            message.text = "YOU SURVIVED";
+            message.color = Color.green;
         }
-        Time.timeScale = 1;
-        SceneManager.LoadScene(sceneName);
-    }
+        else 
+        {
+            message.text = "YOU DIED";
+            message.color = Color.red;
+        }
 
-    public void QuitGame()
-    {
-        Application.Quit();
+        endScore.text = "Total Value of Your Cart: $" + score;
+        endPrice.text = "You Paid: $" + score * .25f;
+
+        Destroy(this);
     }
 }

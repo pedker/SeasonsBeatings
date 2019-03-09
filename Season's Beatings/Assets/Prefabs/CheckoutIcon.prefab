@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 4466969196250561999}
   - component: {fileID: 1719036683263026795}
   - component: {fileID: 4470495903213598813}
-  - component: {fileID: 293963190}
   m_Layer: 0
   m_Name: CheckoutIcon
-  m_TagString: Untagged
+  m_TagString: Checkout
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8626836556602816808}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.23, y: -13.66, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,18 +106,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.4119797, y: 2.2328157}
   m_EdgeRadius: 0
---- !u!114 &293963190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8626836556602816808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e47502244a91e24bb48d3de71d53471, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
-  priceText: {fileID: 0}
-  winMenu: {fileID: 0}

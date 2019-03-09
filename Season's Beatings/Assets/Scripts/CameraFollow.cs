@@ -20,8 +20,6 @@ public class CameraFollow : MonoBehaviour
         Vector3 playerPos = PlayerController.instance.transform.position;
         float newX = transform.position.x;
         float newY = transform.position.y;
-        AudioSource a;
-        
 
         if (playerPos.x - newX > horizontalLimit) newX += playerPos.x - newX - horizontalLimit;
         else if (playerPos.x - newX < -horizontalLimit) newX += playerPos.x - newX + horizontalLimit;

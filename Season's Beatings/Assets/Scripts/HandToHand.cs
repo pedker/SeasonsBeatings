@@ -11,7 +11,7 @@ public class HandToHand : Weapon
     [SerializeField] float whooshVolume = 0.65f;
     [SerializeField] float whooshPitchMinimum = 0.90f;
     [SerializeField] float whooshPitchMaximum = 1.10f;
-    [SerializeField] string punchWhooshSoundEffect;
+    [SerializeField] string punchWhooshSoundEffect = null;
 
     AudioPlayer m_audioPlayer;
     public Animator m_animator = null;

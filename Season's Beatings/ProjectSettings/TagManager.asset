@@ -11,6 +11,7 @@ TagManager:
   - Wall
   - Enemy
   - PlayerTorso
+  - Checkout
   layers:
   - Default
   - TransparentFX

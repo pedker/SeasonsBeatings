@@ -7,22 +7,21 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour, IDamageable
 {
     public static PlayerController instance;
-    [SerializeField] GameObject playerTorso;
-    [SerializeField] GameObject playerLegs;
-    [SerializeField] GameObject playerArmLeft;
-    [SerializeField] GameObject playerArmRight;
-    public Weapon weapon;
-    Rigidbody2D rigidbody2D;
-    Collider2D collider2D;
-    public GameObject LoseMenu;
-    public Text scoreText;
 
+    new Rigidbody2D rigidbody2D;
+    new Collider2D collider2D;
+    public Animator animator = null;
+
+    [SerializeField] GameObject playerTorso = null;
+    [SerializeField] GameObject playerLegs = null;
+    [SerializeField] GameObject playerArmLeft = null;
+    [SerializeField] GameObject playerArmRight = null;
+
+    public Weapon weapon;
 
     [SerializeField] float speed = 5f;
     [SerializeField] float stun = 0;
     [SerializeField] bool faceTarget = true;
-
-    public Animator animator = null;
 
     [Header("HealthUI")]
     [SerializeField] float health = 100f;
@@ -32,12 +31,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     public Color ZeroHealthColor;
 
     [Header("Sound")]
-    [SerializeField] string footStepFileName;
+    [SerializeField] string footStepFileName = null;
     [SerializeField] float footStepVolume = 0.30f;
     [SerializeField] float footStepPitchMin = 0.9f;
     [SerializeField] float footStepPitchMax = 1.1f;
 
-    [SerializeField] string damagedFileName;
+    [SerializeField] string damagedFileName = null;
     [SerializeField] float damagedVolume = 0.30f;
     [SerializeField] float damagedPitchMin = 0.9f;
     [SerializeField] float damagedPitchMax = 1.1f;
@@ -75,7 +74,6 @@ public class PlayerController : MonoBehaviour, IDamageable
             {
                 animator.SetFloat("Speed", Mathf.Abs(this.rigidbody2D.velocity.x) + Mathf.Abs(this.rigidbody2D.velocity.y));
             }
-            
 
             if (stun > 0) stun -= Time.deltaTime;
 
@@ -104,11 +102,18 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        IPickupable itemComponent = collider.GetComponent<IPickupable>();
-        if (itemComponent != null)
+        if (collider.gameObject.CompareTag("Checkout"))
         {
-            itemComponent.pickUp();
-            Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
+            UIManager.instance.EndGame(true);
+        }
+
+        else
+        {
+            IPickupable itemComponent = collider.GetComponent<IPickupable>();
+            if (itemComponent != null)
+            {
+                itemComponent.pickUp();
+            }
         }
     }    
 
@@ -124,9 +129,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         if (health <= 0)
         {
-            scoreText.text = "Score: " + GameObject.Find("Game Manager").GetComponent<GameManager>().score;
-            Time.timeScale = 0;
-            LoseMenu.SetActive(true);
+            UIManager.instance.EndGame(false);
         }
     }
 
