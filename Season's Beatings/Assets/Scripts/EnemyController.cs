@@ -96,7 +96,7 @@ public class EnemyController : MonoBehaviour, IDamageable
                     EnemyTorso.transform.right = (Vector2)(vectorToPlayer);
 
                     // Attack Range
-                    hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.weaponRange * this.transform.localScale.x); //weapon.GetComponent<SpriteRenderer>().bounds.size.y);
+                    hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.weaponRange); //weapon.GetComponent<SpriteRenderer>().bounds.size.y);
                     if (hit && hit.collider.CompareTag("Player"))
                     {
                         weapon.Attack();
@@ -153,7 +153,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         //Debug.Log("Angle is " + Vector3.Angle(PlayerController.instance.transform.position - transform.position, EnemyTorso.transform.up));
         Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
         Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, -viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
-        Debug.DrawRay(transform.position, EnemyTorso.transform.right.normalized * weapon.weaponRange * this.transform.localScale.x, Color.red, .01f);
+        Debug.DrawRay(transform.position, EnemyTorso.transform.right.normalized * weapon.weaponRange, Color.red, .01f);
         //Debug.DrawRay(transform.position, EnemyLegs.transform.right, Color.green, .01f);
     }
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2394868028354158302}
   - component: {fileID: 587658060599283816}
   m_Layer: 0
-  m_Name: characterBlueArmRight (12)
+  m_Name: Arm Right
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2394868028354158300}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.22167015, y: 0.023362637, z: 0.736133}
+  m_LocalPosition: {x: 0, y: -0.4, z: 0}
   m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_Children:
   - {fileID: 5436057936076876649}
@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81dc3fdbb33e76a4d8bac1ab68f760ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRange: 0.75
   knockback: 100
   damage: 5
   stun: 0.2
@@ -88,8 +87,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -960491859
-  m_SortingLayer: -1
+  m_SortingLayerID: -886343187
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d19cd150cffff8247a9c3aa561772549, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -141,7 +140,7 @@ GameObject:
   - component: {fileID: 2394868029904026237}
   - component: {fileID: 918751786769267847}
   m_Layer: 0
-  m_Name: characterBlueArmLeft (11)
+  m_Name: Arm Left
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2394868029904026227}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.22167015, y: 0.75336266, z: 0.736133}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_Children:
   - {fileID: 1390699455812413798}
@@ -174,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81dc3fdbb33e76a4d8bac1ab68f760ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRange: 0.75
   knockback: 100
   damage: 5
   stun: 0.2
@@ -216,8 +214,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -960491859
-  m_SortingLayer: -1
+  m_SortingLayerID: -886343187
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d19cd150cffff8247a9c3aa561772549, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -281,8 +279,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8665722732949832600}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.22167015, y: -0.39336252, z: -0.2638671}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2435105935122655268}
@@ -303,7 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75aaf3af4350ab848869d3ab756f6470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRange: 0.75
   attackDuration: 0.4
   whooshVolume: 0.35
   whooshPitchMinimum: 0.7
@@ -336,6 +333,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2749320272704868716}
     m_Modifications:
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -391,11 +393,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3b6a0e478b11740aaec1cf256dadb2, type: 3}
 --- !u!4 &2435105935122655268 stripped
@@ -411,6 +408,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2394868029904026226}
     m_Modifications:
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -471,11 +473,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 5232302183370266634, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: numberOfAudioChannels
@@ -496,6 +493,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2394868028354158303}
     m_Modifications:
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -550,11 +552,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3b6a0e478b11740aaec1cf256dadb2, type: 3}

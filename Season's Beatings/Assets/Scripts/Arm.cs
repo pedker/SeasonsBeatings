@@ -24,11 +24,8 @@ public class Arm : Weapon
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
         m_audioPlayer.addSFX(punchSoundEffect);
     }
+    
 
-    private void Start()
-    {
-        weaponRange = .75f;
-    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         IDamageable damageableComponent = other.GetComponent<IDamageable>();

@@ -22,7 +22,11 @@ public class HandToHand : Weapon
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
         m_audioPlayer.addSFX(punchWhooshSoundEffect);
         m_animator = this.GetComponent<Animator>();
-        weaponRange = .75f;
+    }
+
+    private void Start()
+    {
+        weaponRange = 1.125f * transform.lossyScale.x;
     }
 
     void Update()
