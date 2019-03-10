@@ -173,7 +173,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         if (health <= 0)
         {
-            GameObject.Instantiate(Blood, EnemyTorso.transform.position, Quaternion.identity);
+            GameObject.Instantiate(Blood, EnemyTorso.transform.position, Quaternion.identity).transform.localScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, 1);
             Destroy(gameObject);
         }
 
