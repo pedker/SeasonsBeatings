@@ -73,7 +73,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             if (animator)
             {
-                Debug.Log(Mathf.Abs(this.rigidbody2D.velocity.x) + Mathf.Abs(this.rigidbody2D.velocity.y));
                 animator.SetFloat("Speed", Mathf.Abs(this.rigidbody2D.velocity.x) + Mathf.Abs(this.rigidbody2D.velocity.y));
             }
 
