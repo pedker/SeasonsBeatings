@@ -397,6 +397,7 @@ MonoBehaviour:
   playerLegs: {fileID: 450238725441069987}
   playerArmLeft: {fileID: 8037681101404822969}
   playerArmRight: {fileID: 8037681100224067862}
+  Blood: {fileID: 3214385848515882282, guid: 061c43f70972cf24cb0eedc531f56358, type: 3}
   weapon: {fileID: 7914612648965327763}
   speed: 8
   stun: 0

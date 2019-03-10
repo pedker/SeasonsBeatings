@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] GameObject EnemyLegs = null;
     [SerializeField] GameObject EnemyArmLeft = null;
     [SerializeField] GameObject EnemyArmRight = null;
+    [SerializeField] GameObject Blood = null;
     new Rigidbody2D rigidbody2D;
     new Collider2D collider2D;
 
@@ -172,6 +173,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         if (health <= 0)
         {
+            GameObject.Instantiate(Blood, EnemyTorso.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 

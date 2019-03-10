@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] GameObject playerLegs = null;
     [SerializeField] GameObject playerArmLeft = null;
     [SerializeField] GameObject playerArmRight = null;
+    [SerializeField] GameObject Blood = null;
 
     public Weapon weapon;
 
@@ -129,6 +130,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         if (health <= 0)
         {
+            GameObject.Instantiate(Blood, playerTorso.transform.position, Quaternion.identity);
             UIManager.instance.EndGame(false);
         }
     }
