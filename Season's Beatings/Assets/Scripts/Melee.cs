@@ -9,6 +9,7 @@ public class Melee : Weapon
     [SerializeField] float knockback = 100;
     [SerializeField] float damage = 25;
     [SerializeField] float stun = .5f;
+    bool attackReset = true;
 
     [Header("Animation")]
     [SerializeField] float startArc = -75;
@@ -66,6 +67,7 @@ public class Melee : Weapon
                 collider2D.enabled = false;
                 transform.localRotation = Quaternion.Euler(0, 0, startArc);
                 time = 0;
+                attackReset = true;
             }
         }
     }
@@ -92,16 +94,20 @@ public class Melee : Weapon
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        IDamageable damageableComponent = other.GetComponent<IDamageable>();
-
-        if (damageableComponent != null) // registers a hit and plays sounds only when hitting enemies
+        if (attackReset)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, other.transform.position - transform.position);
-            if (hit) Debug.Log(hit.collider.name);
-            if (!hit || hit.collider == other)
+            IDamageable damageableComponent = other.GetComponent<IDamageable>();
+
+            if (damageableComponent != null) // registers a hit and plays sounds only when hitting enemies
             {
-                damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
-                m_audioPlayer.playSFX(collideFileName, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, other.transform.position - transform.position);
+                if (hit) Debug.Log(hit.collider.name);
+                if (!hit || hit.collider == other)
+                {
+                    damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
+                    attackReset = false;
+                    m_audioPlayer.playSFX(collideFileName, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
+                }
             }
         }
     }
