@@ -12,15 +12,20 @@ public class HandToHand : Weapon
     [SerializeField] float whooshPitchMinimum = 0.90f;
     [SerializeField] float whooshPitchMaximum = 1.10f;
     [SerializeField] string punchWhooshSoundEffect = null;
+    [SerializeField] string punchWhooshSoundEffect2 = null;
 
     AudioPlayer m_audioPlayer;
     public Animator m_animator = null;
     float attackTime = 0;
+    List<string> whooshes = new List<string>();
 
     void Awake()
     {
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
         m_audioPlayer.addSFX(punchWhooshSoundEffect);
+        m_audioPlayer.addSFX(punchWhooshSoundEffect2);
+        whooshes.Add(punchWhooshSoundEffect);
+        whooshes.Add(punchWhooshSoundEffect2);
         m_animator = this.GetComponent<Animator>();
     }
 
@@ -51,7 +56,8 @@ public class HandToHand : Weapon
                 m_animator.Play("PunchingRightArm", 0, 0.0f);
             }
 
-            m_audioPlayer.playSFX(punchWhooshSoundEffect, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
+            int randomIndex = Random.Range(0, whooshes.Count);
+            m_audioPlayer.playSFX(whooshes[randomIndex], whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
         }
     }
 
