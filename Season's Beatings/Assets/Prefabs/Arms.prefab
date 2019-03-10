@@ -52,7 +52,7 @@ MonoBehaviour:
   collideSoundVolume: 0.65
   collidePitchMinimum: 0.95
   collidePitchMaximum: 1.05
-  punchSoundEffect: BatHit2
+  punchSoundEffect: HandHit
 --- !u!212 &2394868028354158302
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   collideSoundVolume: 0.65
   collidePitchMinimum: 0.95
   collidePitchMaximum: 1.05
-  punchSoundEffect: BatHit2
+  punchSoundEffect: HandHit
 --- !u!212 &2394868029904026237
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -303,9 +303,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDuration: 0.4
   whooshVolume: 0.35
-  whooshPitchMinimum: 0.7
-  whooshPitchMaximum: 0.9
-  punchWhooshSoundEffect: BatSwing1
+  whooshPitchMinimum: 0.95
+  whooshPitchMaximum: 1.05
+  punchWhooshSoundEffect: HandSwing1
+  punchWhooshSoundEffect2: HandSwing2
   m_animator: {fileID: 6560848194790890132}
 --- !u!95 &6560848194790890132
 Animator:
