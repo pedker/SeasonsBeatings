@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 8037681100100187801}
   - component: {fileID: 8037681100100187805}
   - component: {fileID: 8037681100100187802}
+  - component: {fileID: 5614436771034895464}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -487,6 +488,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!81 &5614436771034895464
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8037681100100187806}
+  m_Enabled: 1
 --- !u!1 &8037681101214536244
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,11 +847,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8037681101215809770}
     m_Modifications:
-    - target: {fileID: 8665722732949832600, guid: cedb70539a3b4664fab376873e4c916f,
-        type: 3}
-      propertyPath: m_Name
-      value: Arms
-      objectReference: {fileID: 0}
     - target: {fileID: 2749320272704868716, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -897,6 +901,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665722732949832600, guid: cedb70539a3b4664fab376873e4c916f,
+        type: 3}
+      propertyPath: m_Name
+      value: Arms
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cedb70539a3b4664fab376873e4c916f, type: 3}
@@ -937,11 +946,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8037681100100187804}
     m_Modifications:
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -996,6 +1000,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 5232302183370266634, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
