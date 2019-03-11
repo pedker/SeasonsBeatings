@@ -5,7 +5,8 @@ using UnityEngine;
 public class Melee : Weapon
 {
     [Header("Battle Values")]
-    [SerializeField] float attackRate = .5f;
+    [SerializeField] float attackTime = .5f;
+    [SerializeField] public float cooldown { get; private set; } = .5f;
     [SerializeField] float knockback = 100;
     [SerializeField] float damage = 25;
     [SerializeField] float stun = .5f;
@@ -16,6 +17,11 @@ public class Melee : Weapon
     [SerializeField] float endArc = 75;
 
     [Header("Sound")]
+    [SerializeField] string pickupFileName = null;
+    [SerializeField] float pickupVolume = 0.65f;
+    [SerializeField] float pickupPitchMinimum = 0.95f;
+    [SerializeField] float pickupPitchMaximum = 1.05f;
+
     [SerializeField] string whooshFileName = null;
     [SerializeField] string whooshFileName_2 = null;
     [SerializeField] float whooshVolume = 0.65f;
@@ -28,7 +34,7 @@ public class Melee : Weapon
     [SerializeField] float collidePitchMaximum = 1.05f;
 
     AudioPlayer m_audioPlayer;
-    float attackSpeed;
+    float rotateSpeed;
     new Collider2D collider2D = null;
     new Rigidbody2D rigidbody2D;
     float time = 0;
@@ -42,15 +48,21 @@ public class Melee : Weapon
         m_audioPlayer.addSFX(whooshFileName);
         m_audioPlayer.addSFX(whooshFileName_2);
         m_audioPlayer.addSFX(collideFileName);
+        m_audioPlayer.addSFX(pickupFileName);
     }
 
     protected void Start()
     {
         transform.localRotation = Quaternion.Euler(0, 0, startArc);
-        if (attackRate != 0) attackSpeed = (endArc - startArc) / attackRate;
-        else attackSpeed = 0;
+        if (attackTime != 0) rotateSpeed = (endArc - startArc) / attackTime;
+        else rotateSpeed = 0;
         collider2D.enabled = false;
         weaponRange = GetComponent<SpriteRenderer>().bounds.size.y;
+
+        if (transform.parent.CompareTag("PlayerTorso"))
+        {
+            m_audioPlayer.playSFX(pickupFileName, pickupVolume, pickupPitchMinimum, pickupPitchMaximum);
+        }
     }
 
     private void Update()
@@ -58,17 +70,19 @@ public class Melee : Weapon
         if (collider2D && collider2D.enabled)
         {
             time += Time.deltaTime;
-            if (time < attackRate)
+            if (time < attackTime)
             {
-                transform.Rotate(0, 0, attackSpeed * Time.deltaTime);
+                transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
             }
-            else
+            else if (time >= attackTime + cooldown)
             {
                 collider2D.enabled = false;
                 transform.localRotation = Quaternion.Euler(0, 0, startArc);
                 time = 0;
                 attackReset = true;
             }
+            else transform.localRotation = Quaternion.Euler(0, 0, startArc);
+
         }
     }
 
@@ -87,8 +101,6 @@ public class Melee : Weapon
             {
                 m_audioPlayer.playSFX(whooshFileName_2, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
             }
-            
-            m_audioPlayer.playSFX("BatSwing1", whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
         }
     }
 
