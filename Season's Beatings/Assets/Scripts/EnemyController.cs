@@ -19,7 +19,6 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] float stun = 0;
     [SerializeField] float viewAngle = 45f;
     [SerializeField] float speed = 5f;
-    //[SerializeField] float attackDelay = 1f;
     [SerializeField] bool faceTarget = true;
     [SerializeField] float health = 100f;
 
