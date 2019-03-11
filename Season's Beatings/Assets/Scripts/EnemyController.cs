@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] float stun = 0;
     [SerializeField] float viewAngle = 45f;
     [SerializeField] float speed = 5f;
+    //[SerializeField] float attackDelay = 1f;
     [SerializeField] bool faceTarget = true;
     [SerializeField] float health = 100f;
 
@@ -94,22 +95,20 @@ public class EnemyController : MonoBehaviour, IDamageable
                 followingPlayer = true;
                 EnemyTorso.transform.right = (Vector2)(vectorToPlayer);
 
-                // Attack Range
-                hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.weaponRange); //weapon.GetComponent<SpriteRenderer>().bounds.size.y);
-                if (hit && hit.collider.CompareTag("Player"))
-                {
-                    weapon.Attack();
-                    rigidbody2D.velocity = Vector2.zero;
-                }
+                if (stun > 0) stun -= Time.deltaTime;
                 else
                 {
-                    if (stun > 0) stun -= Time.deltaTime;
-                    else
+                    // Attack Range
+                    hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.weaponRange); //weapon.GetComponent<SpriteRenderer>().bounds.size.y);
+                    if (hit && hit.collider.CompareTag("Player"))
                     {
-                        rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
-                        EnemyLegs.transform.right = rigidbody2D.velocity;
-                        if (faceTarget && Quaternion.Angle(EnemyTorso.transform.rotation, EnemyLegs.transform.rotation) > 90) EnemyLegs.transform.right = -1 * EnemyLegs.transform.right; // Keeps body facing mouse
+                        weapon.Attack();
+                        rigidbody2D.velocity = Vector2.zero;
                     }
+
+                    rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
+                    EnemyLegs.transform.right = rigidbody2D.velocity;
+                    if (faceTarget && Quaternion.Angle(EnemyTorso.transform.rotation, EnemyLegs.transform.rotation) > 90) EnemyLegs.transform.right = -1 * EnemyLegs.transform.right; // Keeps body facing mouse
                 }
             }
             else
