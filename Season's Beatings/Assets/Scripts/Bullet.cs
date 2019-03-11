@@ -14,14 +14,9 @@ public class Bullet : MonoBehaviour
     //OTHER VARIABLES
     float lifetime = 0.0f;
 
-    private void Awake()
-    {
-        //transform.rotation.z = 0;
-    }
-
     private void Update()
     {
-        if (lifetime >= 15.0f)
+        if (lifetime >= 5.0f)
             Destroy(this.gameObject);
         lifetime += Time.deltaTime;
     }

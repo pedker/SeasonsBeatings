@@ -5,9 +5,15 @@ using UnityEngine;
 public class flying : MonoBehaviour
 {
     [SerializeField] float speed = 0.0f;
+    Rigidbody2D m_rigidbody2D;
+
+    private void Awake()
+    {
+        m_rigidbody2D = this.GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
-        transform.Translate((Vector2.right) * speed * Time.deltaTime);
+        m_rigidbody2D.velocity = (transform.right * speed);
     }
 }
