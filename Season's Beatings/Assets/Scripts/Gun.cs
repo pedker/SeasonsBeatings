@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Gun : Weapon
-{ 
-    [Header("Combat Data")]
-    [SerializeField] float knockback = 50;
-    [SerializeField] float damage = 5;
-    [SerializeField] float stun = 0.125f;
-
+{
     //ADD SOUND VARIABLES
 
     //OTHER VARIABLES
+    [SerializeField] GameObject bulletSpawn = null;
     [SerializeField] GameObject bullet = null;
     [SerializeField] float rateOfFire = 0.5f;
     float attackTime = 0;
+    PlayerController player;
+
+    private void Awake()
+    {
+        player = PlayerController.instance;
+    }
 
     private void Update()
     {
@@ -26,9 +28,7 @@ public class Gun : Weapon
         if (attackTime >= rateOfFire)
         {
             attackTime = 0;
-
-            Vector3 projectilePlacement = this.transform.position + new Vector3(0, 0.5f, 0);
-            GameObject newBullet = Instantiate(bullet, projectilePlacement, Quaternion.identity);
+            GameObject newBullet = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
         }
     }
 }
