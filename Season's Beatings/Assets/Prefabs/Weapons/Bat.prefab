@@ -96,12 +96,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackTime: 0.25
-  cooldown: 0.5
   knockback: 100
   damage: 25
   stun: 0.4
   startArc: -145
   endArc: -60
+  pickupFileName: BatPickup
+  pickupVolume: 0.65
+  pickupPitchMinimum: 0.95
+  pickupPitchMaximum: 1.05
   whooshFileName: BatSwing1
   whooshFileName_2: BatSwing2
   whooshVolume: 0.35
@@ -155,11 +158,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6177238785141212050}
     m_Modifications:
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -214,6 +212,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 5232302183370266634, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}

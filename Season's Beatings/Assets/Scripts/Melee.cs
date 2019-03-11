@@ -17,6 +17,11 @@ public class Melee : Weapon
     [SerializeField] float endArc = 75;
 
     [Header("Sound")]
+    [SerializeField] string pickupFileName = null;
+    [SerializeField] float pickupVolume = 0.65f;
+    [SerializeField] float pickupPitchMinimum = 0.95f;
+    [SerializeField] float pickupPitchMaximum = 1.05f;
+
     [SerializeField] string whooshFileName = null;
     [SerializeField] string whooshFileName_2 = null;
     [SerializeField] float whooshVolume = 0.65f;
@@ -43,6 +48,7 @@ public class Melee : Weapon
         m_audioPlayer.addSFX(whooshFileName);
         m_audioPlayer.addSFX(whooshFileName_2);
         m_audioPlayer.addSFX(collideFileName);
+        m_audioPlayer.addSFX(pickupFileName);
     }
 
     protected void Start()
@@ -52,6 +58,11 @@ public class Melee : Weapon
         else rotateSpeed = 0;
         collider2D.enabled = false;
         weaponRange = GetComponent<SpriteRenderer>().bounds.size.y;
+
+        if (transform.parent.CompareTag("PlayerTorso"))
+        {
+            m_audioPlayer.playSFX(pickupFileName, pickupVolume, pickupPitchMinimum, pickupPitchMaximum);
+        }
     }
 
     private void Update()
@@ -90,8 +101,6 @@ public class Melee : Weapon
             {
                 m_audioPlayer.playSFX(whooshFileName_2, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
             }
-            
-            m_audioPlayer.playSFX("BatSwing1", whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
         }
     }
 
