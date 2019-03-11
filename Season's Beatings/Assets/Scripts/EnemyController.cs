@@ -22,18 +22,19 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] bool faceTarget = true;
     [SerializeField] float health = 100f;
 
-    public Animator animator = null;
+    [SerializeField] Animator animator = null;
 
     [Header("HealthUI")]
-    public Slider slider;
-    public Image fillImage;
-    public Color FullHealthColor;
-    public Color ZeroHealthColor;
+    [SerializeField] Slider slider = null;
+    [SerializeField] Image fillImage = null;
+    [SerializeField] Color FullHealthColor = Color.green;
+    [SerializeField] Color ZeroHealthColor = Color.clear;
 
     [Header("AITweaks")]
-    public float movementChance = .5f;
-    public float actionTime = 3;
-    float timeElapsed;
+    [SerializeField] float movementChance = .5f;
+    [SerializeField] float movementTime = 10;
+    [SerializeField] float idleTime = 3;
+    float timeLeft;
     bool acting = false;
     bool followingPlayer = false;
 
@@ -89,29 +90,25 @@ public class EnemyController : MonoBehaviour, IDamageable
                 Vector3.Angle(vectorToPlayer, EnemyTorso.transform.right) < viewAngle &&
                 hit && hit.collider.CompareTag("Player"))
             {
-                    
-                if (hit.collider.CompareTag("Player"))
-                {
-                    acting = false;
-                    followingPlayer = true;
-                    EnemyTorso.transform.right = (Vector2)(vectorToPlayer);
+                acting = false;
+                followingPlayer = true;
+                EnemyTorso.transform.right = (Vector2)(vectorToPlayer);
 
-                    // Attack Range
-                    hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.weaponRange); //weapon.GetComponent<SpriteRenderer>().bounds.size.y);
-                    if (hit && hit.collider.CompareTag("Player"))
-                    {
-                        weapon.Attack();
-                        rigidbody2D.velocity = Vector2.zero;
-                    }
+                // Attack Range
+                hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.weaponRange); //weapon.GetComponent<SpriteRenderer>().bounds.size.y);
+                if (hit && hit.collider.CompareTag("Player"))
+                {
+                    weapon.Attack();
+                    rigidbody2D.velocity = Vector2.zero;
+                }
+                else
+                {
+                    if (stun > 0) stun -= Time.deltaTime;
                     else
                     {
-                        if (stun > 0) stun -= Time.deltaTime;
-                        else
-                        {
-                            rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
-                            EnemyLegs.transform.right = rigidbody2D.velocity;
-                            if (faceTarget && Quaternion.Angle(EnemyTorso.transform.rotation, EnemyLegs.transform.rotation) > 90) EnemyLegs.transform.right = -1 * EnemyLegs.transform.right; // Keeps body facing mouse
-                        }
+                        rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
+                        EnemyLegs.transform.right = rigidbody2D.velocity;
+                        if (faceTarget && Quaternion.Angle(EnemyTorso.transform.rotation, EnemyLegs.transform.rotation) > 90) EnemyLegs.transform.right = -1 * EnemyLegs.transform.right; // Keeps body facing mouse
                     }
                 }
             }
@@ -121,27 +118,28 @@ public class EnemyController : MonoBehaviour, IDamageable
                 {
                     acting = true;
                     followingPlayer = false;
-                    timeElapsed = 0;
+                    timeLeft = idleTime;
                     rigidbody2D.velocity = Vector2.zero;
                 }
-                else if (acting == false)
+                else if (!acting)
                 {
                     float action = Random.value;
                     acting = true;
-                    timeElapsed = 0;
                     if (action < movementChance)
                     {
+                        timeLeft = movementTime;
                         EnemyLegs.transform.right = EnemyTorso.transform.right = Random.insideUnitCircle;
                         rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
                     }
                     else
                     {
+                        timeLeft = idleTime;
                         rigidbody2D.velocity = Vector2.zero;
                     }
                 }
-                else if (timeElapsed < actionTime)
+                else if (timeLeft > 0)
                 {
-                    timeElapsed += Time.deltaTime;
+                    timeLeft -= Time.deltaTime;
                 }
                 else
                 {
@@ -190,9 +188,11 @@ public class EnemyController : MonoBehaviour, IDamageable
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.collider.CompareTag("Wall"))
+        if (!followingPlayer && collision.collider.CompareTag("Wall"))
         {
+            timeLeft = idleTime;
             rigidbody2D.velocity = Vector2.zero;
+            transform.right *= -1;
         }
 
         if (collision.collider.CompareTag("Player"))
