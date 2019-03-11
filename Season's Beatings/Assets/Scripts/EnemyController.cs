@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] GameObject EnemyArmLeft = null;
     [SerializeField] GameObject EnemyArmRight = null;
     [SerializeField] GameObject Blood = null;
+    [SerializeField] ParticleSystem BloodParticles = null;
     new Rigidbody2D rigidbody2D;
     new Collider2D collider2D;
 
@@ -166,6 +167,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         health -= damage;
         SetHealthUI();
         this.stun = stun;
+
+        BloodParticles.Play();
 
         if (health <= 0)
         {
