@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 3.5, y: 3.5}
+  m_SizeDelta: {x: 3, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5076529408946661408
 Canvas:
@@ -248,8 +248,8 @@ GameObject:
   - component: {fileID: 4540639727949739084}
   - component: {fileID: 7910803359622718388}
   - component: {fileID: 7910803359622718390}
-  - component: {fileID: 7910803359622718386}
   - component: {fileID: 7910803359622718389}
+  - component: {fileID: 7997033341891640759}
   m_Layer: 0
   m_Name: Enemy - Basic
   m_TagString: Enemy
@@ -294,9 +294,9 @@ MonoBehaviour:
   EnemyArmRight: {fileID: 6075402894295107387}
   Blood: {fileID: 3214385848515882282, guid: 061c43f70972cf24cb0eedc531f56358, type: 3}
   BloodParticles: {fileID: 6300173553786322337}
-  range: 15
+  range: 10
   stun: 0
-  viewAngle: 60
+  viewAngle: 45
   speed: 7
   faceTarget: 1
   health: 100
@@ -305,8 +305,9 @@ MonoBehaviour:
   fillImage: {fileID: 3875562300002205897}
   FullHealthColor: {r: 0.05769229, g: 1, b: 0, a: 0.46666667}
   ZeroHealthColor: {r: 1, g: 0.053741198, b: 0, a: 0.32156864}
-  movementChance: 0.5
-  actionTime: 3
+  movementChance: 0.8
+  movementTime: 6
+  idleTime: 2
   footStepFileName: FootstepTest
   footStepVolume: 0.05
   footStepPitchMin: 0.85
@@ -355,22 +356,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &7910803359622718386
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7910803359622718385}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0032186508, y: 0}
-  m_Size: {x: 0.9055996, y: 1.4506645}
-  m_Direction: 0
 --- !u!212 &7910803359622718389
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -419,6 +404,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &7997033341891640759
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7910803359622718385}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.75
 --- !u!1 &7910803360671208900
 GameObject:
   m_ObjectHideFlags: 0

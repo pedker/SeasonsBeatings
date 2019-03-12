@@ -6,7 +6,7 @@ public class Melee : Weapon
 {
     [Header("Battle Values")]
     [SerializeField] float attackTime = .5f;
-    [SerializeField] public float cooldown { get; private set; } = .5f;
+    [SerializeField] float cooldown = .5f;
     [SerializeField] float knockback = 100;
     [SerializeField] float damage = 25;
     [SerializeField] float stun = .5f;
@@ -38,7 +38,8 @@ public class Melee : Weapon
     new Collider2D collider2D = null;
     new Rigidbody2D rigidbody2D;
     float time = 0;
-    
+
+    public float Cooldown { get => cooldown; }
 
     private void Awake()
     {
