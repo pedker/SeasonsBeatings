@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 662847314}
   - component: {fileID: 662847317}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Gun Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,7 +183,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0116667d40a7a464c904b38f21ce2242, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22f8e728854f4b14593ad16587e6e7df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
