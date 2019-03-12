@@ -49,11 +49,11 @@ TagManager:
   - name: Background
     uniqueID: 3137585781
     locked: 0
-  - name: Health
-    uniqueID: 3180055801
-    locked: 0
   - name: BackgroundWalls
     uniqueID: 1177173709
+    locked: 0
+  - name: Health
+    uniqueID: 3180055801
     locked: 0
   - name: Item
     uniqueID: 3332315887
