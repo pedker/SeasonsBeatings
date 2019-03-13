@@ -12,6 +12,8 @@ TagManager:
   - Enemy
   - PlayerTorso
   - Checkout
+  - Gun
+  - WeaponGround
   layers:
   - Default
   - TransparentFX

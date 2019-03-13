@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
     [SerializeField] bool faceTarget = true;
 
     [Header("HealthUI")]
+    [SerializeField] float maxHealth = 200f;
     [SerializeField] float health = 100f;
     public Slider slider;
     public Image fillImage;
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
         //Debug.DrawRay(transform.position, playerLegs.transform.up, Color.green, .01f); 
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Checkout"))
         {
@@ -113,10 +114,24 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
 
         else
         {
-            IPickupable itemComponent = collider.GetComponent<IPickupable>();
-            if (itemComponent != null)
+            if (collider.CompareTag("WeaponGround"))
             {
-                itemComponent.pickUp();
+                if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.E))
+                {
+                    IPickupable itemComponent = collider.GetComponent<IPickupable>();
+                    if (itemComponent != null)
+                    {
+                        itemComponent.pickUp();
+                    }
+                }
+            }
+            else
+            {
+                IPickupable itemComponent = collider.GetComponent<IPickupable>();
+                if (itemComponent != null)
+                {
+                    itemComponent.pickUp();
+                }
             }
         }
     }    
@@ -142,8 +157,12 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
 
     public void Heal(float healthDelta)
     {
-        health += healthDelta;
-    }
+        float newHealthValue = health + healthDelta;
+        if (newHealthValue > maxHealth)
+            health = maxHealth;
+        else
+            health = newHealthValue;
+    }   
 
     private void SetHealthUI()
     {
