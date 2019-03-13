@@ -249,7 +249,6 @@ GameObject:
   - component: {fileID: 7910803359622718388}
   - component: {fileID: 7910803359622718390}
   - component: {fileID: 7910803359622718389}
-  - component: {fileID: 7997033341891640759}
   - component: {fileID: 4279912960653836818}
   m_Layer: 0
   m_Name: Enemy - Basic
@@ -296,7 +295,6 @@ MonoBehaviour:
   Blood: {fileID: 3214385848515882282, guid: 061c43f70972cf24cb0eedc531f56358, type: 3}
   BloodParticles: {fileID: 6300173553786322337}
   range: 10
-  stun: 0
   viewAngle: 45
   speed: 7
   faceTarget: 1
@@ -306,6 +304,7 @@ MonoBehaviour:
   fillImage: {fileID: 3875562300002205897}
   FullHealthColor: {r: 0.05769229, g: 1, b: 0, a: 0.46666667}
   ZeroHealthColor: {r: 1, g: 0.053741198, b: 0, a: 0.32156864}
+  rangeModifier: 0.9
   movementChance: 0.8
   movementTime: 6
   idleTime: 2
@@ -405,8 +404,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &7997033341891640759
-CircleCollider2D:
+--- !u!70 &4279912960653836818
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -419,23 +418,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.75
---- !u!70 &4279912960653836818
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7910803359622718385}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0120152235, y: -0.009011507}
-  m_Size: {x: 0.83518314, y: 1.4866157}
+  m_Size: {x: 1.2, y: 1.5}
   m_Direction: 0
 --- !u!1 &7910803360671208900
 GameObject:
@@ -944,11 +927,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7910803360671208901}
     m_Modifications:
-    - target: {fileID: 8665722732949832600, guid: cedb70539a3b4664fab376873e4c916f,
-        type: 3}
-      propertyPath: m_Name
-      value: Arms
-      objectReference: {fileID: 0}
     - target: {fileID: 2749320272704868716, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1013,6 +991,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arm Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665722732949832600, guid: cedb70539a3b4664fab376873e4c916f,
+        type: 3}
+      propertyPath: m_Name
+      value: Arms
       objectReference: {fileID: 0}
     - target: {fileID: 3816761343134248768, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
@@ -1085,11 +1068,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7910803359622718387}
     m_Modifications:
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1144,6 +1122,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3b6a0e478b11740aaec1cf256dadb2, type: 3}

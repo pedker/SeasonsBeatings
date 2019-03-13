@@ -17,11 +17,11 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     [Header("Attributes")]
     [SerializeField] float range = 10f;
-    [SerializeField] float stun = 0;
     [SerializeField] float viewAngle = 45f;
     [SerializeField] float speed = 5f;
     [SerializeField] bool faceTarget = true;
     [SerializeField] float health = 100f;
+    float stun = 0;
 
     [SerializeField] Animator animator = null;
 
@@ -32,12 +32,14 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] Color ZeroHealthColor = Color.clear;
 
     [Header("AITweaks")]
+    [SerializeField] float rangeModifier = .8f;
     [SerializeField] float movementChance = .5f;
     [SerializeField] float movementTime = 10;
     [SerializeField] float idleTime = 3;
     float timeLeft;
     bool acting = false;
     bool followingPlayer = false;
+    bool touchingPlayer = false;
 
     [Header("Sound")]
 
@@ -99,16 +101,19 @@ public class EnemyController : MonoBehaviour, IDamageable
                 else
                 {
                     // Attack Range
-                    hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.weaponRange); //weapon.GetComponent<SpriteRenderer>().bounds.size.y);
+                    hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.weaponRange * rangeModifier); //weapon.GetComponent<SpriteRenderer>().bounds.size.y);
                     if (hit && hit.collider.CompareTag("Player"))
                     {
                         weapon.Attack();
                         rigidbody2D.velocity = Vector2.zero;
                     }
 
-                    rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
-                    EnemyLegs.transform.right = rigidbody2D.velocity;
-                    if (faceTarget && Quaternion.Angle(EnemyTorso.transform.rotation, EnemyLegs.transform.rotation) > 90) EnemyLegs.transform.right = -1 * EnemyLegs.transform.right; // Keeps body facing mouse
+                    if (!touchingPlayer && Vector3.Distance(PlayerController.instance.transform.position, transform.position) > weapon.weaponRange * rangeModifier)
+                    {
+                        rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
+                        EnemyLegs.transform.right = rigidbody2D.velocity;
+                        if (faceTarget && Quaternion.Angle(EnemyTorso.transform.rotation, EnemyLegs.transform.rotation) > 90) EnemyLegs.transform.right = -1 * EnemyLegs.transform.right; // Keeps body facing mouse
+                    }
                 }
             }
             else
@@ -202,6 +207,16 @@ public class EnemyController : MonoBehaviour, IDamageable
 
             EnemyLegs.transform.right = vectorToPlayer;
             EnemyTorso.transform.right = vectorToPlayer;
+
+            touchingPlayer = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            touchingPlayer = false;
         }
     }
 
