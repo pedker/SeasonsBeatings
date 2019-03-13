@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour, IDamageable
+public class PlayerController : MonoBehaviour, IDamageable, IHealable
 {
     public static PlayerController instance;
 
@@ -138,6 +138,11 @@ public class PlayerController : MonoBehaviour, IDamageable
             GameObject.Instantiate(Blood, playerTorso.transform.position, Quaternion.identity);
             UIManager.instance.EndGame(false);
         }
+    }
+
+    public void Heal(float healthDelta)
+    {
+        health += healthDelta;
     }
 
     private void SetHealthUI()
