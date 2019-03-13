@@ -293,7 +293,7 @@ MonoBehaviour:
   EnemyArmLeft: {fileID: 6075402893030335380}
   EnemyArmRight: {fileID: 6075402894295107387}
   Blood: {fileID: 3214385848515882282, guid: 061c43f70972cf24cb0eedc531f56358, type: 3}
-  BloodParticles: {fileID: 6300173553786322337}
+  BloodParticles: {fileID: 8865619635684628593}
   range: 10
   viewAngle: 45
   speed: 7
@@ -914,9 +914,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 267277401408298020}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &6300173553786322337 stripped
+--- !u!198 &8865619635684628593 stripped
 ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6114543689224167813, guid: 567393aa42d4d2a42b1ac04062b6121c,
+  m_CorrespondingSourceObject: {fileID: 8699984123719812181, guid: 567393aa42d4d2a42b1ac04062b6121c,
     type: 3}
   m_PrefabInstance: {fileID: 267277401408298020}
   m_PrefabAsset: {fileID: 0}
@@ -927,6 +927,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7910803360671208901}
     m_Modifications:
+    - target: {fileID: 8665722732949832600, guid: cedb70539a3b4664fab376873e4c916f,
+        type: 3}
+      propertyPath: m_Name
+      value: Arms
+      objectReference: {fileID: 0}
     - target: {fileID: 2749320272704868716, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -991,11 +996,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arm Right
-      objectReference: {fileID: 0}
-    - target: {fileID: 8665722732949832600, guid: cedb70539a3b4664fab376873e4c916f,
-        type: 3}
-      propertyPath: m_Name
-      value: Arms
       objectReference: {fileID: 0}
     - target: {fileID: 3816761343134248768, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
@@ -1068,6 +1068,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7910803359622718387}
     m_Modifications:
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1122,11 +1127,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3b6a0e478b11740aaec1cf256dadb2, type: 3}
