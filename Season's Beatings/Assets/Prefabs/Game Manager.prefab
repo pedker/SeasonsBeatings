@@ -1993,6 +1993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalLimit: 1
   verticalLimit: 1
+  followSpeed: 0.125
 --- !u!114 &8751364158998620694
 MonoBehaviour:
   m_ObjectHideFlags: 0
