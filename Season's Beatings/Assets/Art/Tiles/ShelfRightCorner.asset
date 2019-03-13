@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShelfRightCorner
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 9586f36868a51a947ba6f8d2dc3c8350, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6627451, g: 0.58431375, b: 0.4039216, a: 1}
   m_Transform:
     e00: 1
     e01: 0

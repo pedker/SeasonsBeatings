@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShelfLeft
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: ba360f504c33c9f4588c636e729e2e55, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.68235296, g: 0.59607846, b: 0.45882356, a: 1}
   m_Transform:
     e00: 1
     e01: 0
