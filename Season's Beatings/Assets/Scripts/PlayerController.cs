@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] GameObject playerArmRight = null;
     [SerializeField] GameObject Blood = null;
     [SerializeField] ParticleSystem BloodParticles = null;
+    //[SerializeField] ScreenShake screenShake = null;
+
 
     public Weapon weapon;
 
@@ -127,6 +129,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         SetHealthUI();
         this.stun = stun;
         BloodParticles.Play();
+        //StartCoroutine(screenShake.Shake(.02f, .05f));
 
         m_audioPlayer.playSFX(damagedFileName, damagedVolume, damagedPitchMin, damagedPitchMax);
 

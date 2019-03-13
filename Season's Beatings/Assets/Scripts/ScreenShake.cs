@@ -6,7 +6,7 @@ public class ScreenShake : MonoBehaviour
 {
     public IEnumerator Shake (float duration, float magnitude)
     {
-        Vector3 originalPos = transform.localPosition;
+        Vector3 originalPos = transform.position;
 
         float elapsed = 0f;
 
@@ -20,6 +20,6 @@ public class ScreenShake : MonoBehaviour
             yield return null;
         }
 
-        transform.localPosition = originalPos;
+        transform.position = originalPos;
     }
 }

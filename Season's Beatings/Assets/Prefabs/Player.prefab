@@ -401,6 +401,7 @@ MonoBehaviour:
   playerArmRight: {fileID: 8037681100224067862}
   Blood: {fileID: 3214385848515882282, guid: 061c43f70972cf24cb0eedc531f56358, type: 3}
   BloodParticles: {fileID: 5961494441529902236}
+  screenShake: {fileID: 0}
   weapon: {fileID: 7914612648965327763}
   speed: 8
   stun: 0
