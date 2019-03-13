@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        scoreText.text = "Score: " + GameManager.instance.score;
+        scoreText.text = "$" + GameManager.instance.score;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseControl();
@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
         }
 
         endScore.text = "Total Value of Your Cart: $" + score;
-        endPrice.text = "You Paid: $" + score * .25f;
+        endPrice.text = "You Paid: $" + Mathf.Round(score * .25f * 100f) / 100f;
 
         Destroy(this);
     }

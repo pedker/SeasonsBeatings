@@ -15,7 +15,6 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1;
-
     }
 
     public void MainMenu()
@@ -34,5 +33,16 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(1);
         Time.timeScale = 1;
+    }
+
+    public void FadeToBlack()
+    {
+        GameObject fader = GameObject.Find("Fader");
+        fader.GetComponent<Fade>().FadeIn();
+    }
+    public void FadeFromBlack()
+    {
+        GameObject fader = GameObject.Find("Fader");
+        fader.GetComponent<Fade>().FadeOut();
     }
 }
