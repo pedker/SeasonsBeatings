@@ -293,7 +293,7 @@ MonoBehaviour:
   EnemyArmLeft: {fileID: 6075402893030335380}
   EnemyArmRight: {fileID: 6075402894295107387}
   Blood: {fileID: 3214385848515882282, guid: 061c43f70972cf24cb0eedc531f56358, type: 3}
-  BloodParticles: {fileID: 6300173553786322337}
+  BloodParticles: {fileID: 8865619635684628593}
   range: 10
   viewAngle: 45
   speed: 7
@@ -914,9 +914,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 267277401408298020}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &6300173553786322337 stripped
+--- !u!198 &8865619635684628593 stripped
 ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6114543689224167813, guid: 567393aa42d4d2a42b1ac04062b6121c,
+  m_CorrespondingSourceObject: {fileID: 8699984123719812181, guid: 567393aa42d4d2a42b1ac04062b6121c,
     type: 3}
   m_PrefabInstance: {fileID: 267277401408298020}
   m_PrefabAsset: {fileID: 0}
