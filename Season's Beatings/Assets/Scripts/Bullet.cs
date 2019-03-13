@@ -30,8 +30,8 @@ public class Bullet : MonoBehaviour
             {
                 damageableComponent.Damage(damage, stun, knockback * (Vector2)(collision.transform.position - transform.position));
             }
-            Destroy(this.gameObject);
         }
-        
+
+        Destroy(this.gameObject);
     }
 }
