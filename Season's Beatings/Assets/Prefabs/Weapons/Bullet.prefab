@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7025390786511676776}
   - component: {fileID: 7025390786511676783}
   - component: {fileID: 7025390786511676782}
-  - component: {fileID: 7025390786511676781}
   - component: {fileID: 3861250581341255920}
+  - component: {fileID: 591695856681182662}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 10
-  damage: 50
-  stun: 0.5
+  damage: 40
+  stun: 0.1
 --- !u!212 &7025390786511676783
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4980fdb6de51004439669a1e28415d74, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab3b754d483b9c3499e4a8188436ea29, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,22 +119,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &7025390786511676781
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7025390786511676780}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.06
 --- !u!114 &3861250581341255920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,4 +131,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23607c06fa7ac5749bbf3cdc68573811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 20
+--- !u!70 &591695856681182662
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025390786511676780}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0010991473, y: -0.0016698131}
+  m_Size: {x: 0.24174456, y: 0.09503244}
+  m_Direction: 1
+

@@ -6,8 +6,8 @@ public class Bullet : MonoBehaviour
 {
     [Header("Combat Data")]
     [SerializeField] float knockback = 100;
-    [SerializeField] float damage = 50;
-    [SerializeField] float stun = 0.25f;
+    [SerializeField] float damage = 40;
+    [SerializeField] float stun = 0.1f;
 
     //SOUND VARIABLES
 
@@ -30,8 +30,8 @@ public class Bullet : MonoBehaviour
             {
                 damageableComponent.Damage(damage, stun, knockback * (Vector2)(collision.transform.position - transform.position));
             }
-            Destroy(this.gameObject);
         }
-        
+
+        Destroy(this.gameObject);
     }
 }

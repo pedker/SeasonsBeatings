@@ -5,10 +5,11 @@ using UnityEngine;
 public class Arm : Weapon
 {
     [Header("Combat Data")]
+    [SerializeField] HandToHand arms = null;
+    //[SerializeField] float attackTime = .4f;
     [SerializeField] float knockback = 50;
     [SerializeField] float damage = 5;
     [SerializeField] float stun = 0.125f;
-
 
 
     [Header("Sound")]
@@ -24,19 +25,24 @@ public class Arm : Weapon
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
         m_audioPlayer.addSFX(punchSoundEffect);
     }
+
     
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        IDamageable damageableComponent = other.GetComponent<IDamageable>();
-        if (damageableComponent != null)
+        if (!arms.attackReset)
         {
-            damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
-        }
+            IDamageable damageableComponent = other.GetComponent<IDamageable>();
+            if (damageableComponent != null)
+            {
+                damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
+                arms.attackReset = true;
+            }
 
-        if (other.CompareTag("Player") || other.CompareTag("Enemy")) //So it registers a hit and plays sounds only when hitting enemies or players
-        {
-            m_audioPlayer.playSFX(punchSoundEffect, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
+            if (other.CompareTag("Player") || other.CompareTag("Enemy")) //So it registers a hit and plays sounds only when hitting enemies or players
+            {
+                m_audioPlayer.playSFX(punchSoundEffect, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
+            }
         }
     }
 }
