@@ -6,6 +6,9 @@ public class HandToHand : Weapon
 {
     [Header("Battle Stats")]
     [SerializeField] float attackDuration = .4f;
+    [SerializeField] public bool attacking = false;
+    [SerializeField] public bool attackReset = false;
+    float attackTime = 0;
 
     [Header("Sound")]
     [SerializeField] float whooshVolume = 0.65f;
@@ -16,7 +19,6 @@ public class HandToHand : Weapon
 
     AudioPlayer m_audioPlayer;
     public Animator m_animator = null;
-    float attackTime = 0;
     List<string> whooshes = new List<string>();
 
     void Awake()
@@ -31,19 +33,30 @@ public class HandToHand : Weapon
 
     private void Start()
     {
-        weaponRange = 1.125f * transform.lossyScale.x;
+        weaponRange = .75f * transform.lossyScale.x;
     }
 
     void Update()
     {
-        attackTime += Time.deltaTime;
+        if (attacking)
+        {
+            attackTime += Time.deltaTime;
+            if (attackTime >= attackDuration)
+            {
+                attacking = false;
+                attackReset = true;
+                attackTime = 0;
+            }
+        }
     }
 
     override public void Attack()
     {
-        if (attackTime >= attackDuration)
+        
+        if (!attacking)
         {
-
+            attacking = true;
+            attackReset = false;
             attackTime = 0;
             int randNum = Random.Range(0, 2);
             if (randNum == 1)

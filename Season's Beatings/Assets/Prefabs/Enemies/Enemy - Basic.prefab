@@ -1005,7 +1005,7 @@ PrefabInstance:
     - target: {fileID: 3816761343134248768, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
       propertyPath: knockback
-      value: 70
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3639430872876700387, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
@@ -1015,7 +1015,7 @@ PrefabInstance:
     - target: {fileID: 3639430872876700387, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
       propertyPath: knockback
-      value: 70
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2394868029904026237, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}

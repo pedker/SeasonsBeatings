@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81dc3fdbb33e76a4d8bac1ab68f760ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockback: 100
-  damage: 5
+  arms: {fileID: 2549470518711479385}
+  knockback: 150
+  damage: 10
   stun: 0.2
   collideSoundVolume: 0.65
   collidePitchMinimum: 0.95
@@ -173,8 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81dc3fdbb33e76a4d8bac1ab68f760ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockback: 100
-  damage: 5
+  arms: {fileID: 2549470518711479385}
+  knockback: 150
+  damage: 10
   stun: 0.2
   collideSoundVolume: 0.65
   collidePitchMinimum: 0.95
@@ -302,6 +304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDuration: 0.4
+  attacking: 0
+  attackReset: 0
   whooshVolume: 0.35
   whooshPitchMinimum: 0.95
   whooshPitchMaximum: 1.05

@@ -95,7 +95,7 @@ PrefabInstance:
     - target: {fileID: 4540639727949739084, guid: aef9450d6e983bd4b88cea4951ad89d9,
         type: 3}
       propertyPath: health
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4540639727949739084, guid: aef9450d6e983bd4b88cea4951ad89d9,
         type: 3}
@@ -136,12 +136,42 @@ PrefabInstance:
     - target: {fileID: 8962150044485588403, guid: aef9450d6e983bd4b88cea4951ad89d9,
         type: 3}
       propertyPath: m_MaxValue
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8962150044485588403, guid: aef9450d6e983bd4b88cea4951ad89d9,
         type: 3}
       propertyPath: m_Value
-      value: 300
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182999331854977796, guid: aef9450d6e983bd4b88cea4951ad89d9,
+        type: 3}
+      propertyPath: knockback
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182999331854977796, guid: aef9450d6e983bd4b88cea4951ad89d9,
+        type: 3}
+      propertyPath: stun
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182999331854977796, guid: aef9450d6e983bd4b88cea4951ad89d9,
+        type: 3}
+      propertyPath: damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727567186277693095, guid: aef9450d6e983bd4b88cea4951ad89d9,
+        type: 3}
+      propertyPath: knockback
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727567186277693095, guid: aef9450d6e983bd4b88cea4951ad89d9,
+        type: 3}
+      propertyPath: stun
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727567186277693095, guid: aef9450d6e983bd4b88cea4951ad89d9,
+        type: 3}
+      propertyPath: damage
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6075402893030335386, guid: aef9450d6e983bd4b88cea4951ad89d9,
         type: 3}

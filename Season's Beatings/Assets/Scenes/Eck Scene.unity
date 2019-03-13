@@ -2592,6 +2592,11 @@ PrefabInstance:
       propertyPath: screenShake
       value: 
       objectReference: {fileID: 1630111434}
+    - target: {fileID: 8037681100100187801, guid: cb6070b0e38b4324eaaf70155d919dae,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb6070b0e38b4324eaaf70155d919dae, type: 3}
 --- !u!1001 &777871333
