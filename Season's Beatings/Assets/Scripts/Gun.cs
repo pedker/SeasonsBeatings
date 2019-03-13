@@ -9,8 +9,9 @@ public class Gun : Weapon
     //OTHER VARIABLES
     [SerializeField] GameObject bulletSpawn = null;
     [SerializeField] GameObject bullet = null;
-    [SerializeField] float rateOfFire = 0.5f;
-    float attackTime = 0;
+    [SerializeField] float rateOfFire = 1f;
+    [SerializeField] public float weaponRange = 10;
+    float attackTime = 1f;
     PlayerController player;
 
     private void Awake()

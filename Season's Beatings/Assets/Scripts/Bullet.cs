@@ -6,8 +6,8 @@ public class Bullet : MonoBehaviour
 {
     [Header("Combat Data")]
     [SerializeField] float knockback = 100;
-    [SerializeField] float damage = 50;
-    [SerializeField] float stun = 0.25f;
+    [SerializeField] float damage = 40;
+    [SerializeField] float stun = 0.1f;
 
     //SOUND VARIABLES
 
