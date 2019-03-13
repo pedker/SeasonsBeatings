@@ -6,6 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private float horizontalLimit = 2;
     [SerializeField] private float verticalLimit = 2;
+    [SerializeField] private float followSpeed = .125f;
 
 
     // Start is called before the first frame update
@@ -15,7 +16,7 @@ public class CameraFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 playerPos = PlayerController.instance.transform.position;
         float newX = transform.position.x;
@@ -26,6 +27,6 @@ public class CameraFollow : MonoBehaviour
         if (playerPos.y - newY > verticalLimit) newY += playerPos.y - newY - verticalLimit;
         else if (playerPos.y - newY < -verticalLimit) newY += playerPos.y - newY + verticalLimit;
 
-        transform.position = new Vector3(newX, newY, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(newX, newY, transform.position.z), followSpeed);
     }
 }
