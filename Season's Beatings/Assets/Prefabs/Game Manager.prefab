@@ -276,8 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f43745ccd1c72846ba3cbc976732bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 7492551991111111442}
-  timeLeft: 300
   pointsPlusFileName: LootPickup
   pointsPlusVolume: 0.3
   pointsPlusPitchMinimum: 0.95
@@ -2318,6 +2316,8 @@ MonoBehaviour:
   weapon: {fileID: 7083032709448587047}
   defaultWeapon: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   weaponDurability: {fileID: 3601828002976360115}
+  timerText: {fileID: 7492551991111111442}
+  timeLeft: 300
   pauseMenu: {fileID: 2426934096641819904}
   endScreen: {fileID: 7254725182059274601}
   message: {fileID: 8110854436041717045}
@@ -2729,6 +2729,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6767844652043649045}
     m_Modifications:
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2783,11 +2788,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3b6a0e478b11740aaec1cf256dadb2, type: 3}
