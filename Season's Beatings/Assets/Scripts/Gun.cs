@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : Weapon
+public class Gun : Weapon, IDropable
 {
     //ADD SOUND VARIABLES
 
     //OTHER VARIABLES
+    [SerializeField] public GameObject pickupVersion = null;
     [SerializeField] GameObject bulletSpawn = null;
     [SerializeField] GameObject bullet = null;
     [SerializeField] float rateOfFire = 1f;
@@ -31,5 +32,11 @@ public class Gun : Weapon
             attackTime = 0;
             GameObject newBullet = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
         }
+    }
+
+    public void Drop()
+    {
+        Destroy(this.gameObject);
+        Instantiate(pickupVersion, PlayerController.instance.transform.position, Quaternion.identity);
     }
 }

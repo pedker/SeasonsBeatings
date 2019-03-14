@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664c4a03d50ebce4d9e182a0ec91ec2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupVersion: {fileID: 8595030428927904810, guid: 0d787cc50226601419e7823a78b36f58,
+    type: 3}
   bulletSpawn: {fileID: 7880466103131501566}
   bullet: {fileID: 7025390786511676780, guid: 66ee8689c1e33da40a2c45775311e14e, type: 3}
   rateOfFire: 1

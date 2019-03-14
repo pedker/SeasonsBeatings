@@ -20,8 +20,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
     [SerializeField] ParticleSystem BloodParticles = null;
     //[SerializeField] ScreenShake screenShake = null;
 
-
+    [SerializeField] Weapon defaultWeapon = null;
     public Weapon weapon;
+    bool hasWeapon = false;
 
     [SerializeField] float speed = 5f;
     [SerializeField] float stun = 0;
@@ -82,6 +83,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
 
             if (stun > 0) stun -= Time.deltaTime;
 
+            if (Input.GetKeyDown(KeyCode.Q)) DropWeapon();
+        
             else
             {
 
@@ -116,12 +119,15 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
         {
             if (collider.CompareTag("WeaponGround"))
             {
-                if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.E))
+                if (!hasWeapon || Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.E))
                 {
                     IPickupable itemComponent = collider.GetComponent<IPickupable>();
                     if (itemComponent != null)
                     {
+                        if (hasWeapon)
+                            Instantiate(weapon.pickupVersion, transform.position, Quaternion.identity);
                         itemComponent.pickUp();
+                        hasWeapon = true;
                     }
                 }
             }
@@ -162,7 +168,21 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
             health = maxHealth;
         else
             health = newHealthValue;
-    }   
+    }
+    
+    private void DropWeapon()
+    {
+        if (hasWeapon)
+        {
+            IDropable dropComponent = weapon.GetComponent<IDropable>();
+            if (dropComponent != null)
+            {
+                dropComponent.Drop();
+                weapon = defaultWeapon;
+                hasWeapon = false;
+            }
+        }
+    }
 
     private void SetHealthUI()
     {

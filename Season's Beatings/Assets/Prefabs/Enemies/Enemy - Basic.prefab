@@ -308,6 +308,7 @@ MonoBehaviour:
   movementChance: 0.8
   movementTime: 6
   idleTime: 2
+  attacksOthers: 1
   footStepFileName: FootstepTest
   footStepVolume: 0.05
   footStepPitchMin: 0.85
@@ -569,7 +570,7 @@ SpriteRenderer:
   m_SortingLayerID: -216092171
   m_SortingLayer: -3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7bddc7e5f36927140a1e34c632da5a43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9371cfcf1fdc83040acc89fcbb1ec27a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -648,7 +649,7 @@ SpriteRenderer:
   m_SortingLayerID: -216092171
   m_SortingLayer: -3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7bddc7e5f36927140a1e34c632da5a43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9371cfcf1fdc83040acc89fcbb1ec27a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1068,11 +1069,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7910803359622718387}
     m_Modifications:
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1127,6 +1123,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3b6a0e478b11740aaec1cf256dadb2, type: 3}
