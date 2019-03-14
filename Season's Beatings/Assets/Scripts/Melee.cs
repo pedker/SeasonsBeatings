@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Melee : Weapon
+public class Melee : Weapon, IDropable
 {
+    [SerializeField] GameObject pickupVersion = null;
+
     [Header("Battle Values")]
     [SerializeField] float attackTime = .5f;
     [SerializeField] float cooldown = .5f;
@@ -123,5 +125,11 @@ public class Melee : Weapon
                 }
             }
         }
+    }
+
+    public void Drop()
+    {
+        Destroy(this.gameObject);
+        Instantiate(pickupVersion, PlayerController.instance.transform.position, Quaternion.identity);
     }
 }

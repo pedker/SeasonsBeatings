@@ -208,8 +208,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &707968419
-CapsuleCollider2D:
+--- !u!58 &707968419
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -222,8 +222,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.5659091}
-  m_Size: {x: 0.14545454, y: 1.1318182}
-  m_Direction: 0
+  serializedVersion: 2
+  m_Radius: 0.5659091
 --- !u!1001 &977048937
 PrefabInstance:
   m_ObjectHideFlags: 0
