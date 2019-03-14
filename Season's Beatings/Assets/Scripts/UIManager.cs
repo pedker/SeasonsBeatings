@@ -100,7 +100,7 @@ public class UIManager : MonoBehaviour
             UI.SetActive(true);
     }
   
-    public void EndGame(bool win)
+    public void EndGame(bool win, string condition)
     {
         Time.timeScale = 0;
         int score = GameManager.instance.score;
@@ -109,29 +109,42 @@ public class UIManager : MonoBehaviour
         
         if (win)
         {
-            message.text = "YOU SURVIVED";
-            message.color = Color.green;
-            endPrice.text = "You Paid: $" + Mathf.Round(score * .25f * 100f) / 100f;
+            if (condition == "RegisterCheckout")
+            {
+                message.text = "YOU SURVIVED";
+                endScore.text = "Total Value of Your Cart: $" + score;
+                endPrice.text = "You Paid: $" + Mathf.Round(score * .25f * 100f) / 100f;
+                message.color = Color.green;
+
+            }
+            else
+            {
+                message.text = "YOU ESCAPED";
+                endScore.text = "You Stole $" + score + " Worth of Items";
+                endPrice.text = "";
+                message.color = Color.blue;
+            }
+            
+
+
+            
         }
         else if (timeLeft == 0)
         {
             message.text = "TIME'S UP";
             message.color = Color.red;
+            endScore.text = "Total Value of Your Cart: $" + score;
             endPrice.text = "";
         }
         else
         {
             message.text = "YOU DIED";
             message.color = Color.red;
+            endScore.text = "Total Value of Your Cart: $" + score;
             endPrice.text = "";
 
         }
 
-        endScore.text = "Total Value of Your Cart: $" + score;
-
-
         Destroy(this);
-
-        
     }
 }

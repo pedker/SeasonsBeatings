@@ -206,7 +206,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (attacksOthers && collision.collider.CompareTag("Enemy"))
+        if (attacksOthers && collision.collider.CompareTag("Enemy") && !followingPlayer)
         {
             Vector2 vectorToEnemy = collision.transform.position - transform.position;
 
