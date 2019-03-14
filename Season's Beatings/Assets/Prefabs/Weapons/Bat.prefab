@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4fce5118e3e4940aa6e46f82217c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupVersion: {fileID: 2645893270649438908, guid: 7043a47078d5bf24c8920508177d5436,
+    type: 3}
   attackTime: 0.25
   cooldown: 0.2
   knockback: 100
@@ -159,11 +161,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6177238785141212050}
     m_Modifications:
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -218,6 +215,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 5232302183370266634, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
