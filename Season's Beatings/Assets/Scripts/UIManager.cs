@@ -11,6 +11,10 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject UI = null;
     [SerializeField] TextMeshProUGUI scoreText = null;
+    [SerializeField] Image weapon = null;
+    [SerializeField] Sprite defaultWeapon = null;
+    [SerializeField] TextMeshProUGUI weaponDurability = null;
+
 
     [SerializeField] GameObject pauseMenu = null;
 
@@ -29,6 +33,10 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         scoreText.text = "$" + GameManager.instance.score;
+
+        if (PlayerController.instance.weapon is HandToHand) weapon.sprite = defaultWeapon;
+        else weapon.sprite = PlayerController.instance.weapon.GetComponent<SpriteRenderer>().sprite;
+
         if (GameManager.instance.timeLeft == 0) EndGame(false);
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -79,5 +87,7 @@ public class UIManager : MonoBehaviour
         endPrice.text = "You Paid: $" + Mathf.Round(score * .25f * 100f) / 100f;
 
         Destroy(this);
+
+        
     }
 }

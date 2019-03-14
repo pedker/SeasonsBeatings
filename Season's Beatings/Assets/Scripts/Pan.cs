@@ -13,36 +13,43 @@ public class Pan : Weapon
     [SerializeField] float stun = 0.6f;
     float attackTime = 0;
 
-    /*
     [Header("Sound")]
+    [SerializeField] string pickupFileName = null;
+    [SerializeField] float pickupVolume = 0.65f;
+    [SerializeField] float pickupPitchMinimum = 0.95f;
+    [SerializeField] float pickupPitchMaximum = 1.05f;
+
+    [SerializeField] string whooshFileName = null;
+    [SerializeField] string whooshFileName_2 = null;
     [SerializeField] float whooshVolume = 0.65f;
     [SerializeField] float whooshPitchMinimum = 0.90f;
     [SerializeField] float whooshPitchMaximum = 1.10f;
-    [SerializeField] string panWhooshSoundEffect = null;
+
+    [SerializeField] string collideFileName = null;
     [SerializeField] float collideSoundVolume = 0.65f;
     [SerializeField] float collidePitchMinimum = 0.95f;
     [SerializeField] float collidePitchMaximum = 1.05f;
-    [SerializeField] string panSoundEffect = null;
 
 
     AudioPlayer m_audioPlayer;
-    */
     public Animator m_animator = null;
 
     void Awake()
     {
-        /*
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
-        m_audioPlayer.addSFX(punchWhooshSoundEffect);
-        m_audioPlayer = GetComponentInChildren<AudioPlayer>();
-        m_audioPlayer.addSFX(punchSoundEffect);
-        */
+        m_audioPlayer.addSFX(pickupFileName);
+        m_audioPlayer.addSFX(whooshFileName);
+        m_audioPlayer.addSFX(whooshFileName_2);
+        m_audioPlayer.addSFX(collideFileName);
+
         m_animator = this.GetComponent<Animator>();
     }
 
     private void Start()
     {
         weaponRange = .75f * transform.lossyScale.x;
+
+        m_audioPlayer.playSFX(pickupFileName, pickupVolume, pickupPitchMinimum, pickupPitchMaximum);
     }
 
     void Update()
@@ -69,8 +76,16 @@ public class Pan : Weapon
             attackTime = 0;
 
             m_animator.Play("PanSwing", 0, 0.0f);
-            
-            //m_audioPlayer.playSFX(panWhooshSoundEffect, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
+
+            int random = Random.Range(0, 2);
+            if (random == 0)
+            {
+                m_audioPlayer.playSFX(whooshFileName, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
+            }
+            else
+            {
+                m_audioPlayer.playSFX(whooshFileName_2, whooshVolume, whooshPitchMinimum, whooshPitchMaximum);
+            }
         }
     }
 
@@ -87,7 +102,7 @@ public class Pan : Weapon
 
             if (other.CompareTag("Player") || other.CompareTag("Enemy")) //So it registers a hit and plays sounds only when hitting enemies or players
             {
-                //m_audioPlayer.playSFX(punchSoundEffect, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
+                m_audioPlayer.playSFX(collideFileName, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
             }
         }
     }

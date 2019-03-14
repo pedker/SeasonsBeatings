@@ -182,6 +182,19 @@ MonoBehaviour:
   knockback: 75
   damage: 34
   stun: 0.6
+  pickupFileName: PanPickup
+  pickupVolume: 0.65
+  pickupPitchMinimum: 0.95
+  pickupPitchMaximum: 1.05
+  whooshFileName: BatSwing1
+  whooshFileName_2: BatSwing2
+  whooshVolume: 0.65
+  whooshPitchMinimum: 0.9
+  whooshPitchMaximum: 1.1
+  collideFileName: PanHit
+  collideSoundVolume: 0.65
+  collidePitchMinimum: 0.95
+  collidePitchMaximum: 1.05
   m_animator: {fileID: 0}
 --- !u!95 &6441268422778955450
 Animator:
@@ -246,11 +259,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 971185616887736865}
     m_Modifications:
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -315,6 +323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.5000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 5232302183370266634, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
