@@ -8,6 +8,7 @@ public class Gun : Weapon, IDropable
     public GameObject gunPickupVersion = null;
     public int gunDurability = 15;
     public int gunMaxDurability = 15;
+    private bool firedShot = false;
 
     //ADD SOUND VARIABLES
 
@@ -59,7 +60,7 @@ public class Gun : Weapon, IDropable
         {
             attackTime = 0;
             GameObject newBullet = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
-
+            firedShot = true;
             m_audioPlayer.playSFX(fireFileName, fireVolume, firePitchMinimum, firePitchMaximum);
         }
     }
@@ -77,8 +78,13 @@ public class Gun : Weapon, IDropable
 
     public override bool checkDestroy()
     {
-        durability--;
-        if (durability == 0) return true;
+        if (firedShot)
+        {
+            durability--;
+            firedShot = false;
+            if (durability == 0) return true;
+            return false;
+        }
         return false;
     }
 }
