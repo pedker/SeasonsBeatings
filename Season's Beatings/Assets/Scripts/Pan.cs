@@ -59,6 +59,11 @@ public class Pan : Weapon, IDropable
     {
         weaponRange = 1f * transform.lossyScale.x;
 
+        if (this.transform.parent.CompareTag("PlayerTorso"))
+        {
+            m_audioPlayer.setSpatialBlend(0.0f);
+        }
+
         m_audioPlayer.playSFX(pickupFileName, pickupVolume, pickupPitchMinimum, pickupPitchMaximum);
     }
 

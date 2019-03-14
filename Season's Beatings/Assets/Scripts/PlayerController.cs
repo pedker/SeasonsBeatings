@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_audioPlayer.setSpatialBlend(0.0f);
         if (weapon.name != "Arms")
             Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
         Physics2D.IgnoreCollision(collider2D, playerArmLeft.GetComponent<Collider2D>());

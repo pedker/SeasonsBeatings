@@ -40,12 +40,18 @@ public class Gun : Weapon, IDropable
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
         m_audioPlayer.addSFX(pickupFileName);
         m_audioPlayer.addSFX(fireFileName);
+
         weaponRange = 10;
         pickupVersion = gunPickupVersion;
     }
 
     protected void Start()
     {
+        if (this.transform.parent.CompareTag("PlayerTorso"))
+        {
+            m_audioPlayer.setSpatialBlend(0.0f);
+        }
+
         m_audioPlayer.playSFX(pickupFileName, pickupVolume, pickupPitchMinimum, pickupPitchMaximum);
     }
 

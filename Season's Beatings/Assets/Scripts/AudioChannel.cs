@@ -19,17 +19,6 @@ public class AudioChannel : MonoBehaviour
         StartCoroutine( playSoundCoroutine(sound, soundVolume, minimumPitch, maximumPitch) );
     }
 
-    public void setMaxDistance(int distance)
-    {
-        m_audioPlayer.maxDistance = distance;
-    }
-
-    public void setSpatialRatio(float ratio)
-    {
-        m_audioPlayer.spatialBlend = ratio;
-    }
-
-
     private IEnumerator playSoundCoroutine(AudioClip sound, float soundVolume, float minimumPitch, float maximumPitch)
     {
         inUse = true;
@@ -49,5 +38,15 @@ public class AudioChannel : MonoBehaviour
         m_audioPlayer.volume = 1.0f;
 
         inUse = false;
+    }
+
+    public void setMaxDistance(int distance)
+    {
+        m_audioPlayer.maxDistance = distance;
+    }
+
+    public void setSpatialRatio(float ratio)
+    {
+        m_audioPlayer.spatialBlend = ratio;
     }
 }
