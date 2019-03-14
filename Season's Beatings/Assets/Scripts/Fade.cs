@@ -7,8 +7,7 @@ public class Fade : MonoBehaviour
     public float FadeSpeed;
 
     public bool doneFading;
-
-    private Image image;
+    private Image image;// = GameObject.Find("Fader").GetComponent<Image>();
     private float targetAlpha;
 
     // Use this for initialization
@@ -21,6 +20,7 @@ public class Fade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+/*
         Color curColor = this.image.color;
         float alphaDiff = Mathf.Abs(curColor.a - this.targetAlpha);
         if (alphaDiff > 0.0001f)
@@ -30,7 +30,7 @@ public class Fade : MonoBehaviour
         }
 
         if (alphaDiff == 0f)
-            doneFading = true;
+            doneFading = true;*/
     }
 
     public void FadeOut()
@@ -41,7 +41,21 @@ public class Fade : MonoBehaviour
 
     public void FadeIn()
     {
-        doneFading = false;
+        StartCoroutine(FadeInRoutine());
+    }
+    public IEnumerator FadeInRoutine()
+    {
+        Debug.Log("trying to fade");
+
         this.targetAlpha = 1.0f;
+        Color curColor = this.image.color;
+        float alphaDiff = Mathf.Abs(curColor.a - this.targetAlpha); ;
+        while (alphaDiff > 0.0001f)
+        {
+            alphaDiff = Mathf.Abs(curColor.a - this.targetAlpha);
+            curColor.a = Mathf.Lerp(curColor.a, targetAlpha, this.FadeSpeed * Time.deltaTime);
+            this.image.color = curColor;
+            yield return null;
+        }
     }
 }

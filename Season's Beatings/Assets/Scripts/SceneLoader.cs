@@ -13,10 +13,19 @@ public class SceneLoader : MonoBehaviour
 
     public void NextScene()
     {
+//        StartCoroutine(NextSceneSequence());
+//        Debug.Log("trying to start new scene");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1;
     }
-
+/*    IEnumerator NextSceneSequence()
+    {
+        yield return StartCoroutine(GameObject.Find("Fader").GetComponent<Fade>().FadeInRoutine());
+        Debug.Log("trying to wait");
+        yield return new WaitForSeconds(1.0f);
+        Debug.Log("done waiting");
+    }
+ */
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
