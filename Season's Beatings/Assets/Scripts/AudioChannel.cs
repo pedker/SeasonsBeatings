@@ -19,6 +19,11 @@ public class AudioChannel : MonoBehaviour
         StartCoroutine( playSoundCoroutine(sound, soundVolume, minimumPitch, maximumPitch) );
     }
 
+    public void setMaxDistance(int distance)
+    {
+        m_audioPlayer.maxDistance = distance;
+    }
+
 
     private IEnumerator playSoundCoroutine(AudioClip sound, float soundVolume, float minimumPitch, float maximumPitch)
     {
