@@ -420,6 +420,10 @@ MonoBehaviour:
   damagedVolume: 0.65
   damagedPitchMin: 0.9
   damagedPitchMax: 1.1
+  deathFileName: PlayerDeath
+  deathVolume: 0.5
+  deathPitchMin: 1
+  deathPitchMax: 1
 --- !u!95 &8037681100100187803
 Animator:
   serializedVersion: 3
@@ -1064,11 +1068,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8037681100100187804}
     m_Modifications:
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1123,6 +1122,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 5232302183370266634, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
