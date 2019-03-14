@@ -29,12 +29,13 @@ public class Weapon : MonoBehaviour
 
     virtual public bool checkDestroy()
     {
-        durability--;
-        if (durability == 0)
-        {
-            Destroy(gameObject);
-            return true;
-        }
-        else return false;
+        //durability--;
+        //if (durability == 0)
+        //{
+        //    Destroy(gameObject);
+        //    return true;
+        //}
+        //else return false;
+        return false;
     }
 }

@@ -8,6 +8,7 @@ public class Pan : Weapon, IDropable
     public new GameObject pickupVersion = null;
     public new int durability = 15;
     public new int maxDurability = 15;
+    private bool broken = false;
 
     [Header("Battle Stats")]
     [SerializeField] float attackDuration = .4f;
@@ -102,6 +103,9 @@ public class Pan : Weapon, IDropable
             if (damageableComponent != null)
             {
                 damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
+                durability--;
+                if (durability == 0) broken = true;
+                attackReset = false;
                 attackReset = true;
             }
 
@@ -125,8 +129,6 @@ public class Pan : Weapon, IDropable
 
     public override bool checkDestroy()
     {
-        durability--;
-        if (durability == 0) return true;
-        return false;
+        return broken;
     }
 }
