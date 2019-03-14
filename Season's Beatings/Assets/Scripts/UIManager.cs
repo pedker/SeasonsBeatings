@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            weapon.sprite = PlayerController.instance.weapon.GetComponent<SpriteRenderer>().sprite;
+            weapon.sprite = PlayerController.instance.weapon.pickupVersion.GetComponent<SpriteRenderer>().sprite;
             weaponDurability.text = PlayerController.instance.weapon.durability + "/" + PlayerController.instance.weapon.maxDurability;
         }
 
