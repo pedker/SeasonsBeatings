@@ -62,10 +62,7 @@ public class Melee : Weapon, IDropable
         collider2D.enabled = false;
         weaponRange = GetComponent<SpriteRenderer>().bounds.size.y;
 
-        if (transform.parent.CompareTag("PlayerTorso"))
-        {
-            m_audioPlayer.playSFX(pickupFileName, pickupVolume, pickupPitchMinimum, pickupPitchMaximum);
-        }
+        m_audioPlayer.playSFX(pickupFileName, pickupVolume, pickupPitchMinimum, pickupPitchMaximum);
     }
 
     private void Update()

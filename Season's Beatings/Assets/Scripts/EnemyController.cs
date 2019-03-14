@@ -189,7 +189,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         if (health <= 0)
         {
-            GameObject.Instantiate(Blood, EnemyTorso.transform.position, Quaternion.identity).transform.localScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, 1);
+            Instantiate(Blood, EnemyTorso.transform.position, Quaternion.identity).transform.localScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, 1);
             dropLoot();
             Destroy(gameObject);
         }
@@ -251,6 +251,14 @@ public class EnemyController : MonoBehaviour, IDamageable
             {
                 Physics2D.IgnoreCollision(collider2D, collision);
                 loot.Add(collision.gameObject);
+                GameObject newItem = Instantiate(collision.gameObject, EnemyTorso.transform);
+
+                newItem.GetComponent<Collider2D>().enabled = false;
+                newItem.GetComponent<MonoBehaviour>().enabled = false;
+                newItem.transform.localPosition = Vector3.left * .60f;
+                newItem.transform.right = newItem.transform.up;
+                newItem.transform.localScale /= 4;
+
                 collision.gameObject.SetActive(false);
             }
         }
@@ -276,6 +284,6 @@ public class EnemyController : MonoBehaviour, IDamageable
             i.transform.position = transform.position;
             i.SetActive(true);
         }
-        if (!(weapon is HandToHand)) Instantiate(weapon.pickupVersion, transform.position, Quaternion.identity);
+        if (weapon.pickupVersion != null) Instantiate(weapon.pickupVersion, transform.position, Quaternion.identity);
     }
 }

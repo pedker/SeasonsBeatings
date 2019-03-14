@@ -6,11 +6,28 @@ public class WeaponOnGround : MonoBehaviour, IPickupable
 {
     [SerializeField] Weapon m_weapon = null;
     [SerializeField] Transform parent = null;
-    
+
+
+    [Header("Audio")]
+    [SerializeField] string dropFileName = null;
+    [SerializeField] float dropVolume = 0.65f;
+    [SerializeField] float dropPitchMinimum = 0.95f;
+    [SerializeField] float dropPitchMaximum = 1.05f;
+
+    AudioPlayer m_audioPlayer;
+
+    void Awake()
+    {
+        m_audioPlayer = this.GetComponentInChildren<AudioPlayer>();
+        m_audioPlayer.addSFX(dropFileName);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         parent = GameObject.FindWithTag("PlayerTorso").transform;
+
+        m_audioPlayer.playSFX(dropFileName, dropVolume, dropPitchMinimum, dropPitchMaximum);
     }
 
     // Update is called once per frame

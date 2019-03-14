@@ -47,6 +47,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
     [SerializeField] float damagedPitchMin = 0.9f;
     [SerializeField] float damagedPitchMax = 1.1f;
 
+    [SerializeField] string deathFileName = null;
+    [SerializeField] float deathVolume = 0.30f;
+    [SerializeField] float deathPitchMin = 0.9f;
+    [SerializeField] float deathPitchMax = 1.1f;
+
     AudioPlayer m_audioPlayer;
 
 
@@ -58,6 +63,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
         m_audioPlayer = this.GetComponentInChildren<AudioPlayer>();
         m_audioPlayer.addSFX(footStepFileName);
         m_audioPlayer.addSFX(damagedFileName);
+        m_audioPlayer.addSFX(deathFileName);
     }
 
     // Start is called before the first frame update
@@ -156,7 +162,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
 
         if (health <= 0)
         {
-            GameObject.Instantiate(Blood, playerTorso.transform.position, Quaternion.identity);
+            m_audioPlayer.playSFX(deathFileName, deathVolume, deathPitchMin, deathPitchMax);
             UIManager.instance.EndGame(false);
         }
     }
