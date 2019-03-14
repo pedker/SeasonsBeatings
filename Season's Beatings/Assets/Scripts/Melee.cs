@@ -117,7 +117,7 @@ public class Melee : Weapon, IDropable
             if (damageableComponent != null) // registers a hit and plays sounds only when hitting enemies
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, other.transform.position - transform.position);
-                if (hit) Debug.Log(hit.collider.name);
+                //if (hit) Debug.Log(hit.collider.name);
                 if (!hit || hit.collider == other)
                 {
                     damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));

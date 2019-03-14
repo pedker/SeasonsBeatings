@@ -54,7 +54,7 @@ public class Pan : Weapon, IDropable
 
     private void Start()
     {
-        weaponRange = .75f * transform.lossyScale.x;
+        weaponRange = 1f * transform.lossyScale.x;
 
         m_audioPlayer.playSFX(pickupFileName, pickupVolume, pickupPitchMinimum, pickupPitchMaximum);
     }

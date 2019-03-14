@@ -5,9 +5,9 @@ using UnityEngine;
 public class Gun : Weapon, IDropable
 {
     [Header("Weapon Fields")]
-    public new GameObject pickupVersion = null;
-    public new int durability = 15;
-    public new int maxDurability = 15;
+    public GameObject gunPickupVersion = null;
+    public int gunDurability = 15;
+    public int gunMaxDurability = 15;
 
     //ADD SOUND VARIABLES
 
@@ -16,7 +16,7 @@ public class Gun : Weapon, IDropable
     [SerializeField] GameObject bulletSpawn = null;
     [SerializeField] GameObject bullet = null;
     [SerializeField] float rateOfFire = 1f;
-    [SerializeField] public float weaponRange = 10;
+    
 
     [Header("Audio")]
     [SerializeField] string pickupFileName = null;
@@ -39,6 +39,8 @@ public class Gun : Weapon, IDropable
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
         m_audioPlayer.addSFX(pickupFileName);
         m_audioPlayer.addSFX(fireFileName);
+        weaponRange = 10;
+        pickupVersion = gunPickupVersion;
     }
 
     protected void Start()
