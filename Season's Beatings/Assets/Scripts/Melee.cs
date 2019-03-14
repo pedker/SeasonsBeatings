@@ -6,8 +6,8 @@ public class Melee : Weapon, IDropable
 {
     [Header("Weapon Fields")]
     public new GameObject pickupVersion = null;
-    public new int durability = 15;
-    public new int maxDurability = 15;
+    public int meleeDurability = 15;
+    public new int meleeMaxDurability = 15;
     private bool broken = false;
 
     [Header("Battle Values")]
@@ -65,6 +65,8 @@ public class Melee : Weapon, IDropable
         else rotateSpeed = 0;
         collider2D.enabled = false;
         weaponRange = GetComponent<SpriteRenderer>().bounds.size.y;
+        durability = meleeDurability;
+        maxDurability = meleeMaxDurability;
 
         if (this.transform.parent.CompareTag("PlayerTorso"))
         {
