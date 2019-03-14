@@ -7,6 +7,7 @@ public class AudioPlayer : MonoBehaviour
 
 
     [SerializeField] int numberOfAudioChannels = 5;
+    [SerializeField] int soundMaxDistance = 13;
     [SerializeField] GameObject audioChannelPrefab = null;
 
 
@@ -25,6 +26,7 @@ public class AudioPlayer : MonoBehaviour
             temporaryChannelObject.transform.localPosition = new Vector3(0, 0, 0);
             AudioChannel temporaryAudioChannel = temporaryChannelObject.GetComponent<AudioChannel>();
             temporaryAudioChannel.inUse = false;
+            temporaryAudioChannel.setMaxDistance(soundMaxDistance);
             audioChannels.Add(temporaryAudioChannel);
         }
     }
