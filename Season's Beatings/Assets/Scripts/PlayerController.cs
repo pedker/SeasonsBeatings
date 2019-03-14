@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
     {
         if (collider.gameObject.CompareTag("Checkout"))
         {
-            UIManager.instance.EndGame(true);
+            UIManager.instance.EndGame(true, collider.gameObject.name);
         }
 
         else
@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
         if (health <= 0)
         {
             m_audioPlayer.playSFX(deathFileName, deathVolume, deathPitchMin, deathPitchMax);
-            UIManager.instance.EndGame(false);
+            UIManager.instance.EndGame(false, "Death");
         }
     }
 

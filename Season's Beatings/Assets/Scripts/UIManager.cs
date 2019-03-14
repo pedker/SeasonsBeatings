@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
 
         scoreText.text = "$" + GameManager.instance.score;
 
-        if (timeLeft == 0) EndGame(false);
+        if (timeLeft == 0) EndGame(false, "Time");
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -129,7 +129,7 @@ public class UIManager : MonoBehaviour
 
             
         }
-        else if (timeLeft == 0)
+        else if (condition == "Time")
         {
             message.text = "TIME'S UP";
             message.color = Color.red;
