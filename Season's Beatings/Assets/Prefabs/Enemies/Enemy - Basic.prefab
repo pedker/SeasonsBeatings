@@ -299,6 +299,7 @@ MonoBehaviour:
   speed: 7
   faceTarget: 1
   health: 100
+  loot: {fileID: 0}
   animator: {fileID: 7910803359622718388}
   slider: {fileID: 8962150044485588403}
   fillImage: {fileID: 3875562300002205897}
@@ -309,12 +310,13 @@ MonoBehaviour:
   movementTime: 6
   idleTime: 2
   attacksOthers: 1
+  blockedReverseAngle: 90
   footStepFileName: FootstepTest
-  footStepVolume: 0.05
+  footStepVolume: 0.2
   footStepPitchMin: 0.85
   footStepPitchMax: 1.15
   enemyDamagedFileName: EnemyHitGrunt
-  damagedSoundVolume: 0.65
+  damagedSoundVolume: 0.7
   damagedPitchMinimum: 0.85
   damagedPitchMaximum: 1
 --- !u!95 &7910803359622718388
@@ -847,11 +849,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7910803359622718387}
     m_Modifications:
-    - target: {fileID: 6114543689224167808, guid: 567393aa42d4d2a42b1ac04062b6121c,
-        type: 3}
-      propertyPath: m_Name
-      value: Blood Particles
-      objectReference: {fileID: 0}
     - target: {fileID: 6114543689224167815, guid: 567393aa42d4d2a42b1ac04062b6121c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -907,6 +904,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6114543689224167808, guid: 567393aa42d4d2a42b1ac04062b6121c,
+        type: 3}
+      propertyPath: m_Name
+      value: Blood Particles
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 567393aa42d4d2a42b1ac04062b6121c, type: 3}
 --- !u!4 &6300173553786322339 stripped
@@ -928,11 +930,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7910803360671208901}
     m_Modifications:
-    - target: {fileID: 8665722732949832600, guid: cedb70539a3b4664fab376873e4c916f,
-        type: 3}
-      propertyPath: m_Name
-      value: Arms
-      objectReference: {fileID: 0}
     - target: {fileID: 2749320272704868716, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -987,6 +984,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665722732949832600, guid: cedb70539a3b4664fab376873e4c916f,
+        type: 3}
+      propertyPath: m_Name
+      value: Arms
       objectReference: {fileID: 0}
     - target: {fileID: 2394868029904026227, guid: cedb70539a3b4664fab376873e4c916f,
         type: 3}
