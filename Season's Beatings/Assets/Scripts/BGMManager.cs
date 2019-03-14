@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BGMManager : MonoBehaviour
 {
+    [SerializeField] string musicFileName = null;
+    [SerializeField] float volume = 1.0f;
+    [SerializeField] float fadeTime = 1.0f;
+
     public static BGMManager instance { get; private set; }
     AudioSource m_BGMPlayer;
 
@@ -11,6 +15,13 @@ public class BGMManager : MonoBehaviour
     {
         instance = this;
         m_BGMPlayer = GetComponent<AudioSource>();
+        setBGMVolume(0.0f);
+    }
+
+    private void Start()
+    {
+        setBGM(musicFileName);
+        fadeBGMVolume(volume, fadeTime);
     }
 
     // sets the background music to the name of the inputted string in Resources/Audio/Music
@@ -37,11 +48,27 @@ public class BGMManager : MonoBehaviour
     private IEnumerator fadeVolumeCoroutine(float finalVolume, float time)
     {
         float startVolume = m_BGMPlayer.volume;
-        while (m_BGMPlayer.volume > 0)
-        {
-            m_BGMPlayer.volume -= startVolume * Time.deltaTime / time;
+        float compareVolume = startVolume - finalVolume;
 
-            yield return null;
+        if (startVolume < finalVolume)
+        {
+            while (m_BGMPlayer.volume - finalVolume <= 0.00001)
+            {
+                m_BGMPlayer.volume -= compareVolume * Time.deltaTime / time;
+
+                yield return null;
+            }
         }
+
+        else
+        {
+            while (finalVolume - m_BGMPlayer.volume <= 0.00001)
+            {
+                m_BGMPlayer.volume -= compareVolume * Time.deltaTime / time;
+
+                yield return null;
+            }
+        }
+        
     }
 }

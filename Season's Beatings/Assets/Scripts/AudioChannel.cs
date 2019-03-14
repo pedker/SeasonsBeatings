@@ -24,6 +24,11 @@ public class AudioChannel : MonoBehaviour
         m_audioPlayer.maxDistance = distance;
     }
 
+    public void setSpatialRatio(float ratio)
+    {
+        m_audioPlayer.spatialBlend = ratio;
+    }
+
 
     private IEnumerator playSoundCoroutine(AudioClip sound, float soundVolume, float minimumPitch, float maximumPitch)
     {
