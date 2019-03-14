@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] float speed = 5f;
     [SerializeField] bool faceTarget = true;
     [SerializeField] float health = 100f;
-    [SerializeField] List<GameObject> loot;
+    [SerializeField] GameObject loot = null;
     float stun = 0;
 
     [SerializeField] Animator animator = null;
@@ -247,10 +247,10 @@ public class EnemyController : MonoBehaviour, IDamageable
         if (!collision.CompareTag("WeaponGround"))
         {
             IPickupable itemComponent = collision.GetComponent<IPickupable>();
-            if (itemComponent != null)
+            if (itemComponent != null && loot == null)
             {
                 Physics2D.IgnoreCollision(collider2D, collision);
-                loot.Add(collision.gameObject);
+                loot = collision.gameObject;
                 GameObject newItem = Instantiate(collision.gameObject, EnemyTorso.transform);
 
                 newItem.GetComponent<Collider2D>().enabled = false;
@@ -279,10 +279,10 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     void dropLoot()
     {
-        foreach (GameObject i in loot)
+        if (loot != null)
         {
-            i.transform.position = transform.position;
-            i.SetActive(true);
+            loot.transform.position = transform.position;
+            loot.SetActive(true);
         }
         if (weapon.pickupVersion != null) Instantiate(weapon.pickupVersion, transform.position, Quaternion.identity);
     }
