@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
             health = maxHealth;
         else
             health = newHealthValue;
+        SetHealthUI();
     }
     
     private void DropWeapon()
