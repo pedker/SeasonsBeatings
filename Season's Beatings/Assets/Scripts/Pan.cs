@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pan : Weapon
+public class Pan : Weapon, IDropable
 {
+    public new GameObject pickupVersion = null;
+
     [Header("Battle Stats")]
     [SerializeField] float attackDuration = .4f;
     [SerializeField] public bool attacking = false;
@@ -105,5 +107,16 @@ public class Pan : Weapon
                 m_audioPlayer.playSFX(collideFileName, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
             }
         }
+    }
+
+    public void Drop()
+    {
+        Destroy(this.gameObject);
+        Instantiate(pickupVersion, PlayerController.instance.transform.position, Quaternion.identity);
+    }
+
+    public override GameObject GetPickupVersion()
+    {
+        return this.pickupVersion;
     }
 }
