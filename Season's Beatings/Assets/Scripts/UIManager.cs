@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject UI = null;
     [SerializeField] TextMeshProUGUI scoreText = null;
-    [SerializeField] TextMeshProUGUI timer = null;
 
     [SerializeField] GameObject pauseMenu = null;
 
@@ -30,8 +29,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         scoreText.text = "$" + GameManager.instance.score;
-        timer.text = "Time Left:\n" + (int) GameManager.instance.countdown;
-        if (GameManager.instance.countdown == 0) EndGame(false);
+        if (GameManager.instance.timeLeft == 0) EndGame(false);
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
