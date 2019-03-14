@@ -106,6 +106,12 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
                 if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
                 {
                     weapon.Attack();
+                    bool destroyed = weapon.checkDestroy();
+                    if (destroyed)
+                    {
+                        Destroy(weapon.gameObject);
+                        SetDefaultWeapon();
+                    }
                 }
             }
         }
@@ -185,15 +191,20 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
             if (dropComponent != null)
             {
                 dropComponent.Drop();
-                Weapon newWeapon = Instantiate(defaultWeapon, transform.Find("Torso"));
-                weapon = newWeapon;
-                GameObject newArmL = weapon.transform.Find("Arm Left").gameObject;
-                GameObject newArmR = weapon.transform.Find("Arm Right").gameObject;
-                playerArmLeft = newArmL;
-                playerArmRight = newArmR;
-                hasWeapon = false;
+                SetDefaultWeapon();
             }
         }
+    }
+
+    private void SetDefaultWeapon()
+    {
+        Weapon newWeapon = Instantiate(defaultWeapon, transform.Find("Torso"));
+        weapon = newWeapon;
+        GameObject newArmL = weapon.transform.Find("Arm Left").gameObject;
+        GameObject newArmR = weapon.transform.Find("Arm Right").gameObject;
+        playerArmLeft = newArmL;
+        playerArmRight = newArmR;
+        hasWeapon = false;
     }
 
     private void SetHealthUI()

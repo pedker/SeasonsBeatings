@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Pan : Weapon, IDropable
 {
+    [Header("Weapon Fields")]
     public new GameObject pickupVersion = null;
+    public new int durability = 15;
+    public new int maxDurability = 15;
 
     [Header("Battle Stats")]
     [SerializeField] float attackDuration = .4f;
@@ -118,5 +121,12 @@ public class Pan : Weapon, IDropable
     public override GameObject GetPickupVersion()
     {
         return this.pickupVersion;
+    }
+
+    public override bool checkDestroy()
+    {
+        durability--;
+        if (durability == 0) return true;
+        return false;
     }
 }

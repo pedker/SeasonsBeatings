@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Gun : Weapon, IDropable
 {
+    [Header("Weapon Fields")]
+    public new GameObject pickupVersion = null;
+    public new int durability = 15;
+    public new int maxDurability = 15;
+
     //ADD SOUND VARIABLES
 
     //OTHER VARIABLES
@@ -25,7 +30,6 @@ public class Gun : Weapon, IDropable
     [SerializeField] float firePitchMaximum = 1.10f;
 
     AudioPlayer m_audioPlayer;
-    public new GameObject pickupVersion = null;
     float attackTime = 1f;
     PlayerController player;
 
@@ -67,5 +71,12 @@ public class Gun : Weapon, IDropable
     public override GameObject GetPickupVersion()
     {
         return this.pickupVersion;
+    }
+
+    public override bool checkDestroy()
+    {
+        durability--;
+        if (durability == 0) return true;
+        return false;
     }
 }

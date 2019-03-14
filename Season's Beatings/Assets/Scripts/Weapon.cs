@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour
         return pickupVersion;
     }
 
-    virtual protected bool checkDestroy()
+    virtual public bool checkDestroy()
     {
         durability--;
         if (durability == 0)

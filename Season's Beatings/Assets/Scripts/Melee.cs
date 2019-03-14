@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Melee : Weapon, IDropable
 {
+    [Header("Weapon Fields")]
     public new GameObject pickupVersion = null;
+    public new int durability = 15;
+    public new int maxDurability = 15;
 
     [Header("Battle Values")]
     [SerializeField] float attackTime = .5f;
@@ -133,5 +136,12 @@ public class Melee : Weapon, IDropable
     public override GameObject GetPickupVersion()
     {
         return this.pickupVersion;
+    }
+
+    public override bool checkDestroy()
+    {
+        durability--;
+        if (durability == 0) return true;
+        return false;
     }
 }
