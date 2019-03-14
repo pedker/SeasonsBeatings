@@ -98,7 +98,7 @@ MonoBehaviour:
     type: 3}
   parent: {fileID: 0}
   dropFileName: PistolDrop
-  dropVolume: 0.65
+  dropVolume: 0.5
   dropPitchMinimum: 0.95
   dropPitchMaximum: 1.05
 --- !u!58 &8595030428927904814

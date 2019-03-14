@@ -188,16 +188,16 @@ MonoBehaviour:
   damage: 34
   stun: 0.6
   pickupFileName: PanPickup
-  pickupVolume: 0.65
+  pickupVolume: 0.85
   pickupPitchMinimum: 0.95
   pickupPitchMaximum: 1.05
   whooshFileName: BatSwing1
   whooshFileName_2: BatSwing2
-  whooshVolume: 0.65
+  whooshVolume: 0.75
   whooshPitchMinimum: 0.9
   whooshPitchMaximum: 1.1
   collideFileName: PanHit
-  collideSoundVolume: 0.65
+  collideSoundVolume: 0.5
   collidePitchMinimum: 0.95
   collidePitchMaximum: 1.05
   m_animator: {fileID: 0}

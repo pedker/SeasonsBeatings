@@ -98,6 +98,8 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 5db700150d00cc7498a178fc57d64dfe, type: 3}
   pickupVersion: {fileID: 2645893270649438908, guid: 7043a47078d5bf24c8920508177d5436,
     type: 3}
+  durability: 15
+  maxDurability: 15
   attackTime: 0.25
   cooldown: 0.2
   knockback: 100
@@ -106,17 +108,17 @@ MonoBehaviour:
   startArc: -145
   endArc: -60
   pickupFileName: BatPickup
-  pickupVolume: 0.65
+  pickupVolume: 1
   pickupPitchMinimum: 0.95
   pickupPitchMaximum: 1.05
   whooshFileName: BatSwing1
   whooshFileName_2: BatSwing2
-  whooshVolume: 0.35
+  whooshVolume: 0.95
   whooshPitchMinimum: 0.9
   whooshPitchMaximum: 1.1
   collideFileName: BatHit3
-  collideSoundVolume: 0.25
-  collidePitchMinimum: 0.95
+  collideSoundVolume: 1
+  collidePitchMinimum: 1
   collidePitchMaximum: 1.05
 --- !u!50 &6177238785633955744
 Rigidbody2D:
@@ -162,6 +164,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6177238785141212050}
     m_Modifications:
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -216,11 +223,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 5232302183370266634, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}

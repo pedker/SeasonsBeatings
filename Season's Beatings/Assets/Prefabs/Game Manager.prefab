@@ -278,8 +278,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPlusFileName: LootPickup
   pointsPlusVolume: 0.3
-  pointsPlusPitchMinimum: 0.95
-  pointsPlusPitchMaximum: 1.05
+  pointsPlusPitchMinimum: 1
+  pointsPlusPitchMaximum: 1
 --- !u!114 &748466091430741584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2523,6 +2523,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0035d21fecba1842a36ec0ba67f2c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicFileName: 
+  volume: 1
+  fadeTime: 1
 --- !u!1 &8913567451305532445
 GameObject:
   m_ObjectHideFlags: 0
