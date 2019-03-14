@@ -80,6 +80,7 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 0;
         int score = GameManager.instance.score;
+        GameObject.Find("Score").SetActive(false);
         endScreen.SetActive(true);
         
         if (win)
