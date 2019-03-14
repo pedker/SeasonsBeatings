@@ -183,13 +183,14 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
             IDropable dropComponent = weapon.GetComponent<IDropable>();
             if (dropComponent != null)
             {
-                Debug.Log("Q");
                 dropComponent.Drop();
-                Debug.Log("P");
-                weapon = defaultWeapon;
-                Debug.Log("R");
+                Weapon newWeapon = Instantiate(defaultWeapon, transform.Find("Torso"));
+                weapon = newWeapon;
+                GameObject newArmL = weapon.transform.Find("Arm Left").gameObject;
+                GameObject newArmR = weapon.transform.Find("Arm Right").gameObject;
+                playerArmLeft = newArmL;
+                playerArmRight = newArmR;
                 hasWeapon = false;
-                Debug.Log("S");
             }
         }
     }
