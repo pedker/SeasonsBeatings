@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4fce5118e3e4940aa6e46f82217c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 5db700150d00cc7498a178fc57d64dfe, type: 3}
   pickupVersion: {fileID: 2645893270649438908, guid: 7043a47078d5bf24c8920508177d5436,
     type: 3}
   attackTime: 0.25
@@ -117,10 +118,6 @@ MonoBehaviour:
   collideSoundVolume: 0.25
   collidePitchMinimum: 0.95
   collidePitchMaximum: 1.05
-  dropFileName: BatDrop
-  dropVolume: 0.65
-  dropPitchMinimum: 0.95
-  dropPitchMaximum: 1.05
 --- !u!50 &6177238785633955744
 Rigidbody2D:
   serializedVersion: 4

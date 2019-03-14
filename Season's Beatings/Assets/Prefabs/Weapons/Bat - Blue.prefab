@@ -32,6 +32,17 @@ PrefabInstance:
       propertyPath: endArc
       value: -15
       objectReference: {fileID: 0}
+    - target: {fileID: 4838546435591747544, guid: a2e5322c58e1d3844a062be9dccb77f1,
+        type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f416b3c07f63abc4fa8f4cca1c5db918,
+        type: 3}
+    - target: {fileID: 6177238785141212048, guid: a2e5322c58e1d3844a062be9dccb77f1,
+        type: 3}
+      propertyPath: m_Name
+      value: Bat - Blue
+      objectReference: {fileID: 0}
     - target: {fileID: 6177238785141212050, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -86,11 +97,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -165
-      objectReference: {fileID: 0}
-    - target: {fileID: 6177238785141212048, guid: a2e5322c58e1d3844a062be9dccb77f1,
-        type: 3}
-      propertyPath: m_Name
-      value: Bat - Blue
       objectReference: {fileID: 0}
     - target: {fileID: 6177238785141212051, guid: a2e5322c58e1d3844a062be9dccb77f1,
         type: 3}
