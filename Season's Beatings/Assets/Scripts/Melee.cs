@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Melee : Weapon, IDropable
 {
-    [SerializeField] GameObject pickupVersion = null;
+    public new GameObject pickupVersion = null;
 
     [Header("Battle Values")]
     [SerializeField] float attackTime = .5f;
@@ -131,5 +131,10 @@ public class Melee : Weapon, IDropable
     {
         Destroy(this.gameObject);
         Instantiate(pickupVersion, PlayerController.instance.transform.position, Quaternion.identity);
+    }
+
+    public override GameObject GetPickupVersion()
+    {
+        return this.pickupVersion;
     }
 }

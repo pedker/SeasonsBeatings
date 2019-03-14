@@ -7,7 +7,7 @@ public class Gun : Weapon, IDropable
     //ADD SOUND VARIABLES
 
     //OTHER VARIABLES
-    [SerializeField] public GameObject pickupVersion = null;
+    public new GameObject pickupVersion = null;
     [SerializeField] GameObject bulletSpawn = null;
     [SerializeField] GameObject bullet = null;
     [SerializeField] float rateOfFire = 1f;
@@ -38,5 +38,10 @@ public class Gun : Weapon, IDropable
     {
         Destroy(this.gameObject);
         Instantiate(pickupVersion, PlayerController.instance.transform.position, Quaternion.identity);
+    }
+
+    public override GameObject GetPickupVersion()
+    {
+        return this.pickupVersion;
     }
 }

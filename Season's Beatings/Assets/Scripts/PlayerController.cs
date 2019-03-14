@@ -81,9 +81,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
                 animator.SetFloat("Speed", Mathf.Abs(this.rigidbody2D.velocity.x) + Mathf.Abs(this.rigidbody2D.velocity.y));
             }
 
-            if (stun > 0) stun -= Time.deltaTime;
-
             if (Input.GetKeyDown(KeyCode.Q)) DropWeapon();
+
+            if (stun > 0) stun -= Time.deltaTime;
         
             else
             {
@@ -119,13 +119,13 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
         {
             if (collider.CompareTag("WeaponGround"))
             {
-                if (!hasWeapon || Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.E))
                 {
                     IPickupable itemComponent = collider.GetComponent<IPickupable>();
                     if (itemComponent != null)
                     {
                         if (hasWeapon)
-                            Instantiate(weapon.pickupVersion, transform.position, Quaternion.identity);
+                            Instantiate(weapon.GetPickupVersion(), transform.position, Quaternion.identity);
                         itemComponent.pickUp();
                         hasWeapon = true;
                     }
@@ -177,9 +177,13 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
             IDropable dropComponent = weapon.GetComponent<IDropable>();
             if (dropComponent != null)
             {
+                Debug.Log("Q");
                 dropComponent.Drop();
+                Debug.Log("P");
                 weapon = defaultWeapon;
+                Debug.Log("R");
                 hasWeapon = false;
+                Debug.Log("S");
             }
         }
     }
