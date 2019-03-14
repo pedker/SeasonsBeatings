@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     public float weaponRange { get; protected set; } = 1;
     public int durability { get; protected set; } = 10;
     public int maxDurability { get; protected set; } = 10;
+    public Sprite sprite;
 
     public GameObject pickupVersion { get; set; }
 
