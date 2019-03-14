@@ -11,16 +11,17 @@ public class Loot : MonoBehaviour, IPickupable
     Vector3 startPosition;
     Vector3 offset;
 
-    private void Start()
-    {
-        startPosition = transform.position;
-    }
-
     private void Update()
     {
         offset = new Vector3(0, Mathf.Sin(Time.time * animSpeed) * animRange, 0);
         transform.position = startPosition + offset;
     }
+
+    private void OnEnable()
+    {
+        startPosition = transform.position;
+    }
+
 
     public void pickUp()
     {

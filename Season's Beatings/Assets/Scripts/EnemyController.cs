@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] float speed = 5f;
     [SerializeField] bool faceTarget = true;
     [SerializeField] float health = 100f;
+    [SerializeField] List<GameObject> loot;
     float stun = 0;
 
     [SerializeField] Animator animator = null;
@@ -36,6 +37,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] float movementChance = .5f;
     [SerializeField] float movementTime = 10;
     [SerializeField] float idleTime = 3;
+    [SerializeField] bool attacksOthers = true;
+    [SerializeField] float blockedReverseAngle = 90;
     float timeLeft;
     bool acting = false;
     bool followingPlayer = false;
@@ -97,7 +100,10 @@ public class EnemyController : MonoBehaviour, IDamageable
                 followingPlayer = true;
                 EnemyTorso.transform.right = (Vector2)(vectorToPlayer);
 
-                if (stun > 0) stun -= Time.deltaTime;
+                if (stun > 0)
+                {
+                    stun -= Time.deltaTime;
+                }
                 else
                 {
                     // Attack Range
@@ -118,7 +124,11 @@ public class EnemyController : MonoBehaviour, IDamageable
             }
             else
             {
-                if (followingPlayer)
+                if (stun > 0)
+                {
+                    stun -= Time.deltaTime;
+                }
+                else if (followingPlayer)
                 {
                     acting = true;
                     followingPlayer = false;
@@ -172,12 +182,15 @@ public class EnemyController : MonoBehaviour, IDamageable
         health -= damage;
         SetHealthUI();
         this.stun = stun;
+        acting = false;
+        followingPlayer = true;
 
         BloodParticles.Play();
 
         if (health <= 0)
         {
             GameObject.Instantiate(Blood, EnemyTorso.transform.position, Quaternion.identity).transform.localScale = new Vector3(transform.lossyScale.x, transform.lossyScale.y, 1);
+            dropLoot();
             Destroy(gameObject);
         }
 
@@ -193,13 +206,29 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (!followingPlayer && collision.collider.CompareTag("Wall"))
+        if (attacksOthers && collision.collider.CompareTag("Enemy"))
         {
-            timeLeft = idleTime;
+            Vector2 vectorToEnemy = collision.transform.position - transform.position;
+
+            EnemyLegs.transform.right = vectorToEnemy;
+            EnemyTorso.transform.right = vectorToEnemy;
+
             rigidbody2D.velocity = Vector2.zero;
-            transform.right *= -1;
+            weapon.Attack();
         }
+
+        else if (acting && !followingPlayer && rigidbody2D.velocity != Vector2.zero)
+        {
+            EnemyLegs.transform.right = EnemyTorso.transform.right = Quaternion.Euler(0, 0, Random.Range(-blockedReverseAngle, blockedReverseAngle) / 2) * -EnemyTorso.transform.right;
+            rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
+        }
+
+        //if (!followingPlayer && collision.collider.CompareTag("Wall"))
+        //{
+        //    timeLeft = idleTime;
+        //    rigidbody2D.velocity = Vector2.zero;
+        //    transform.right *= -1;
+        //}
 
         if (collision.collider.CompareTag("Player"))
         {
@@ -207,8 +236,23 @@ public class EnemyController : MonoBehaviour, IDamageable
 
             EnemyLegs.transform.right = vectorToPlayer;
             EnemyTorso.transform.right = vectorToPlayer;
+            rigidbody2D.velocity = Vector2.zero;
 
             touchingPlayer = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("WeaponGround"))
+        {
+            IPickupable itemComponent = collision.GetComponent<IPickupable>();
+            if (itemComponent != null)
+            {
+                Physics2D.IgnoreCollision(collider2D, collision);
+                loot.Add(collision.gameObject);
+                collision.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -223,5 +267,15 @@ public class EnemyController : MonoBehaviour, IDamageable
     private void playFootStepSFX()
     {
         m_audioPlayer.playSFX(footStepFileName, footStepVolume, footStepPitchMin, footStepPitchMax);
+    }
+
+    void dropLoot()
+    {
+        foreach (GameObject i in loot)
+        {
+            i.transform.position = transform.position;
+            i.SetActive(true);
+        }
+        if (!(weapon is HandToHand)) Instantiate(weapon.pickupVersion, transform.position, Quaternion.identity);
     }
 }
