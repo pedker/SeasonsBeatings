@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2645893270649438897}
   - component: {fileID: 2645893270649438910}
   - component: {fileID: 2645893270649438911}
+  - component: {fileID: 8150951293234075869}
   m_Layer: 0
   m_Name: GroundBat
   m_TagString: WeaponGround
@@ -67,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -962651409
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5db700150d00cc7498a178fc57d64dfe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,7 +104,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2645893270649438908}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -112,3 +113,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.5659091}
   m_Size: {x: 0.14545454, y: 1.1318182}
   m_Direction: 0
+--- !u!58 &8150951293234075869
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2645893270649438908}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.5659091}
+  serializedVersion: 2
+  m_Radius: 0.5659091
