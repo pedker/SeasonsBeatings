@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610d1cffb231f3648ae62b1697ced9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthRestore: 0
+  healthRestore: 20
 --- !u!61 &5530125760429991564
 BoxCollider2D:
   m_ObjectHideFlags: 0
