@@ -4146,6 +4146,36 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7492551991111111442, guid: df95c31e385454845a426ca5f074ab57,
+        type: 3}
+      propertyPath: m_margin.w
+      value: 1.2272468
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492551991111111442, guid: df95c31e385454845a426ca5f074ab57,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246488878266431340, guid: df95c31e385454845a426ca5f074ab57,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 120.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246488878266431340, guid: df95c31e385454845a426ca5f074ab57,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601828002976360115, guid: df95c31e385454845a426ca5f074ab57,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601828002976360115, guid: df95c31e385454845a426ca5f074ab57,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df95c31e385454845a426ca5f074ab57, type: 3}
 --- !u!4 &409960966 stripped
@@ -8824,7 +8854,7 @@ TilemapRenderer:
   m_SortingLayer: -7
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.99609375, y: 0.28710938, z: 0}
+  m_ChunkCullingBounds: {x: 1.6885715, y: 0.6514286, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -108982,7 +109012,7 @@ TilemapRenderer:
   m_SortingLayer: -6
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.99609375, y: 0.61111116, z: 0}
+  m_ChunkCullingBounds: {x: 1.6885715, y: 0.6514286, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
