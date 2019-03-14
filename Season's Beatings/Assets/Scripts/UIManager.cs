@@ -34,8 +34,18 @@ public class UIManager : MonoBehaviour
     {
         scoreText.text = "$" + GameManager.instance.score;
 
-        if (PlayerController.instance.weapon is HandToHand) weapon.sprite = defaultWeapon;
-        else weapon.sprite = PlayerController.instance.weapon.GetComponent<SpriteRenderer>().sprite;
+        if (PlayerController.instance.weapon is HandToHand)
+        {
+            weapon.sprite = defaultWeapon;
+            weaponDurability.text = "";
+        }
+        else
+        {
+            weapon.sprite = PlayerController.instance.weapon.GetComponent<SpriteRenderer>().sprite;
+            weaponDurability.text = PlayerController.instance.weapon.durability + "/" + PlayerController.instance.weapon.maxDurability;
+        }
+
+        scoreText.text = "$" + GameManager.instance.score;
 
         if (GameManager.instance.timeLeft == 0) EndGame(false);
 
