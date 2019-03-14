@@ -106,7 +106,7 @@ MonoBehaviour:
   damage: 25
   stun: 0.4
   startArc: -145
-  endArc: -60
+  endArc: -40
   pickupFileName: BatPickup
   pickupVolume: 1
   pickupPitchMinimum: 0.95

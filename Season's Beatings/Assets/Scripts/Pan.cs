@@ -11,12 +11,13 @@ public class Pan : Weapon, IDropable
     private bool broken = false;
 
     [Header("Battle Stats")]
-    [SerializeField] float attackDuration = .4f;
+    [SerializeField] float attackDuration = .9f;
     [SerializeField] public bool attacking = false;
     [SerializeField] public bool attackReset = false;
     [SerializeField] float knockback = 75;
     [SerializeField] float damage = 34;
     [SerializeField] float stun = 0.6f;
+
     float attackTime = 0;
 
     [Header("Sound")]
@@ -105,7 +106,7 @@ public class Pan : Weapon, IDropable
                 damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
                 durability--;
                 if (durability == 0) broken = true;
-                attackReset = false;
+                //attacking = false;
                 attackReset = true;
             }
 
