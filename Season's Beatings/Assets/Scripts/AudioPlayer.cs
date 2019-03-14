@@ -28,7 +28,6 @@ public class AudioPlayer : MonoBehaviour
             AudioChannel temporaryAudioChannel = temporaryChannelObject.GetComponent<AudioChannel>();
             temporaryAudioChannel.inUse = false;
             temporaryAudioChannel.setMaxDistance(soundMaxDistance);
-            temporaryAudioChannel.setSpatialRatio(spatialRatio);
 
             audioChannels.Add(temporaryAudioChannel);
         }
@@ -68,6 +67,14 @@ public class AudioPlayer : MonoBehaviour
                 }
             }
             Debug.Log("All AudioChannel objects were in use at the time of this function call.");
+        }
+    }
+
+    public void setSpatialBlend(float ratio)
+    {
+        for (int i = 0; i < audioChannels.Count; i++)
+        {
+            audioChannels[i].setSpatialRatio(ratio);
         }
     }
 

@@ -33,6 +33,11 @@ public class HandToHand : Weapon
 
     private void Start()
     {
+        if (this.transform.parent.CompareTag("PlayerTorso"))
+        {
+            m_audioPlayer.setSpatialBlend(0.0f);
+        }
+
         weaponRange = .75f * transform.lossyScale.x;
     }
 

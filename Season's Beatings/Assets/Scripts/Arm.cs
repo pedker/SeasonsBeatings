@@ -26,7 +26,15 @@ public class Arm : Weapon
         m_audioPlayer.addSFX(punchSoundEffect);
     }
 
-    
+    private void Start()
+    {
+        if (this.transform.parent.parent.CompareTag("PlayerTorso"))
+        {
+            m_audioPlayer.setSpatialBlend(0.0f);
+        }
+    }
+
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {

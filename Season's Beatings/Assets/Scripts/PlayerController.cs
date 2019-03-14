@@ -47,6 +47,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
     [SerializeField] float damagedPitchMin = 0.9f;
     [SerializeField] float damagedPitchMax = 1.1f;
 
+    [SerializeField] string healFileName = null;
+    [SerializeField] float healVolume = 0.30f;
+    [SerializeField] float healPitchMin = 0.9f;
+    [SerializeField] float healPitchMax = 1.1f;
+
     [SerializeField] string deathFileName = null;
     [SerializeField] float deathVolume = 0.30f;
     [SerializeField] float deathPitchMin = 0.9f;
@@ -63,13 +68,14 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
         m_audioPlayer = this.GetComponentInChildren<AudioPlayer>();
         m_audioPlayer.addSFX(footStepFileName);
         m_audioPlayer.addSFX(damagedFileName);
+        m_audioPlayer.addSFX(healFileName);
         m_audioPlayer.addSFX(deathFileName);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_audioPlayer.setSpatialBlend(0.0f);
         if (weapon.name != "Arms")
             Physics2D.IgnoreCollision(collider2D, weapon.GetComponent<Collider2D>());
         Physics2D.IgnoreCollision(collider2D, playerArmLeft.GetComponent<Collider2D>());
@@ -181,6 +187,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
         else
             health = newHealthValue;
         SetHealthUI();
+
+        m_audioPlayer.playSFX(healFileName, healVolume, healPitchMin, healPitchMax);
     }
     
     private void DropWeapon()

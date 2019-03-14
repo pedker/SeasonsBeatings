@@ -128,7 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 22f8e728854f4b14593ad16587e6e7df, type: 3}
-  gunPickupVersion: {fileID: 0}
+  gunPickupVersion: {fileID: 8595030428927904810, guid: 0d787cc50226601419e7823a78b36f58,
+    type: 3}
   gunDurability: 15
   gunMaxDurability: 15
   bulletSpawn: {fileID: 7880466103131501566}

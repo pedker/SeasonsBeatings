@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+
+        m_audioPlayer.setSpatialBlend(0.0f);
     }
     
 
