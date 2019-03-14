@@ -6,8 +6,8 @@ public class Pan : Weapon, IDropable
 {
     [Header("Weapon Fields")]
     public new GameObject pickupVersion = null;
-    public new int durability = 15;
-    public new int maxDurability = 15;
+    public int panDurability = 15;
+    public int panMaxDurability = 15;
     private bool broken = false;
 
     [Header("Battle Stats")]
@@ -48,6 +48,9 @@ public class Pan : Weapon, IDropable
         m_audioPlayer.addSFX(whooshFileName);
         m_audioPlayer.addSFX(whooshFileName_2);
         m_audioPlayer.addSFX(collideFileName);
+
+        durability = panDurability;
+        maxDurability = panMaxDurability;
 
         m_animator = this.GetComponent<Animator>();
     }
