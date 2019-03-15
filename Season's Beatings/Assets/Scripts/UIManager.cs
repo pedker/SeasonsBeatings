@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image weapon = null;
     [SerializeField] Sprite defaultWeapon = null;
     [SerializeField] TextMeshProUGUI weaponDurability = null;
+    [SerializeField] TextMeshProUGUI prompt = null;
 
     [SerializeField] TextMeshProUGUI timerText = null;
     public float timeLeft = 300f;
@@ -39,6 +40,7 @@ public class UIManager : MonoBehaviour
         UpdateTimer();
 
         scoreText.text = "$" + GameManager.instance.score;
+        prompt.text = PlayerController.instance.message;
 
         if (PlayerController.instance.weapon is HandToHand)
         {

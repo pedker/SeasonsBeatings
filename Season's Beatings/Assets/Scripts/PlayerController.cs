@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
     new Rigidbody2D rigidbody2D;
     new Collider2D collider2D;
     public Animator animator = null;
+    public string message = "";
 
     [SerializeField] GameObject playerTorso = null;
     [SerializeField] GameObject playerLegs = null;
@@ -130,13 +131,19 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
     {
         if (collider.gameObject.CompareTag("Checkout"))
         {
-            UIManager.instance.EndGame(true, collider.gameObject.name);
+            message = "Press E or Mouse 2 to Checkout";
+            if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.E))
+            {
+                UIManager.instance.EndGame(true, collider.gameObject.name);
+                message = "";
+            }
         }
 
         else
         {
             if (collider.CompareTag("WeaponGround"))
             {
+                message = "Press E or Mouse 2 to Equip";
                 if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.E))
                 {
                     IPickupable itemComponent = collider.GetComponent<IPickupable>();
@@ -146,6 +153,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
                             Instantiate(weapon.GetPickupVersion(), transform.position, Quaternion.identity);
                         itemComponent.pickUp();
                         hasWeapon = true;
+                        message = "";
                     }
                 }
             }
@@ -158,7 +166,15 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
                 }
             }
         }
-    }    
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("WeaponGround") || collision.gameObject.CompareTag("Checkout"))
+        {
+            message = "";
+        }
+    }
 
     public void Damage(float damage, float stun, Vector2 knockback)
     {
