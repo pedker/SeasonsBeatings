@@ -6,6 +6,8 @@ public class WeaponOnGround : MonoBehaviour, IPickupable
 {
     [SerializeField] Weapon m_weapon = null;
     [SerializeField] Transform parent = null;
+    [SerializeField] Transform rotator = null;
+    [SerializeField] float rotationMult = 50;
 
 
     [Header("Audio")]
@@ -33,7 +35,7 @@ public class WeaponOnGround : MonoBehaviour, IPickupable
     // Update is called once per frame
     void Update()
     {
-        
+        rotator.localRotation *= Quaternion.Euler(0, 0, Time.deltaTime * rotationMult);
     }
 
     public void pickUp()
