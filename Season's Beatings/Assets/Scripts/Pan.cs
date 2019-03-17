@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pan : Weapon, IDropable
+public class Pan : Weapon
 {
-    [Header("Weapon Fields")]
-    public new GameObject pickupVersion = null;
-    public int panDurability = 15;
-    public int panMaxDurability = 15;
     private bool broken = false;
 
     [Header("Battle Stats")]
@@ -49,15 +45,13 @@ public class Pan : Weapon, IDropable
         m_audioPlayer.addSFX(whooshFileName_2);
         m_audioPlayer.addSFX(collideFileName);
 
-        durability = panDurability;
-        maxDurability = panMaxDurability;
-
         m_animator = this.GetComponent<Animator>();
     }
 
     private void Start()
     {
         weaponRange = 1f * transform.lossyScale.x;
+        weaponRange = GetComponent<SpriteRenderer>().bounds.size.y;
 
         if (this.transform.parent.CompareTag("PlayerTorso"))
         {
@@ -112,8 +106,8 @@ public class Pan : Weapon, IDropable
             if (damageableComponent != null)
             {
                 damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
-                durability--;
-                if (durability == 0) broken = true;
+                Durability--;
+                if (Durability == 0) broken = true;
                 //attacking = false;
                 attackReset = true;
             }
@@ -123,17 +117,6 @@ public class Pan : Weapon, IDropable
                 m_audioPlayer.playSFX(collideFileName, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
             }
         }
-    }
-
-    public void Drop()
-    {
-        Destroy(this.gameObject);
-        Instantiate(pickupVersion, PlayerController.instance.transform.position, Quaternion.identity);
-    }
-
-    public override GameObject GetPickupVersion()
-    {
-        return this.pickupVersion;
     }
 
     public override bool checkDestroy()

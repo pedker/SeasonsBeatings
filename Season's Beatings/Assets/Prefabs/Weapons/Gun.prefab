@@ -127,11 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664c4a03d50ebce4d9e182a0ec91ec2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponRange: 10
+  durability: 15
+  maxDurability: 15
   sprite: {fileID: 21300000, guid: 22f8e728854f4b14593ad16587e6e7df, type: 3}
-  gunPickupVersion: {fileID: 8595030428927904810, guid: 0d787cc50226601419e7823a78b36f58,
+  pickupVersion: {fileID: 8595030428927904809, guid: 0d787cc50226601419e7823a78b36f58,
     type: 3}
-  gunDurability: 15
-  gunMaxDurability: 15
   bulletSpawn: {fileID: 7880466103131501566}
   bullet: {fileID: 7025390786511676780, guid: 66ee8689c1e33da40a2c45775311e14e, type: 3}
   rateOfFire: 1
@@ -254,6 +255,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5342754560819812217}
     m_Modifications:
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -308,11 +314,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3b6a0e478b11740aaec1cf256dadb2, type: 3}

@@ -107,14 +107,14 @@ public class EnemyController : MonoBehaviour, IDamageable
                 else
                 {
                     // Attack Range
-                    hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.weaponRange * rangeModifier); //weapon.GetComponent<SpriteRenderer>().bounds.size.y);
+                    hit = Physics2D.Raycast(transform.position, vectorToPlayer, weapon.WeaponRange * rangeModifier); //weapon.GetComponent<SpriteRenderer>().bounds.size.y);
                     if (hit && hit.collider.CompareTag("Player"))
                     {
                         weapon.Attack();
                         rigidbody2D.velocity = Vector2.zero;
                     }
 
-                    if (!touchingPlayer && Vector3.Distance(PlayerController.instance.transform.position, transform.position) > weapon.weaponRange * rangeModifier)
+                    if (!touchingPlayer && Vector3.Distance(PlayerController.instance.transform.position, transform.position) > weapon.WeaponRange * rangeModifier)
                     {
                         rigidbody2D.velocity = EnemyTorso.transform.right.normalized * speed;
                         EnemyLegs.transform.right = rigidbody2D.velocity;
@@ -166,7 +166,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         //Debug.Log("Angle is " + Vector3.Angle(PlayerController.instance.transform.position - transform.position, EnemyTorso.transform.up));
         Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
         Debug.DrawRay(transform.position, (Quaternion.Euler(0, 0, -viewAngle) * EnemyTorso.transform.right).normalized * range, Color.yellow, .01f);
-        Debug.DrawRay(transform.position, EnemyTorso.transform.right.normalized * weapon.weaponRange, Color.red, .01f);
+        Debug.DrawRay(transform.position, EnemyTorso.transform.right.normalized * weapon.WeaponRange, Color.red, .01f);
         //Debug.DrawRay(transform.position, EnemyLegs.transform.right, Color.green, .01f);
     }
 
@@ -284,6 +284,6 @@ public class EnemyController : MonoBehaviour, IDamageable
             loot.transform.position = transform.position;
             loot.SetActive(true);
         }
-        if (weapon.pickupVersion != null) Instantiate(weapon.pickupVersion, transform.position, Quaternion.identity);
+        if (weapon.PickupVersion != null) Instantiate(weapon.PickupVersion, transform.position, Quaternion.identity);
     }
 }

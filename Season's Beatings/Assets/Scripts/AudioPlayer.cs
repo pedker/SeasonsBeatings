@@ -8,7 +8,7 @@ public class AudioPlayer : MonoBehaviour
 
     [SerializeField] int numberOfAudioChannels = 5;
     [SerializeField] int soundMaxDistance = 13;
-    [SerializeField] float spatialRatio = 1.0f;
+    //[SerializeField] float spatialRatio = 1.0f; Not Used
     [SerializeField] GameObject audioChannelPrefab = null;
 
 

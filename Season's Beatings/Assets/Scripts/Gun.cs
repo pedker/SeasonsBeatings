@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : Weapon, IDropable
+public class Gun : Weapon
 {
-    [Header("Weapon Fields")]
-    public GameObject gunPickupVersion = null;
-    public int gunDurability = 15;
-    public int gunMaxDurability = 15;
     private bool firedShot = false;
 
     //ADD SOUND VARIABLES
@@ -40,9 +36,6 @@ public class Gun : Weapon, IDropable
         m_audioPlayer = GetComponentInChildren<AudioPlayer>();
         m_audioPlayer.addSFX(pickupFileName);
         m_audioPlayer.addSFX(fireFileName);
-
-        weaponRange = 10;
-        pickupVersion = gunPickupVersion;
     }
 
     protected void Start()
@@ -70,25 +63,14 @@ public class Gun : Weapon, IDropable
             m_audioPlayer.playSFX(fireFileName, fireVolume, firePitchMinimum, firePitchMaximum);
         }
     }
-
-    public void Drop()
-    {
-        Destroy(this.gameObject);
-        Instantiate(pickupVersion, PlayerController.instance.transform.position, Quaternion.identity);
-    }
-
-    public override GameObject GetPickupVersion()
-    {
-        return this.pickupVersion;
-    }
-
+    
     public override bool checkDestroy()
     {
         if (firedShot)
         {
-            durability--;
+            Durability--;
             firedShot = false;
-            if (durability == 0) return true;
+            if (Durability == 0) return true;
             return false;
         }
         return false;

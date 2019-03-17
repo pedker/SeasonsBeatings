@@ -176,11 +176,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1096e482baf87f640b253c32420c7d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 912f0da6f5336b94c95113ccdfea8f03, type: 3}
-  pickupVersion: {fileID: 8595030428927904810, guid: 6d3d5dc55eb55144f91d2c9b0bd6368f,
-    type: 3}
+  weaponRange: 0
   durability: 15
   maxDurability: 15
+  sprite: {fileID: 21300000, guid: 912f0da6f5336b94c95113ccdfea8f03, type: 3}
+  pickupVersion: {fileID: 8595030428927904809, guid: 6d3d5dc55eb55144f91d2c9b0bd6368f,
+    type: 3}
   attackDuration: 0.9
   attacking: 0
   attackReset: 0

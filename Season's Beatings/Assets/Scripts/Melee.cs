@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Melee : Weapon, IDropable
+public class Melee : Weapon
 {
-    [Header("Weapon Fields")]
-    public new GameObject pickupVersion = null;
-    public int meleeDurability = 15;
-    public new int meleeMaxDurability = 15;
     private bool broken = false;
 
     [Header("Battle Values")]
@@ -65,8 +61,6 @@ public class Melee : Weapon, IDropable
         else rotateSpeed = 0;
         collider2D.enabled = false;
         weaponRange = GetComponent<SpriteRenderer>().bounds.size.y;
-        durability = meleeDurability;
-        maxDurability = meleeMaxDurability;
 
         if (this.transform.parent.CompareTag("PlayerTorso"))
         {
@@ -74,8 +68,6 @@ public class Melee : Weapon, IDropable
         }
 
         m_audioPlayer.playSFX(pickupFileName, pickupVolume, pickupPitchMinimum, pickupPitchMaximum);
-
-
     }
 
     private void Update()
@@ -130,26 +122,15 @@ public class Melee : Weapon, IDropable
                 if (!hit || hit.collider == other)
                 {
                     damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
-                    durability--;
-                    if (durability == 0) broken = true;
+                    Durability--;
+                    if (Durability == 0) broken = true;
                     attackReset = false;
                     m_audioPlayer.playSFX(collideFileName, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
                 }
             }
         }
     }
-
-    public void Drop()
-    {
-        Destroy(this.gameObject);
-        Instantiate(pickupVersion, PlayerController.instance.transform.position, Quaternion.identity);
-    }
-
-    public override GameObject GetPickupVersion()
-    {
-        return this.pickupVersion;
-    }
-
+    
     public override bool checkDestroy()
     {
         return broken;

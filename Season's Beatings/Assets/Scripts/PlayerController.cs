@@ -17,13 +17,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
     [SerializeField] GameObject playerLegs = null;
     [SerializeField] GameObject playerArmLeft = null;
     [SerializeField] GameObject playerArmRight = null;
-    [SerializeField] GameObject Blood = null;
     [SerializeField] ParticleSystem BloodParticles = null;
     //[SerializeField] ScreenShake screenShake = null;
 
     [SerializeField] Weapon defaultWeapon = null;
     public Weapon weapon;
-    bool hasWeapon = false;
 
     [SerializeField] float speed = 5f;
     [SerializeField] float stun = 0;
@@ -94,6 +92,13 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
                 animator.SetFloat("Speed", Mathf.Abs(this.rigidbody2D.velocity.x) + Mathf.Abs(this.rigidbody2D.velocity.y));
             }
 
+
+            if (weapon.checkDestroy())
+            {
+                Destroy(weapon.gameObject);
+                SetDefaultWeapon();
+            }
+
             if (Input.GetKeyDown(KeyCode.Q)) DropWeapon();
 
             if (stun > 0) stun -= Time.deltaTime;
@@ -112,13 +117,12 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
 
                 if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
                 {
-                    weapon.Attack();
-                    bool destroyed = weapon.checkDestroy();
-                    if (destroyed)
+                    if (weapon.checkDestroy())
                     {
                         Destroy(weapon.gameObject);
                         SetDefaultWeapon();
                     }
+                    weapon.Attack();
                 }
             }
         }
@@ -149,10 +153,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
                     IPickupable itemComponent = collider.GetComponent<IPickupable>();
                     if (itemComponent != null)
                     {
-                        if (hasWeapon)
-                            Instantiate(weapon.GetPickupVersion(), transform.position, Quaternion.identity);
+                        DropWeapon();
                         itemComponent.pickUp();
-                        hasWeapon = true;
+                        defaultWeapon.gameObject.SetActive(false);
                         message = "";
                     }
                 }
@@ -209,26 +212,25 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealable
     
     private void DropWeapon()
     {
-        if (hasWeapon)
+
+        if (weapon.PickupVersion != null)
         {
-            IDropable dropComponent = weapon.GetComponent<IDropable>();
-            if (dropComponent != null)
-            {
-                dropComponent.Drop();
-                SetDefaultWeapon();
-            }
+            Debug.Log("Dropped" + weapon);
+            WeaponOnGround groundWep = Instantiate(weapon.PickupVersion, transform.position, Quaternion.identity);
+            groundWep.durability = weapon.Durability;
+            Destroy(weapon.gameObject);
+            SetDefaultWeapon();
+        }
+        else
+        {
+            Debug.Log(weapon.PickupVersion);
         }
     }
 
     private void SetDefaultWeapon()
     {
-        Weapon newWeapon = Instantiate(defaultWeapon, transform.Find("Torso"));
-        weapon = newWeapon;
-        GameObject newArmL = weapon.transform.Find("Arm Left").gameObject;
-        GameObject newArmR = weapon.transform.Find("Arm Right").gameObject;
-        playerArmLeft = newArmL;
-        playerArmRight = newArmR;
-        hasWeapon = false;
+        defaultWeapon.gameObject.SetActive(true);
+        weapon = defaultWeapon;
     }
 
     private void SetHealthUI()

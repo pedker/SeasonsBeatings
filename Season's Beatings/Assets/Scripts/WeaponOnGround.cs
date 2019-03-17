@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class WeaponOnGround : MonoBehaviour, IPickupable
 {
-    [SerializeField] Weapon m_weapon = null;
+    public Weapon m_weapon = null;
     [SerializeField] Transform parent = null;
     [SerializeField] Transform rotator = null;
     [SerializeField] float rotationMult = 50;
-
+    public int durability = -1;
 
     [Header("Audio")]
     [SerializeField] string dropFileName = null;
@@ -43,10 +43,9 @@ public class WeaponOnGround : MonoBehaviour, IPickupable
         Destroy(this.gameObject);
 
         Weapon newWeapon = Instantiate(m_weapon, parent);
+        if (durability != -1) newWeapon.Durability = durability;
 
         Physics2D.IgnoreCollision(PlayerController.instance.GetComponent<Collider2D>(), newWeapon.GetComponent<Collider2D>());
-
-        Destroy(PlayerController.instance.weapon.gameObject);
 
         PlayerController.instance.weapon = newWeapon;
     }

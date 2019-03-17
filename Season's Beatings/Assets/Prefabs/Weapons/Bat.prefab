@@ -95,30 +95,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4fce5118e3e4940aa6e46f82217c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 5db700150d00cc7498a178fc57d64dfe, type: 3}
-  pickupVersion: {fileID: 2645893270649438908, guid: 7043a47078d5bf24c8920508177d5436,
-    type: 3}
+  weaponRange: 0
   durability: 15
   maxDurability: 15
-  attackTime: 0.25
-  cooldown: 0.2
+  sprite: {fileID: 21300000, guid: 5db700150d00cc7498a178fc57d64dfe, type: 3}
+  pickupVersion: {fileID: 2645893270649438910, guid: 7043a47078d5bf24c8920508177d5436,
+    type: 3}
+  attackTime: 0.5
+  cooldown: 0.5
   knockback: 100
   damage: 25
-  stun: 0.4
+  stun: 0.5
   startArc: -145
-  endArc: -40
-  pickupFileName: BatPickup
-  pickupVolume: 1
+  endArc: -10
+  pickupFileName: 
+  pickupVolume: 0.65
   pickupPitchMinimum: 0.95
   pickupPitchMaximum: 1.05
-  whooshFileName: BatSwing1
-  whooshFileName_2: BatSwing2
-  whooshVolume: 0.95
+  whooshFileName: 
+  whooshFileName_2: 
+  whooshVolume: 0.65
   whooshPitchMinimum: 0.9
   whooshPitchMaximum: 1.1
-  collideFileName: BatHit3
-  collideSoundVolume: 1
-  collidePitchMinimum: 1
+  collideFileName: 
+  collideSoundVolume: 0.65
+  collidePitchMinimum: 0.95
   collidePitchMaximum: 1.05
 --- !u!50 &6177238785633955744
 Rigidbody2D:

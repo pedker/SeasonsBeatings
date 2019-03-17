@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
 public class Weapon : MonoBehaviour
 {
-    public float weaponRange { get; protected set; } = 1;
-    public int durability { get; protected set; } = 15;
-    public int maxDurability { get; protected set; } = 15;
-    public Sprite sprite;
 
-    public GameObject pickupVersion { get; set; }
+    [Header("Weapon Fields")]
+    [SerializeField] protected float weaponRange = 0;
+    [SerializeField] protected int durability = 15;
+    [SerializeField] protected int maxDurability = 15;
+    [SerializeField] protected Sprite sprite;
+    [SerializeField] protected WeaponOnGround pickupVersion;
+
+    public Sprite Sprite { get => sprite; }
+    public int Durability { get => durability; set => durability = value; }
+    public int MaxDurability { get => maxDurability; }
+    public float WeaponRange { get => weaponRange; }
+    public WeaponOnGround PickupVersion { get => pickupVersion; }
 
     virtual public void Attack()
     {
@@ -19,23 +27,11 @@ public class Weapon : MonoBehaviour
 
     virtual protected void OnEnable()
     {
-        durability = maxDurability;
-    }
-
-    virtual public GameObject GetPickupVersion()
-    {
-        return pickupVersion;
+       Durability = maxDurability;
     }
 
     virtual public bool checkDestroy()
     {
-        //durability--;
-        //if (durability == 0)
-        //{
-        //    Destroy(gameObject);
-        //    return true;
-        //}
-        //else return false;
         return false;
     }
 }

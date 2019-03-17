@@ -49,8 +49,8 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            weapon.sprite = PlayerController.instance.weapon.sprite;
-            weaponDurability.text = PlayerController.instance.weapon.durability + "/" + PlayerController.instance.weapon.maxDurability;
+            weapon.sprite = PlayerController.instance.weapon.Sprite;
+            weaponDurability.text = PlayerController.instance.weapon.Durability + "/" + PlayerController.instance.weapon.MaxDurability;
         }
 
         scoreText.text = "$" + GameManager.instance.score;
