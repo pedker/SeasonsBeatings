@@ -40,6 +40,7 @@ public class Melee : Weapon
     new Collider2D collider2D = null;
     new Rigidbody2D rigidbody2D;
     float time = 0;
+    float attackTimer = 0.01f;
 
     public float Cooldown { get => cooldown; }
 
@@ -97,6 +98,8 @@ public class Melee : Weapon
         {
             collider2D.enabled = true;
 
+            StartCoroutine(startAttackTimer(attackTime));
+
             int random = Random.Range(0, 2);
             if (random == 0)
             {
@@ -123,7 +126,7 @@ public class Melee : Weapon
                 {
                     damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
                     Durability--;
-                    if (Durability == 0) broken = true;
+                    if (Durability == 0) StartCoroutine ( waitAndDestroy(attackTime - attackTimer) );
                     attackReset = false;
                     m_audioPlayer.playSFX(collideFileName, collideSoundVolume, collidePitchMinimum, collidePitchMaximum);
                 }
@@ -134,5 +137,31 @@ public class Melee : Weapon
     public override bool checkDestroy()
     {
         return broken;
+    }
+
+
+    private IEnumerator startAttackTimer(float time)
+    {
+        float memory = attackTimer;
+        while (attackTimer < time)
+        {
+            attackTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        attackTimer = memory;
+    }
+
+
+    private IEnumerator waitAndDestroy(float time)
+    {
+        float timer = 0.0f;
+        while (timer < time)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        broken = true;
     }
 }

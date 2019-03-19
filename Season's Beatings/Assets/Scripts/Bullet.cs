@@ -9,9 +9,9 @@ public class Bullet : MonoBehaviour
     [SerializeField] float damage = 40;
     [SerializeField] float stun = 0.1f;
 
-    //SOUND VARIABLES
-
-    //OTHER VARIABLES
+    [Header("Audio")]
+    [SerializeField] GameObject bulletHitObject = null;
+    [SerializeField] GameObject bulletMissObject = null;
     float lifetime = 0.0f;
 
     private void Update()
@@ -29,7 +29,12 @@ public class Bullet : MonoBehaviour
             if (damageableComponent != null)
             {
                 damageableComponent.Damage(damage, stun, knockback * (Vector2)(collision.transform.position - transform.position));
+                Instantiate(bulletHitObject, this.transform.position, this.transform.rotation);
             }
+        }
+        else
+        {
+            Instantiate(bulletMissObject, this.transform.position, this.transform.rotation);
         }
 
         Destroy(this.gameObject);

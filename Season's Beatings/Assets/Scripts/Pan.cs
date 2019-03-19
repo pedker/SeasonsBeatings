@@ -33,7 +33,7 @@ public class Pan : Weapon
     [SerializeField] float collidePitchMinimum = 0.95f;
     [SerializeField] float collidePitchMaximum = 1.05f;
 
-
+    float attackTimer = 0.01f;
     AudioPlayer m_audioPlayer;
     public Animator m_animator = null;
 
@@ -86,6 +86,8 @@ public class Pan : Weapon
 
             m_animator.Play("PanSwing", 0, 0.0f);
 
+            StartCoroutine(startAttackTimer(attackDuration));
+
             int random = Random.Range(0, 2);
             if (random == 0)
             {
@@ -107,7 +109,7 @@ public class Pan : Weapon
             {
                 damageableComponent.Damage(damage, stun, knockback * (Vector2)(other.transform.position - transform.position));
                 Durability--;
-                if (Durability == 0) broken = true;
+                if (Durability == 0) StartCoroutine(waitAndDestroy(attackDuration - attackTimer));
                 //attacking = false;
                 attackReset = true;
             }
@@ -122,5 +124,31 @@ public class Pan : Weapon
     public override bool checkDestroy()
     {
         return broken;
+    }
+
+
+    private IEnumerator startAttackTimer(float time)
+    {
+        float memory = attackTimer;
+        while (attackTimer < time)
+        {
+            attackTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        attackTimer = memory;
+    }
+
+
+    private IEnumerator waitAndDestroy(float time)
+    {
+        float timer = 0.0f;
+        while (timer < time)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        broken = true;
     }
 }

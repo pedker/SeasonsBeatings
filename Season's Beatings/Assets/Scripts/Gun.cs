@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Gun : Weapon
 {
-    private bool firedShot = false;
-
-    //ADD SOUND VARIABLES
 
     //OTHER VARIABLES
     [Header("STATS")]
@@ -26,6 +23,8 @@ public class Gun : Weapon
     [SerializeField] float firePitchMinimum = 0.90f;
     [SerializeField] float firePitchMaximum = 1.10f;
 
+    bool isBroken = false;
+    float attackTimer = 0.01f;
     AudioPlayer m_audioPlayer;
     float attackTime = 1f;
     PlayerController player;
@@ -58,21 +57,41 @@ public class Gun : Weapon
         if (attackTime >= rateOfFire)
         {
             attackTime = 0;
+            StartCoroutine(startAttackTimer(attackTimer));
             GameObject newBullet = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
-            firedShot = true;
+            Durability--;
+            if (Durability == 0) StartCoroutine(waitAndDestroy(rateOfFire/2 - attackTimer));
             m_audioPlayer.playSFX(fireFileName, fireVolume, firePitchMinimum, firePitchMaximum);
         }
     }
     
     public override bool checkDestroy()
     {
-        if (firedShot)
+        return isBroken;
+    }
+
+    private IEnumerator startAttackTimer(float time)
+    {
+        float memory = attackTimer;
+        while (attackTimer < time)
         {
-            Durability--;
-            firedShot = false;
-            if (Durability == 0) return true;
-            return false;
+            attackTimer += Time.deltaTime;
+            yield return null;
         }
-        return false;
+
+        attackTimer = memory;
+    }
+
+
+    private IEnumerator waitAndDestroy(float time)
+    {
+        float timer = 0.0f;
+        while (timer < time)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        isBroken = true;
     }
 }

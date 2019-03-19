@@ -50,6 +50,10 @@ MonoBehaviour:
   knockback: 10
   damage: 40
   stun: 0.1
+  bulletHitObject: {fileID: 4402934889534636061, guid: 1539a529adcdf9d40a7550a03619ba1b,
+    type: 3}
+  bulletMissObject: {fileID: 7705625165802523156, guid: 70eaf66a5b0485d4b862fd7a0d887cd4,
+    type: 3}
 --- !u!212 &7025390786511676783
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -148,4 +152,3 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0010991473, y: -0.0016698131}
   m_Size: {x: 0.24174456, y: 0.09503244}
   m_Direction: 1
-
