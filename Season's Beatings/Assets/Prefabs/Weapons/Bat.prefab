@@ -108,16 +108,16 @@ MonoBehaviour:
   stun: 0.5
   startArc: -145
   endArc: -10
-  pickupFileName: 
+  pickupFileName: BatPickup
   pickupVolume: 0.65
   pickupPitchMinimum: 0.95
   pickupPitchMaximum: 1.05
-  whooshFileName: 
-  whooshFileName_2: 
+  whooshFileName: BatSwing1
+  whooshFileName_2: BatSwing2
   whooshVolume: 0.65
   whooshPitchMinimum: 0.9
   whooshPitchMaximum: 1.1
-  collideFileName: 
+  collideFileName: BatHit
   collideSoundVolume: 0.65
   collidePitchMinimum: 0.95
   collidePitchMaximum: 1.05

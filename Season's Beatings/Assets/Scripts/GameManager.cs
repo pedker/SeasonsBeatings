@@ -86,11 +86,12 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < spawnTries; i++)
         {
-            float x = Random.Range(spawnArea.rect.xMin, spawnArea.rect.xMax);
-            float y = Random.Range(spawnArea.rect.yMin, spawnArea.rect.yMax);
+            float x = Random.Range(spawnArea.rect.xMin, spawnArea.rect.xMax) + spawnArea.position.x;
+            float y = Random.Range(spawnArea.rect.yMin, spawnArea.rect.yMax) + spawnArea.position.y;
             spawnPoint = new Vector2(x, y);
             Vector2 screenPoint = mainCamera.WorldToScreenPoint(spawnPoint);
-            if (screenPoint.x > 0 && screenPoint.y > 0 && screenPoint.x > mainCamera.pixelWidth && screenPoint.y > mainCamera.pixelHeight)
+            
+            if ((screenPoint.x < 0 || screenPoint.x > mainCamera.pixelWidth) && (screenPoint.y < 0 || screenPoint.y > mainCamera.pixelHeight))
             {
                 Collider2D spawnConflict = Physics2D.OverlapCircle(spawnPoint, Mathf.Max(enemy.GetComponent<Collider2D>().bounds.extents.x,
                                                                                             enemy.GetComponent<Collider2D>().bounds.extents.y));
