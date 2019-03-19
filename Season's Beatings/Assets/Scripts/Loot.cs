@@ -25,7 +25,7 @@ public class Loot : MonoBehaviour, IPickupable
 
     public void pickUp()
     {
-        GameManager.instance.addScore(m_score);
+        GameManager.instance.AddScore(m_score);
         Destroy(this.gameObject);
     }
 }
