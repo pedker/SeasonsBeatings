@@ -1020,7 +1020,7 @@ MonoBehaviour:
 
     Gabriel Fuentes - {Level Design}
 
-    Parker Leven - {Sound Design}'
+    Parker Levin - {Sound Design}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: abd6f35093f8d6a4f95571aee6885d3d, type: 2}
   m_sharedMaterial: {fileID: 21573576980984560, guid: abd6f35093f8d6a4f95571aee6885d3d,
@@ -1098,11 +1098,11 @@ MonoBehaviour:
     lineCount: 3
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
