@@ -50,7 +50,8 @@ public class UIManager : MonoBehaviour
         else
         {
             weapon.sprite = PlayerController.instance.weapon.Sprite;
-            weaponDurability.text = PlayerController.instance.weapon.Durability + "/" + PlayerController.instance.weapon.MaxDurability;
+            weaponDurability.text = PlayerController.instance.weapon.Durability + "/" + PlayerController.instance.weapon.MaxDurability
+                + "\nPress Q to Drop";
         }
 
         scoreText.text = "$" + GameManager.instance.score;
