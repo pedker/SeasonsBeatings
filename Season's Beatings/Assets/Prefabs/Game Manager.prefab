@@ -284,18 +284,48 @@ MonoBehaviour:
   mainCamera: {fileID: 6767844652043649042}
   spawningEnemies: 1
   spawnTries: 10
-  maxEnemies: 0
-  autoCalculateMaxEnemies: 1
+  maxEnemies: 100
+  autoCalculateMaxEnemies: 0
   spawnList:
+  - {fileID: 2401341180768468905, guid: e9550b62e32c636429796355e3dcca01, type: 3}
+  - {fileID: 3799514059181452527, guid: f1f277f86ab08f44d90daad7fc0f6547, type: 3}
   - {fileID: 575913833716730925, guid: d5f5fbe4095f296419829501271ff9dc, type: 3}
+  - {fileID: 2845378400231452132, guid: 58b9f2e75ef145f4abdbf2e98653c3c7, type: 3}
+  - {fileID: 2362882553610211511, guid: 3792471a8b425ea4da6fce5ee34fefb2, type: 3}
+  - {fileID: 5872477076983600771, guid: c8ecb1494994ba6489888d5cd3b6699b, type: 3}
+  - {fileID: 1080803542818168806, guid: f489f1df43b13824eac0e774a921b599, type: 3}
+  - {fileID: 6857819485214010429, guid: 017a7973052eed24f8fe42a359a438c8, type: 3}
   - {fileID: 4485541639805579823, guid: 56197faa6721b7a49b50b9d57625c0db, type: 3}
-  - {fileID: 2835703681437159813, guid: fc34893ca892eda4aa7a0613a30e271f, type: 3}
+  - {fileID: 2902435483788224953, guid: fbdde14bfae6bee49b302cb5a57501c5, type: 3}
+  - {fileID: 3430838625735991849, guid: c77a526412d6b8449b64955124830e80, type: 3}
+  - {fileID: 1963398005062259644, guid: 38352950441af394f85f5897686b431c, type: 3}
   - {fileID: 7761953642383496830, guid: ee27c8bf9a43b724c9b3357fc6470659, type: 3}
+  - {fileID: 8991629710113933863, guid: 127038c0fa951374d90df4f338fa057b, type: 3}
+  - {fileID: 434687476424861072, guid: a26c340312bf41d46993003137da6665, type: 3}
+  - {fileID: 3637603624566465854, guid: f2c8c2473444d854a92dee19bba6b434, type: 3}
+  - {fileID: 6774716468441426776, guid: 0f222c26df1af8a4b9f2c0de3fac8a13, type: 3}
+  - {fileID: 9006771359902036408, guid: e79cc0d0982fd9a4786d775a53471e17, type: 3}
+  - {fileID: 2835703681437159813, guid: fc34893ca892eda4aa7a0613a30e271f, type: 3}
   spawnChance:
-  - 0.2
-  - 0.3
-  - 0.1
-  - 0.4
+  - 0.05
+  - 0.05
+  - 0.03
+  - 0.03
+  - 0.02
+  - 0.02
+  - 0.1125
+  - 0.1125
+  - 0.0675
+  - 0.0675
+  - 0.045
+  - 0.045
+  - 0.075
+  - 0.075
+  - 0.045
+  - 0.045
+  - 0.03
+  - 0.03
+  - 0.05
   spawnArea: {fileID: 6247266824459946392}
 --- !u!114 &748466091430741584
 MonoBehaviour:
@@ -2969,11 +2999,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6767844652043649045}
     m_Modifications:
-    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
-        type: 3}
-      propertyPath: m_Name
-      value: AudioPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 4462049367453990142, guid: dc3b6a0e478b11740aaec1cf256dadb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3028,6 +3053,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462049367453990137, guid: dc3b6a0e478b11740aaec1cf256dadb2,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3b6a0e478b11740aaec1cf256dadb2, type: 3}
