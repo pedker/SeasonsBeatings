@@ -420,7 +420,7 @@ MonoBehaviour:
   damagedPitchMin: 0.9
   damagedPitchMax: 1.1
   healFileName: Heal
-  healVolume: 0.45
+  healVolume: 0.25
   healPitchMin: 1
   healPitchMax: 1
   deathFileName: PlayerDeath
